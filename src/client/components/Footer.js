@@ -12,7 +12,7 @@ const Footer = () => {
                     Atlètico Brisbane, a spirited malayali community 
                     <br className="hidden md:block" /> soccer club established & registered in 2018, unites soccer 
                     <br className="hidden md:block" /> enthusiasts in Brisbane under one banner. With a mantra 
-                    <br className="hidden md:block" /> of "play, train, fight, and face until it's done,"we embody 
+                    <br className="hidden md:block" /> of "play, train, fight, and face until it's done", we embody 
                     <br className="hidden md:block" /> resilience and dedication.
                 </p>
             </div>

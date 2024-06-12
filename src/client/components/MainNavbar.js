@@ -20,7 +20,7 @@ const MainNavbar = () => {
     };
 
     return (
-        <nav className="bg-[#f8f7fa] p-2 sticky relative top-0 z-50">
+        <nav className="bg-[#fefefe] p-2 sticky relative top-0 z-50">
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
                     <img
@@ -37,8 +37,8 @@ const MainNavbar = () => {
                         <div className="w-6 h-0.5 bg-white"></div>
                     </button>
                     <div className="text-[#6232a8] font-semibold">
-                        <p className="h-[24px] text-[#f0304d] rounded">&#9734;   ATLÉTICO BRISBANE  &#9734;  <br />
-                            <span className="text-xs ml-10 text-[#0f2e66]">Together we can</span></p>
+                        <p className="h-[24px] text-[#0e7bc4] rounded"> ATLÉTICO BRISBANE <br />
+                        <span className="text-xs ml-6 text-[#f0cb13]">Together we can</span></p>
                     </div>
                 </div>
                 <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
