@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TeamsDropdownMenu from './TeamsDropdownMenu';
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const MainNavbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +44,7 @@ const MainNavbar = () => {
                 <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
                     <a
                         href="#"
-                        className="font-semibold block mt-4 lg:inline-block lg:mt-0 mr-4 linegrow  Helvetica, Arial, sans-serif"
+                        className="font-semibold block mt-4 lg:inline-block lg:mt-0 mr-4 linegrow"
                         onClick={() => {
                             closeDropdown();
                         }}

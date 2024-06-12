@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -16,6 +16,7 @@ const AtleticoImageSlider = () => {
     ];
 
     const [slideImages ] = useState(slides);
+    const sliderRef = useRef(null);
 
     const settings = {
         dots: false,
@@ -27,15 +28,33 @@ const AtleticoImageSlider = () => {
         autoplaySpeed: 4000, // Set autoplay speed to 4 seconds
     };
 
+    const handleLeftArrowClick = () => {
+        if (sliderRef.current) {
+          sliderRef.current.slickPrev();
+        }
+      };
+
+      const handleRightArrowClick = () => {
+        if (sliderRef.current) {
+          sliderRef.current.slickNext();
+        }
+      };
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
             <div className="relative w-full h-96 md:h-auto">
-                <Slider {...settings}>
+                <div onClick={handleLeftArrowClick} className="absolute top-20 md:top-64 left-0 z-10">
+                    <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
+                </div>
+                <div onClick={handleRightArrowClick} className="absolute top-20 right-0 z-10 md:top-64">
+                    <img src="images/arrow-right.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
+                </div>
+                <Slider ref={sliderRef} {...settings}>
                     {slideImages.map((item, index) => (
                         <div key={index}>
                             <img src={item.src} alt={`Slide ${index + 1}`} />
                             <section className="overlay-text">
-                                <div className="text-center">{item.text}</div>
+                                <div className="text-center p-2 ml-[-20px]">{item.text}</div>
                             </section>
                             
                         </div>

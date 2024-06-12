@@ -18,13 +18,13 @@ code {
 
 .linegrow {
   position: relative;
-  color: #562ea1;
+  color: #222026;
   text-decoration: bold;
   font-size: 18px;
 }
 .linegrow:hover {
   font-weight:bold;
-
+  color: #ba54d9;
 }
 .linegrow::before {
   content: '';

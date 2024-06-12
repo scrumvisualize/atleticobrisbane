@@ -3,6 +3,7 @@ import TopBanner from "./TopBanner";
 import MainNavbar from "./MainNavbar";
 import Banner from "./Banner";
 import AtleticoImageSlider from "./AtleticoImageSlider";
+import Training from "./Training";
 import Footer from "./Footer";
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
             <TopBanner/>
             <MainNavbar/>
             <Banner/>
+            <Training/>
             <AtleticoImageSlider/>
             <Footer/>
         </div>

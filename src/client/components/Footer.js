@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
     const navigate = useNavigate();
-    const [isVisible, setIsVisible] = useState(false);
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657] mt-6 md:mt-10">
             <div className="p-4">
                 <h3 className="text-3xl text-[#e6e4f0] font-bold mb-4">About Atlètico</h3>
-                <p className="text-sm md:text-left p-4 sans-serif text-white">
+                <p className="text-sm md:text-left p-4 font-sans-serif text-white">
                     Atlètico Brisbane, a spirited malayali community 
                     <br className="hidden md:block" /> soccer club established & registered in 2018, unites soccer 
                     <br className="hidden md:block" /> enthusiasts in Brisbane under one banner. With a mantra 
