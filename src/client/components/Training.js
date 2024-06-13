@@ -3,10 +3,10 @@ import React from 'react';
 const Training = () => {
 
     return (
-        <div className="bg-cover bg-bottom bg-no-repeat h-[80px] md:h-[100px] lg:h-100 mt-6" style={{ backgroundImage: "url('images/tbanner2.png')" }}>
+        <div className="bg-cover bg-bottom bg-no-repeat h-[80px] md:h-[100px] lg:h-100 mt-4" style={{ backgroundImage: "url('images/tbanner2.png')" }}>
             <div className="flex justify-between items-center h-full mx-4 md:mx-10 lg:mx-20">
-                <div className="font-sans-serif text-xs md:text-xl text-white bg-slate-900 bg-opacity-40 pl-2 pr-2 ml-0 mr-8 md:ml-20">
-                    Lets give our kids better training at the budding stage &#x2192;
+                <div className="font-sans-serif text-xs md:text-[18px] text-white bg-slate-900 bg-opacity-40 pl-2 p-2 pr-2 ml-0 mr-8 md:ml-16">
+                 Empower our kids with superior training led by exceptional coaches &#x2192;
                 </div>
                 <div className="font-sans-serif text-xs md:text-base text-white pl-2 pr-2 flex flex-col md:flex-row items-center">
                     
@@ -21,7 +21,7 @@ const Training = () => {
                         </div>
                     </div>
                     
-                    <button className="border border-white text-white px-2 md:px-4 py-2 md:py-3 bg-[#d41743] font-semibold rounded-lg text-xs md:text-base">
+                    <button className="border border-white text-white px-2 md:px-4 py-2 md:py-3 bg-[#eb446e] font-semibold rounded-lg text-xs md:text-base">
                         Training
                     </button>
                 </div>

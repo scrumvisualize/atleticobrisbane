@@ -20,7 +20,7 @@ const TopBanner = () => {
             {topbanner.map((item, index) => (
                 <div key={index} className="p-1 flex justify-center">
                     <img src={item.src} alt={index} className="w-6 h-6"></img>
-                    <p className="ml-4">{item.value}</p>
+                    <p className="ml-2">{item.value}</p>
                 </div>
             ))}
             <div className="p-1 flex justify-end items-center">

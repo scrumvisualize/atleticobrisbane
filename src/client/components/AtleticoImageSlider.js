@@ -13,6 +13,8 @@ const AtleticoImageSlider = () => {
         { id: 2, src: 'images/ab-slider-2.JPG', text: 'Curious Crowd' },
         { id: 3, src: 'images/juniors.JPG', text: 'Our Junior Boys' },
         { id: 4, src: 'images/ab-slider-3.JPG', text: 'Mens Squad' },
+        { id: 5, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
+        { id: 6, src: 'images/training.jpeg', text: 'Training' },
     ];
 
     const [slideImages ] = useState(slides);
@@ -42,7 +44,7 @@ const AtleticoImageSlider = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div className="relative w-full h-96 md:h-auto">
+            <div className="relative w-full h-96 md:h-[585px]">
                 <div onClick={handleLeftArrowClick} className="absolute top-20 md:top-64 left-0 z-10">
                     <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
@@ -61,7 +63,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[490px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-135px] md:mt-0">
+            <div className="relative h-96 md:h-[490px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-140px] md:mt-0">
                     <div className="ml-8 mt-10">
                         <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                     </div>

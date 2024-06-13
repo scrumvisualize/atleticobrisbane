@@ -5,7 +5,7 @@ const Footer = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657] mt-6 md:mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657] mt-[200px] md:mt-10">
             <div className="p-4">
                 <h3 className="text-3xl text-[#e6e4f0] font-bold mb-4">About Atlètico</h3>
                 <p className="text-sm md:text-left p-4 font-sans-serif text-white">

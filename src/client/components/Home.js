@@ -4,6 +4,7 @@ import MainNavbar from "./MainNavbar";
 import Banner from "./Banner";
 import AtleticoImageSlider from "./AtleticoImageSlider";
 import Training from "./Training";
+import WeeklyGames from "./WeeklyGames"
 import Footer from "./Footer";
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             <Banner/>
             <Training/>
             <AtleticoImageSlider/>
+            <WeeklyGames/>
             <Footer/>
         </div>
     );
