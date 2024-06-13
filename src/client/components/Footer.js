@@ -9,11 +9,11 @@ const Footer = () => {
             <div className="p-4">
                 <h3 className="text-3xl text-[#e6e4f0] font-bold mb-4">About Atlètico</h3>
                 <p className="text-sm md:text-left p-4 font-sans-serif text-white">
-                    Atlètico Brisbane, a spirited malayali community 
-                    <br className="hidden md:block" /> soccer club established & registered in 2018, unites soccer 
-                    <br className="hidden md:block" /> enthusiasts in Brisbane under one banner. With a mantra 
-                    <br className="hidden md:block" /> of "play, train, fight, and face until it's done", we embody 
-                    <br className="hidden md:block" /> resilience and dedication.
+                    Atlético Brisbane, a friendly malayali community
+                    <br className="hidden md:block" /> soccer club established in 2018 & registered in 2020, unites soccer 
+                    <br className="hidden md:block" /> enthusiasts of all ages in Brisbane under one banner.  While our 
+                    <br className="hidden md:block" /> club mantra is "Aspire, Aim, Achieve", we also embody resilience, 
+                    <br className="hidden md:block" />dedication and passion towards the sport. We welcome you all to be a part of our journey.
                 </p>
             </div>
             <div className="p-4 text-white">

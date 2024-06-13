@@ -20,13 +20,13 @@ const MainNavbar = () => {
     };
 
     return (
-        <nav className="bg-[#E8F2FF] p-2 sticky relative top-0 z-50">
+        <nav className="bg-[#fafbfc] p-2 sticky relative top-0 z-50">
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
                     <img
                         src="images/ablogo.PNG"
                         alt="Logo"
-                        className="h-[73px] mr-2"
+                        className="h-[63px] mr-2"
                     />
                     <button
                         className="text-white focus:outline-none lg:hidden"
@@ -37,8 +37,9 @@ const MainNavbar = () => {
                         <div className="w-6 h-0.5 bg-white"></div>
                     </button>
                     <div className="text-[#6232a8] font-semibold">
-                        <p className="h-[24px] text-lg text-[#1a69c4] rounded"> <span className="text-[#f21b78]">&#9734;</span> ATLÉTICO BRISBANE <span className="text-[#f21b78]">&#9734;</span> <br />
-                        <span className="text-base ml-8 text-[#f0cb13]">United, we achieve</span></p>
+                        {/* <p className="h-[34px] text-lg text-[#1a69c4] rounded"> <span className="text-[#f21b78]">&#9734;</span> ATLÉTICO BRISBANE <span className="text-[#f21b78]">&#9734;</span> <br /> */}
+                        <p className="h-[34px] text-lg text-[#1a69c4] rounded"> ATLÉTICO BRISBANE <br />
+                        <div className="text-xs ml-6 mt-[-2px] text-[#f0cb13] uppercase">Dare to dream </div></p>
                     </div>
                 </div>
                 <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
@@ -86,6 +87,15 @@ const MainNavbar = () => {
                         </a>
                         {isDropdownOpen && <TeamsDropdownMenu />}
                     </div>
+                    <a
+                        href="#"
+                        className="font-semibold block mt-4 lg:inline-block lg:mt-0 mr-4 linegrow"
+                        onClick={() => {
+                            closeDropdown();
+                        }}
+                    >
+                        SPONSORS
+                    </a>
                     <a
                         href="#"
                         className="font-semibold block mt-4 lg:inline-block lg:mt-0 mr-4 linegrow"
