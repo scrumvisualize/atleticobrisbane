@@ -5,6 +5,7 @@ import Home from "./client/components/Home";
 import About from "./client/components/About";
 import Login from "./client/components/Login";
 import Admin from "./client/components/Admin";
+import Sponsors from "./client/components/Sponsors";
 
 import './index.css';
 
@@ -19,6 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/sponsors" element={<Sponsors />} />
         <Route
           path="/login"
           element={<Login setAuthenticated={setAuthenticated} />}

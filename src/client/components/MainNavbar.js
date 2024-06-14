@@ -39,7 +39,7 @@ const MainNavbar = () => {
                     <div className="text-[#6232a8] font-semibold">
                         {/* <p className="h-[34px] text-lg text-[#1a69c4] rounded"> <span className="text-[#f21b78]">&#9734;</span> ATLÉTICO BRISBANE <span className="text-[#f21b78]">&#9734;</span> <br /> */}
                         <p className="h-[34px] text-lg text-[#1a69c4] rounded"> ATLÉTICO BRISBANE <br />
-                        <div className="text-xs ml-6 mt-[-2px] text-[#f0cb13] uppercase">Dare to dream </div></p>
+                        <span className="text-xs ml-6 mt-[-2px] text-[#f0cb13] uppercase">Dare to dream </span></p>
                     </div>
                 </div>
                 <div className={`lg:flex ${isOpen ? 'block' : 'hidden'}`}>
@@ -90,9 +90,7 @@ const MainNavbar = () => {
                     <a
                         href="#"
                         className="font-semibold block mt-4 lg:inline-block lg:mt-0 mr-4 linegrow"
-                        onClick={() => {
-                            closeDropdown();
-                        }}
+                        onClick={() => { navigate('/sponsors'); }}
                     >
                         SPONSORS
                     </a>

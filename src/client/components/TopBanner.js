@@ -18,7 +18,7 @@ const TopBanner = () => {
     return (
         <div className="flex flex-col sm:flex-row justify-center items-center bg-gradient-to-r from-blue-600 via-[#cb6ce6] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6] text-white">
             {topbanner.map((item, index) => (
-                <div key={index} className="p-1 flex justify-center">
+                <div key={index} className="p-2 flex justify-center">
                     <img src={item.src} alt={index} className="w-6 h-6"></img>
                     <p className="ml-2">{item.value}</p>
                 </div>

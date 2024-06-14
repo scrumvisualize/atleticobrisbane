@@ -4,7 +4,9 @@ import MainNavbar from "./MainNavbar";
 import Banner from "./Banner";
 import AtleticoImageSlider from "./AtleticoImageSlider";
 import Training from "./Training";
-import WeeklyGames from "./WeeklyGames"
+import WeeklyGames from "./WeeklyGames";
+import TitleSponsor from "./TitleSponsor";
+import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
 
 const Home = () => {
@@ -16,6 +18,8 @@ const Home = () => {
             <Training/>
             <AtleticoImageSlider/>
             <WeeklyGames/>
+            <TitleSponsor/>
+            <SponsorsList/>
             <Footer/>
         </div>
     );
