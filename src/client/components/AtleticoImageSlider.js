@@ -55,7 +55,7 @@ const AtleticoImageSlider = () => {
                     {slideImages.map((item, index) => (
                         <div key={index}>
                             <img src={item.src} alt={`Slide ${index + 1}`} />
-                            <section className="overlay-text">
+                            <section className="overlay-text rounded-lg">
                                 <div className="text-center p-2 ml-[-20px]">{item.text}</div>
                             </section>
                             

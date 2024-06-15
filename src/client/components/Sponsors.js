@@ -1,5 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
+import MainNavbar from "./MainNavbar";
+
 const sdata = [
     {   id: 1,
         url: "https://indusmortgages.co.nz/",
@@ -34,8 +35,11 @@ const Sponsors = () => {
 
     return (
         <div className="container mx-auto px-4">
-
+           <MainNavbar/>
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[230px] md:h-[360px] lg:h-128" style={{ backgroundImage: "url('images/sponsor.png')" }}>
+            </div>
+            <div className="text-center font-semibold text-xs mb-2">
+                <h3>Home &#8594; Sponsors </h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {

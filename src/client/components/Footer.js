@@ -20,7 +20,7 @@ const Footer = () => {
                 <h3 className="text-3xl text-[#e6e4f0] font-bold mb-4">Contact</h3>
                 <ul>
                     <li className="text-sm font-semibold mb-2"><a href="tel:0234567890" className='mt-1'>+61 0234567890</a></li>
-                    <li className="text-sm font-semibold mb-2">atleticobris-info@gmail.com</li>
+                    <li className="text-sm font-semibold ml-2 mb-2">atleticobris-info@gmail.com</li>
                 </ul>
             </div>
 
@@ -29,6 +29,7 @@ const Footer = () => {
                 <ul>
                     <li><span onClick={() => navigate('/')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">Home</span></li>
                     <li><span onClick={() => navigate('/about')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">About</span></li>
+                    <li><span onClick={() => navigate('/sponsors')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">Sponsors</span></li>
                     <li><span onClick={() => navigate('/contact')} className="text-sm font-bold block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</span></li>
                 </ul>
                 <div className="portrait:hidden flex flex-wrap mt-4">
