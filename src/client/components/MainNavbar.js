@@ -67,14 +67,12 @@ const MainNavbar = () => {
                     </div>
                     <div className="hidden lg:flex items-center space-x-4">
                         <a
-                            href="#"
                             className="font-semibold linegrow"
                             onClick={() => navigate('/')}
                         >
                             HOME
                         </a>
                         <a
-                            href="#"
                             className="font-semibold linegrow"
                             onClick={() => navigate('/about')}
                         >
@@ -105,14 +103,12 @@ const MainNavbar = () => {
                             )}
                         </div>
                         <a
-                            href="#"
                             className="font-semibold linegrow"
                             onClick={() => navigate('/sponsors')}
                         >
                             SPONSORS
                         </a>
                         <a
-                            href="#"
                             className="font-semibold linegrow"
                             onClick={() => {
                                 closeDropdown();
@@ -125,15 +121,13 @@ const MainNavbar = () => {
                 {isOpen && (
                     <div className="lg:hidden bg-[#f5f7f7] p-2 mb-2">
                         <div className="flex flex-col space-y-2">
-                            <a
-                                href="#"
+                            <a   
                                 className="font-semibold linegrow"
                                 onClick={() => navigate('/')}
                             >
                                 HOME
                             </a>
                             <a
-                                href="#"
                                 className="font-semibold linegrow"
                                 onClick={() => navigate('/about')}
                             >
@@ -163,15 +157,13 @@ const MainNavbar = () => {
                                 <TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
-                            <a
-                                href="#"
+                            <a                  
                                 className="font-semibold linegrow"
                                 onClick={() => navigate('/sponsors')}
                             >
                                 SPONSORS
                             </a>
                             <a
-                                href="#"
                                 className="font-semibold linegrow"
                                 onClick={() => navigate('/contact')}
                             >

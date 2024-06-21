@@ -6,6 +6,7 @@ import About from "./client/components/About";
 import Login from "./client/components/Login";
 import Admin from "./client/components/Admin";
 import Sponsors from "./client/components/Sponsors";
+import MensSquad from "./client/components/teams/MensSquad";
 
 import './index.css';
 
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/menssquad" element={<MensSquad />} />
         <Route
           path="/login"
           element={<Login setAuthenticated={setAuthenticated} />}

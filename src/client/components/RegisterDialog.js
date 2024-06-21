@@ -17,7 +17,7 @@ const RegisterDialog = ({ onClose }) => {
   // };
 
   const onSubmit = (data) => {
-    console.log(data); // Handle form submission here
+    console.log("Data submission::"+data.name , data.email); // Handle form submission here
   };
 
   const handleCancel = () => {
@@ -40,6 +40,22 @@ const RegisterDialog = ({ onClose }) => {
             className="w-full border rounded-md px-4 py-2 mb-4"
           />
           {errors.name && <span className="text-red-500">Name is required</span>}
+
+          <input
+            type="tel"
+            name="mobile"
+            placeholder="Mobile"
+            {...register('mobile', {
+              required: "Mobile number is required",
+              pattern: {
+                value: /^[0-9]{10}$/,
+                message: "Invalid mobile number"
+              }
+            })}
+            className="w-full border rounded-md px-4 py-2 mb-4"
+          />
+          {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
+
           <input
             type="email"
             name="email"
@@ -55,29 +71,34 @@ const RegisterDialog = ({ onClose }) => {
             className="w-full border rounded-md px-4 py-2 mb-4"
           />
           {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+          
+          <select name="position" {...register('position', { required: true })} className="w-full border rounded-md px-4 py-2 mb-4">
+            <option value="">Select Position</option>
+            <option value="Striker">Striker</option>
+            <option value="Defender">Defender</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Keeper">Goal Keeper</option>
+            <option value="coaching">Football Coaching</option>
+          </select>
+          {errors.position && <p className="text-red-500">Position is required</p>}
+
           <input
-            type="tel"
-            name="mobile"
-            placeholder="Mobile"
-            {...register('mobile',{ 
-              required: "Mobile number is required", 
-              pattern: {
-                value: /^[0-9]{10}$/ ,
-                message: "Invalid mobile number"
-              }
-            })}
+            type="file"
+            name="profilePhoto"
+            accept="image/*"
+            {...register('profilePhoto', { required: true })}
             className="w-full border rounded-md px-4 py-2 mb-4"
           />
-          {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
+          {errors.profilePhoto && <span className="text-red-500">Profile photo is required</span>}
 
           <input
             type="text"
             name="code"
             placeholder="Code"
-            {...register('code',{ 
-              required: "Please provide a valid code", 
+            {...register('code', {
+              required: "Please provide a valid code",
               pattern: {
-                value: /^[a-zA-Z0-9#!@$%_]{10,}$/ ,
+                value: /^[a-zA-Z0-9#!@$%_]{10,}$/,
                 message: "Invalid code provided"
               }
             })}

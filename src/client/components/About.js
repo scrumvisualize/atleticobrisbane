@@ -6,7 +6,7 @@ const About = () => {
     return (
         <div className="bg-gray-100 text-gray-900">
             <MainNavbar />
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[230px] md:h-[360px] lg:h-128" style={{ backgroundImage: "url('images/about.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/about.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
                 <h3>Home &#8594; About </h3>
@@ -20,33 +20,33 @@ const About = () => {
                 </div>
             </div>
             <div className="container mx-auto my-10 px-5">
-                <h1 className="text-3xl font-bold text-center mb-8">Meet the Team</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Meet The Team</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 1" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 1</h2>
+                        <h2 className="text-xl font-semibold">Joji</h2>
                         <p className="text-gray-600">Brief details about Person 1. React developer with a focus on hooks and state management.</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 2</h2>
+                        <h2 className="text-xl font-semibold">Prince Anand</h2>
                         <p className="text-gray-600">Brief details about Person 2. Expert in frontend development and user experience design.</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 3" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 3</h2>
+                        <h2 className="text-xl font-semibold">Saljo</h2>
                         <p className="text-gray-600">Brief details about Person 3. Passionate about creating efficient and scalable React applications.</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 4" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 4</h2>
+                        <h2 className="text-xl font-semibold">Jibi</h2>
                         <p className="text-gray-600">Brief details about Person 4. Specializes in modern JavaScript frameworks and tooling.</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-4 md:mt-4">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 1" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 1</h2>
+                        <h2 className="text-xl font-semibold"></h2>
                         <p className="text-gray-600">Brief details about Person 1. React developer with a focus on hooks and state management.</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">

@@ -3,7 +3,7 @@ import React from 'react';
 const Training = () => {
 
     return (
-        <div className="bg-cover bg-bottom bg-no-repeat h-[80px] md:h-[100px] lg:h-100 mt-4" style={{ backgroundImage: "url('images/tbanner2.png')" }}>
+        <div className="bg-cover bg-bottom bg-no-repeat h-[80px] md:h-[100px] lg:h-100 mt-2" style={{ backgroundImage: "url('images/tbanner2.png')" }}>
             <div className="flex justify-between items-center h-full mx-4 md:mx-10 lg:mx-20">
                 <div className="font-sans-serif text-xs md:text-[18px] text-white bg-slate-900 bg-opacity-40 pl-2 p-2 pr-2 ml-0 mr-8 md:ml-16">
                  Empower our kids with superior training led by exceptional coaches &#x2192;

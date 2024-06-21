@@ -36,12 +36,12 @@ const Sponsors = () => {
     return (
         <div className="container mx-auto px-4">
            <MainNavbar/>
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[230px] md:h-[360px] lg:h-128" style={{ backgroundImage: "url('images/sponsor.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128 " style={{ backgroundImage: "url('images/sponsors.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs mb-2">
                 <h3>Home &#8594; Sponsors </h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                 {
                     sponsorData.map((item, index) => (
                         <a key={item.id} href={item.url}>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -17,7 +17,7 @@ const AtleticoImageSlider = () => {
         { id: 6, src: 'images/training.jpeg', text: 'Training' },
     ];
 
-    const [slideImages ] = useState(slides);
+    const [slideImages, setSlideImages ] = useState(slides);
     const sliderRef = useRef(null);
 
     const settings = {
@@ -29,6 +29,10 @@ const AtleticoImageSlider = () => {
         autoplay: true,
         autoplaySpeed: 4000, // Set autoplay speed to 4 seconds
     };
+
+    useEffect(() => {
+        setSlideImages(slides);
+    }, []);
 
     const handleLeftArrowClick = () => {
         if (sliderRef.current) {
@@ -43,8 +47,8 @@ const AtleticoImageSlider = () => {
       };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div className="relative w-full h-96 md:h-[585px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+            <div className="relative w-full h-96">
                 <div onClick={handleLeftArrowClick} className="absolute top-20 md:top-64 left-0 z-10">
                     <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
