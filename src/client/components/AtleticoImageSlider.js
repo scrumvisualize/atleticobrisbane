@@ -48,7 +48,7 @@ const AtleticoImageSlider = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-            <div className="relative w-full h-96">
+            <div className="relative w-full h-80 md:h-[498px]">
                 <div onClick={handleLeftArrowClick} className="absolute top-20 md:top-64 left-0 z-10">
                     <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
@@ -67,7 +67,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[490px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-140px] md:mt-0">
+            <div className="relative h-96 md:h-[498px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
                     <div className="ml-8 mt-10">
                         <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                     </div>

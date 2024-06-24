@@ -11,19 +11,20 @@ const GeneralUpdate = ({ imageSrc, title, date, text }) => {
     const truncatedText = text.slice(0, 75);
     const remainingText = text.slice(75);
     //bg-gradient-to-r from-[#5a0bb5] via-[#6702a6] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6] #a8dbf7
+    //#002d75
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-[#352b6b]">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-[#f8f6fc]">
             <img className="w-16" src={imageSrc} alt={title} />
             <div className="px-6 py-4">
-                <div className="font-bold text-xl text-white mb-2">{title}</div>
-                <p className="text-gray-700 text-base text-white mb-2">
+                <div className="font-bold text-xl text-[#b778d6] mb-2">{title}</div>
+                <p className="text-gray-700 text-base text-[#3c3e40] mb-2">
                     {date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </p>
                 <div className="h-px bg-gray-300 mb-2"></div>
-                <p className="text-base text-white">
+                <p className="text-base text-[#3c3e40]">
                     {showFullText ? text : truncatedText}
                     {text.length > 75 && !showFullText && (
-                        <span onClick={handleClick} className="inline-block rounded-full px-2 bg-[#c9a214] border border-white text-white cursor-pointer">
+                        <span onClick={handleClick} className="inline-block rounded-full px-2 bg-[#c9a214] border border-[#FAFCF6] text-white cursor-pointer">
                             Read more...
                         </span>
                     )}
@@ -48,7 +49,7 @@ const AtleticoUpdates = ({ updates }) => {
 
     return (
         <div>
-            <h1 className="text-2xl text-[#181c1c] font-bold mt-4 mb-2">General Updates</h1>
+            <h1 className="text-2xl text-[#181c1c] font-bold mt-2 mb-2">General Updates</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-24">
                 {updates.slice(0, visibleItems).map(update => (
                     <GeneralUpdate
