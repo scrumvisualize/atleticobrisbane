@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MainNavbar from "./MainNavbar";
+import Footer from "./Footer";
 
 const sdata = [
     {   id: 1,
@@ -13,14 +14,14 @@ const sdata = [
         url: "https://www.pepperbite.com.au/",
         logo: "images/logo192.png",
         headerText: "Pepperbite",
-        bodyText: "PepperBite is a spiced up journey from India to the great Brisbane, we are proudly boarding all the spices and food varieties from north to south and delivering a fine dining experience to all foodies.Pepper Bite have authentic and modern Indian, Bar, Function and Fine dining and it is the perfect place for you to enjoy both South and North Indian food at a feasible rate. ",
-        category: "Food Industry"
+        bodyText: "PepperBite is a spiced up journey from India to the great Brisbane, we are proudly boarding all the spices and food varieties from north to south and delivering a fine dining experience to all foodies.Pepper Bite have authentic and modern Indian, Bar, Function and Fine dining and it is the perfect place for you to enjoy both South and North Indian food..",
+        category: "Restaurant"
     },
     {   id: 3,
         url: "https://www.loanhouselendingsolutions.com.au/",
         logo: "images/logo192.png",
         headerText: "LOAN HOUSE Lending Solutions",
-        bodyText: "Loan House Lending Solution provides tailored business finance solutions to individuals and companies. Your trusted home load provider.",
+        bodyText: "Loan House Lending Solution provides tailored business finance solutions to individuals and companies. Your trusted home load provider. We are operating from Brisbane, Australia. For fatser processing of home loan and any other clarification, please contact us on mobile or via email for you mortgage related queries.",
         category: "Mortgage Services"
     }
 ]
@@ -60,6 +61,7 @@ const Sponsors = () => {
                     ))
                 }
             </div>
+            <Footer/>
         </div>
 
     );

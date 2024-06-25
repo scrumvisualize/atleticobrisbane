@@ -20,34 +20,34 @@ const About = () => {
                 </div>
             </div>
             <div className="container mx-auto my-10 px-5">
-                <h1 className="text-3xl font-bold text-center mb-8">Meet The Team</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Committee Team</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 1" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Joji</h2>
-                        <p className="text-gray-600">Brief details about Person 1. React developer with a focus on hooks and state management.</p>
+                        <h2 className="text-xl font-semibold">Arun</h2>
+                        <h3 className="text-gray-600">President</h3>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Prince Anand</h2>
-                        <p className="text-gray-600">Brief details about Person 2. Expert in frontend development and user experience design.</p>
+                        <h2 className="text-xl font-semibold">Joji</h2>
+                        <p className="text-gray-600">Vice President</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 3" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Saljo</h2>
-                        <p className="text-gray-600">Brief details about Person 3. Passionate about creating efficient and scalable React applications.</p>
+                        <h2 className="text-xl font-semibold">Saju</h2>
+                        <p className="text-gray-600">Secretary</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 4" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Jibi</h2>
-                        <p className="text-gray-600">Brief details about Person 4. Specializes in modern JavaScript frameworks and tooling.</p>
+                        <h2 className="text-xl font-semibold">Vinod</h2>
+                        <p className="text-gray-600">Joint Secretary</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-4 md:mt-4">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 1" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold"></h2>
-                        <p className="text-gray-600">Brief details about Person 1. React developer with a focus on hooks and state management.</p>
+                        <h2 className="text-xl font-semibold">Clitus</h2>
+                        <p className="text-gray-600">Treasurer</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />

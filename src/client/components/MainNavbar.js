@@ -110,9 +110,7 @@ const MainNavbar = () => {
                         </a>
                         <a
                             className="font-semibold linegrow"
-                            onClick={() => {
-                                closeDropdown();
-                            }}
+                            onClick={() => navigate('/contact')}
                         >
                             CONTACT
                         </a>

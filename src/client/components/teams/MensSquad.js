@@ -159,7 +159,7 @@ const MensSquad = () => {
                             <img
                                 src={player.image}
                                 alt={player.name}
-                                className="w-full h-full transition duration-300 transform hover:grayscale hover:brightness-75"
+                                className="w-full h-full transition duration-300 transform hover:grayscale hover:brightness-75 hover:scale-105 transition-transform duration-300"
                                 style={{ minHeight: '100%', minWidth: '100%' }}
                             />
                             <div className="absolute top-0 left-0 p-4 text-white bg-black bg-opacity-75 rounded-tr-md">

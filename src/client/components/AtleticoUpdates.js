@@ -12,11 +12,12 @@ const GeneralUpdate = ({ imageSrc, title, date, text }) => {
     const remainingText = text.slice(75);
     //bg-gradient-to-r from-[#5a0bb5] via-[#6702a6] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6] #a8dbf7
     //#002d75
+    //#b778d6
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg bg-[#f8f6fc]">
+        <div className="max-w-sm rounded overflow-hidden shadow-xl bg-[#f8f6fc]">
             <img className="w-16" src={imageSrc} alt={title} />
             <div className="px-6 py-4">
-                <div className="font-bold text-xl text-[#b778d6] mb-2">{title}</div>
+                <div className="font-bold text-xl text-[#002d75] mb-2">{title}</div>
                 <p className="text-gray-700 text-base text-[#3c3e40] mb-2">
                     {date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </p>
