@@ -8,6 +8,9 @@ const Contact = () => {
             <MainNavbar />
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/contact.png')" }}>
             </div>
+            <div className="text-center font-semibold text-xs">
+                <h3>Home &#8594; Contact </h3>
+            </div>
             <div className="flex flex-col md:flex-row max-w-6xl mx-auto px-4 md:px-6 py-8">
                 <div className="md:w-1/2 md:pr-4">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Club Joining & Membership Enquiries</h2>

@@ -13,7 +13,9 @@ import './index.css';
 
 const App = () => {
 
-  const [isAuthenticated, setAuthenticated] = useState(false);
+  const [isAuthenticated, setAuthenticated] = React.useState(
+    Boolean(localStorage.getItem('loginEmail'))
+  );
 
   console.log("What is coming here:::"+isAuthenticated)
 

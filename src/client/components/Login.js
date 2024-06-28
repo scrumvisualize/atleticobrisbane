@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+
+const appUrl = process.env.REACT_APP_URL;
 
 const Login = ({ setAuthenticated }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -18,20 +21,31 @@ const Login = ({ setAuthenticated }) => {
   };
 
   const onSubmit = (data) => {
-    console.log('Submitted Data:', data);
-
     // Reset form fields after submission
     reset();
+    
+    const fetchData = async () => {
+      try {
+          const email = data.email;
+          const password = data.password;
+          const res = await axios.post(`${appUrl}/service/login`, { email, password });
+          console.log("Login success message::" + res.data.success);
+          if (res.data.success) {
+              localStorage.setItem('loginEmail', email);
+              setAuthenticated(true);
+              navigate('/admin');
+          }
+          else {
+              const failMessage = res.data.fail;
+              setLoginError(failMessage);
+          }
+      } catch (e) {
+          console.log(e);
+          setLoginError(e.response.data.fail);
+      }
+  }
+  fetchData();
 
-    // Check credentials
-    if (data.email === 'vinod@test.com' && data.password === 'Test1234!') {
-      console.log('Login successful');
-      setAuthenticated(true);
-      navigate('/admin');
-    } else {
-      console.log('Login failed');
-      setLoginError('Invalid email or password');
-    }
   };
 
   return (

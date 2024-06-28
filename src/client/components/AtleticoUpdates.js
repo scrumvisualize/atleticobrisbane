@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const GeneralUpdate = ({ imageSrc, title, date, text }) => {
+const GeneralUpdate = ({ imageSrc, title, date, text, img }) => {
 
     const [showFullText, setShowFullText] = useState(false);
 

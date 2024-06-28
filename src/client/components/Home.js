@@ -17,6 +17,7 @@ const updates = [
       title: 'Change in Payment method',
       date: new Date('2024-06-25'),
       text: 'We are changing the payment method for our club. Every player will receive an instruction via email or text on how to make further payments',
+      img: 'images/expenses.PNG'
     },
     {
       id: 2,
