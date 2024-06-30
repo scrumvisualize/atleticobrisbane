@@ -1,25 +1,61 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+
+const appUrl = process.env.REACT_APP_URL;
 
 const RegisterDialog = ({ onClose }) => {
 
-  // const [isOpen, setIsOpen] = useState(false);
-  // const [inputValue, setInputValue] = useState('');
-  // const [preview, setPreview] = useState('');
-  // const [picture, setPicture] = useState('');
-  //const { handleSubmit, register, errors } = useForm();
   const [selectedAgeGroup, setSelectedAgeGroup] = useState('');
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  // const [formRegister, setRegister] = useState({ _id: '', photo: '', name: '', email: '', phonenumber: '', position: '', privilege: '', password: '', token: '' });
-
-
-  // const handleInputChange = (e) => {
-  //   setInputValue(e.target.value);
-  // };
-
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const [validationText, setValidationText] = useState('');
+  
   const onSubmit = (data) => {
-    console.log("Data submission::"+data.name , data.email); // Handle form submission here
-  };
+
+    // Create a FormData object
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('mobile', data.mobile);
+    formData.append('email', data.email);
+    formData.append('jerseynumber', data.jerseynumber);
+    formData.append('ageGroup', data.ageGroup);
+    formData.append('position', data.position);
+    formData.append('comments', data.comments);
+    formData.append('code', data.code);
+
+    // Append the profile photo file
+    formData.append('profilePhoto', data.profilePhoto[0]);
+
+    // Reset form fields after submission
+    
+    const fetchData = async () => {
+      console.log("This is register form data::"+formData);
+        try {
+            const res = await axios.put(`${appUrl}/service/registerPlayer`, formData, {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            });
+            if (res.data.success) {
+                onClose();
+                // Optionally, you can reload the page if needed
+                window.location.reload(true);
+            } else {
+                setValidationText(res.data.message)
+            }
+        } catch (e) {
+            if (e.response && e.response.data && e.response.data.message) {
+              setValidationText(e.response.data.message);
+            } else {
+              setValidationText('An error occurred. Please try again.');
+            }
+            console.log(e);
+        }
+    }
+    fetchData();
+    reset();
+}
+
 
   const handleCancel = () => {
     // Implement logic to close the dialog
@@ -27,10 +63,10 @@ const RegisterDialog = ({ onClose }) => {
   };
 
   
-
   const handleChange = (event) => {
     setSelectedAgeGroup(event.target.value);
   };
+
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-xl">
@@ -78,20 +114,34 @@ const RegisterDialog = ({ onClose }) => {
           />
           {errors.email && <span className="text-red-500">{errors.email.message}</span>}
 
-          <div className="age-group-selector">
-            <h2>Select Age Group</h2>
+          <input
+            type="tel"
+            name="jerseynumber"
+            placeholder="Preferred Jersey Number"
+            {...register('jerseynumber', {
+              required: "Jersey number is required",
+              pattern: {
+                value: /^[0-9]{1,2}$/,
+                message: "Invalid Jersey number"
+              }
+            })}
+            className="w-full border rounded-md px-4 py-2 mb-4"
+          />
+          {errors.jerseynumber && <span className="text-red-500">{errors.jerseynumber.message}</span>}
+
+          <div className="age-group-selector pb-4">
+            <div className="text-xs font-bold pb-2">Select Age Group</div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="flex items-center">
                   <input
                     type="radio"
                     name="ageGroup"
-                    value="Open age"
-                    checked={selectedAgeGroup === 'Open age'}
-                    onChange={handleChange}
+                    value="Open"
+                    {...register('ageGroup', { required: true })}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">Open age</span>
+                  <span className="text-xs ml-2">Open age</span>
                 </label>
               </div>
               <div>
@@ -99,12 +149,11 @@ const RegisterDialog = ({ onClose }) => {
                   <input
                     type="radio"
                     name="ageGroup"
-                    value="Above 40"
-                    checked={selectedAgeGroup === 'Above 40'}
-                    onChange={handleChange}
+                    value="AB40"
+                    {...register('ageGroup', { required: true })}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">Above 40</span>
+                  <span className="text-xs ml-2">Above 40</span>
                 </label>
               </div>
               <div>
@@ -113,11 +162,10 @@ const RegisterDialog = ({ onClose }) => {
                     type="radio"
                     name="ageGroup"
                     value="U16"
-                    checked={selectedAgeGroup === 'U16'}
-                    onChange={handleChange}
+                    {...register('ageGroup', { required: true })}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">U16</span>
+                  <span className="text-xs ml-2">U16</span>
                 </label>
               </div>
               <div>
@@ -126,11 +174,10 @@ const RegisterDialog = ({ onClose }) => {
                     type="radio"
                     name="ageGroup"
                     value="U12"
-                    checked={selectedAgeGroup === 'U12'}
-                    onChange={handleChange}
+                    {...register('ageGroup', { required: true })}
                     className="form-radio text-blue-600"
                   />
-                  <span className="ml-2">U12</span>
+                  <span className="text-xs ml-2">U12</span>
                 </label>
               </div>
             </div>
@@ -190,7 +237,7 @@ const RegisterDialog = ({ onClose }) => {
             className="w-full border rounded-md px-4 py-2 mb-4"
           />
           {errors.code && <span className="text-red-500">{errors.code.message}</span>}
-
+          <span className="text-base text-red-500">{validationText}</span>
           <div className="flex justify-between">
             <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>
             <button type="button" onClick={handleCancel} className="bg-gray-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-600 transition duration-300">Cancel</button>

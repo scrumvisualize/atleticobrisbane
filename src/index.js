@@ -8,6 +8,7 @@ import Admin from "./client/components/Admin";
 import Sponsors from "./client/components/Sponsors";
 import Contact from "./client/components/Contact";
 import MensSquad from "./client/components/teams/MensSquad";
+import MasterSquad from "./client/components/teams/MasterSquad";
 
 import './index.css';
 
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/menssquad" element={<MensSquad />} />
+        <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/contact" element={<Contact />} />
         <Route
           path="/login"

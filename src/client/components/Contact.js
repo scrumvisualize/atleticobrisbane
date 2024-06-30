@@ -15,11 +15,11 @@ const Contact = () => {
                 <div className="md:w-1/2 md:pr-4">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Club Joining & Membership Enquiries</h2>
                     <p className="text-base text-gray-700 mb-4">For club joining and membership-related queries, please contact us at:</p>
-                    <p className="text-base text-gray-700 mb-4">secretary@atletico.com.au</p>
+                    <p className="text-base text-gray-700 mb-4 font-semibold">secretary@atletico.com.au</p>
 
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Sponsorship Matters</h2>
-                    <p className="text-base text-gray-700 mb-4">For sponsorship matters, please reach out to:</p>
-                    <p className="text-base text-gray-700 mb-4">secretary@atletico.com.au</p>
+                    <p className="text-base text-gray-700 mb-4">For sponsorship matters, please reach out to below email:</p>
+                    <p className="text-base text-gray-700 mb-4 font-semibold">secretary@atletico.com.au</p>
 
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Working Days and Time</h2>
                     <p className="text-base text-gray-700 mb-4">Monday to Saturday</p>

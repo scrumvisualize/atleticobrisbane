@@ -7,9 +7,9 @@ const appURL = process.env.REACT_APP_URL;
 
 const options = ["Striker", "Midfielder", "Defender", "Goal Keeper"];
 
-const MensSquad = () => {
+const MasterSquad = () => {
 
-    const [mensSquad, setMensSquad] = useState([]);
+    const [masterSquad, setMasterSquad] = useState([]);
     const [filteredSquad, setFilteredSquad] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -21,36 +21,35 @@ const MensSquad = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${appURL}/service/mensPlayerList`);
-                setMensSquad(res.data.players);
-                setFilteredSquad(res.data.players);
+              const res = await axios.get(`${appURL}/service/mastersPlayerList`);
+              setMasterSquad(res.data.players);
+              setFilteredSquad(res.data.players);
             } catch (e) {
-                console.log(e);
+              console.log(e);
             }
-        }
-        fetchData();
+          }
+          fetchData();
     }, []);
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
-        setIsOpen(false); // Close the dropdown after selecting an option
-        // Filter players based on selected option
-        const filteredPlayers = option ? mensSquad.filter(player => player.position === option) : mensSquad;
+        setIsOpen(false);
+
+        const filteredPlayers = option ? masterSquad.filter(player => player.position === option) : masterSquad;
         setFilteredSquad(filteredPlayers);
     };
 
     useEffect(() => {
-        setMensSquad(mensSquad);
+        setMasterSquad(masterSquad);
     }, []);
-
 
     return (
         <div>
             <MainNavbar />
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/mensq1.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/master.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
-                <h3>Home &#8594; Teams &#8594; Mens Squad </h3>
+                <h3>Home &#8594; Teams &#8594; Master Squad </h3>
             </div>
             <div className="relative inline-block text-left ml-4 md:ml-8">
                 <div>
@@ -132,4 +131,4 @@ const MensSquad = () => {
     );
 };
 
-export default MensSquad;
+export default MasterSquad;

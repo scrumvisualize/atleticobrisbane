@@ -49,7 +49,7 @@ const Login = ({ setAuthenticated }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-600 via-[#0c50f3] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6]">
       <form onSubmit={handleSubmit(onSubmit)} className="w-96 bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         <div className="font-bold flex justify-center items-center"> 
             <h1>Admin Access Only</h1>
