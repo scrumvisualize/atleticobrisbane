@@ -36,7 +36,7 @@ const Sponsors = () => {
 
     return (
         <div className="container mx-auto px-4">
-           <MainNavbar/>
+           {/* <MainNavbar/> */}
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128 " style={{ backgroundImage: "url('images/sponsors.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs mb-2">

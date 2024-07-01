@@ -22,8 +22,9 @@ const MasterSquad = () => {
         const fetchData = async () => {
             try {
               const res = await axios.get(`${appURL}/service/mastersPlayerList`);
-              setMasterSquad(res.data.players);
-              setFilteredSquad(res.data.players);
+              const sortedPlayers = res.data.players.sort((a, b) => a.name.localeCompare(b.name));
+              setMasterSquad(sortedPlayers);
+              setFilteredSquad(sortedPlayers);
             } catch (e) {
               console.log(e);
             }
@@ -45,7 +46,7 @@ const MasterSquad = () => {
 
     return (
         <div>
-            <MainNavbar />
+            {/* <MainNavbar /> */}
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/master.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
@@ -117,9 +118,9 @@ const MasterSquad = () => {
                                     <div className="absolute top-0 left-0 p-4 text-white bg-black bg-opacity-75 rounded-tr-md">
                                         <span className="text-lg font-bold">{player.jerseynumber}</span>
                                     </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#CDCD32]">
+                                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-[#CDCD32]">
                                         <p className="text-xs font-semibold text-white text-center uppercase">{player.position}</p>
-                                        <p className="mt-2 text-lg font-bold text-white text-center">{player.name}</p>
+                                        <p className="mt-1 text-lg font-bold text-white text-center">{player.name}</p>
                                         <div className="h-px bg-white my-2"></div> {/* Line separator */}
                                     </div>
                                 </div>

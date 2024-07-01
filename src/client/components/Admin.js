@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminNavbar from "./AdminNavbar";
+import MainNavbar from "./MainNavbar";
 import axios from 'axios';
 
 const appURL = process.env.REACT_APP_URL;
@@ -27,8 +28,9 @@ const Admin = () => {
                 ...player,
                 status: player.status === 'Yes' ? 'accepted' : player.status === 'No' ? 'declined' : ''
             }));
-            setRequestList(updatedRequests);
-            setSearchResults(updatedRequests);
+            const sortedPlayers = updatedRequests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            setRequestList(sortedPlayers);
+            setSearchResults(sortedPlayers);
         } catch (error) {
             console.error("Error fetching player requests:", error);
         }
@@ -77,27 +79,27 @@ const Admin = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <AdminNavbar />
+            
             <div className="text-center font-semibold text-base mt-2">
                 <h3>Home &#8594; Manage Players</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
                 <div className="md:col-span-2">
-                    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+                    <div className="bg-white p-4 rounded-lg shadow-md mb-2">
                         <div className="flex items-center mb-4">
                             <input
                                 type="text"
                                 onChange={handleChange}
                                 placeholder="Search player requests..."
-                                className="w-full border-gray-300 rounded-l-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300 border rounded-md px-4 py-2 mb-4"
+                                className="w-full border-gray-300 rounded-l-md py-0 px-4 focus:outline-none focus:ring focus:border-blue-300 border rounded-md px-4 py-2 mb-4"
                             />
                         </div>
 
-                        <div className="space-y-2 px-2 h-[360px] overflow-y-auto">
+                        <div className="space-y-1 px-2 h-[360px] overflow-y-auto">
                             {searchResults.map((item) => (
                                 <div
                                     key={item.id}
-                                    className={`flex flex-col md:flex-row items-center border-b border-gray-200 pb-4 ${item.status === 'accepted' ? 'bg-green-100' : item.status === 'declined' ? 'bg-red-100' : ''}`}
+                                    className={`flex flex-col md:flex-row items-center border-b border-gray-200 pb-2 ${item.status === 'accepted' ? 'bg-green-100' : item.status === 'declined' ? 'bg-red-100' : ''}`}
                                 >
                                     <img src={item.photo.replace(/^(\.\.\\)+public\\/, '')} alt="Player" className="w-12 h-12 rounded-full ml-2 mr-2" />
                                     <div className="flex-1">

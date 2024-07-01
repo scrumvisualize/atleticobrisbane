@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const About = () => {
     return (
         <div className="bg-gray-100 text-gray-900">
-            <MainNavbar />
+            {/* <MainNavbar /> */}
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/about.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
@@ -33,12 +33,12 @@ const About = () => {
                         <p className="text-gray-600">Vice President</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
-                        <img src="https://via.placeholder.com/150" alt="Person 3" className="mx-auto rounded-full mb-4" />
+                        <img src="images/profilePhoto-1719710686554.jpeg" alt="Person 3" className="w-28 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
                         <h2 className="text-xl font-semibold">Saju</h2>
                         <p className="text-gray-600">Secretary</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
-                        <img src="https://via.placeholder.com/150" alt="Person 4" className="mx-auto rounded-full mb-4" />
+                        <img src="images/profilePhoto-1719717154481.jpeg" alt="Person 4" className="w-28 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
                         <h2 className="text-xl font-semibold">Vinod</h2>
                         <p className="text-gray-600">Joint Secretary</p>
                     </div>

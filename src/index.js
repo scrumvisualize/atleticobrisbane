@@ -9,6 +9,8 @@ import Sponsors from "./client/components/Sponsors";
 import Contact from "./client/components/Contact";
 import MensSquad from "./client/components/teams/MensSquad";
 import MasterSquad from "./client/components/teams/MasterSquad";
+import TopBanner from "./client/components/TopBanner";
+import MainNavbar from "./client/components/MainNavbar";
 
 import './index.css';
 
@@ -22,6 +24,8 @@ const App = () => {
 
   return (
     <Router>
+      <TopBanner/>
+      <MainNavbar isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

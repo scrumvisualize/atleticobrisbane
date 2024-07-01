@@ -5,7 +5,7 @@ import Footer from './Footer';
 const Contact = () => {
     return (
         <div>
-            <MainNavbar />
+            {/* <MainNavbar /> */}
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/contact.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">

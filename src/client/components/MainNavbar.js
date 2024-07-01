@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TeamsDropdownMenu from './TeamsDropdownMenu';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation  } from 'react-router-dom';
 
-const MainNavbar = () => {
+const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -19,8 +20,20 @@ const MainNavbar = () => {
         setIsDropdownOpen(false);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('loginEmail');
+        setAuthenticated(false);
+        navigate('/login');
+    };
+
+    useEffect(() => {
+        // Close the dropdown when the location changes
+        closeDropdown();
+    }, [location]);
+
+
     return (
-        <nav className="bg-[#fafbfc] text-white shadow-lg p-2 sticky relative top-0 z-50">
+        <nav className="bg-[#fafbfc] text-white shadow-lg p-0 sticky relative top-0 z-50">
             <div className="container mx-auto px-4">
                 <div className="flex justify-between items-center py-4">
                     <div className="flex items-center">
@@ -28,6 +41,7 @@ const MainNavbar = () => {
                             src="images/ablogo.PNG"
                             alt="Logo"
                             className="h-16 mr-2"
+                            onClick={() => navigate('/')}
                         />
                         <div className="text-[#6232a8] font-semibold">
                             <p className="text-lg">ATLÉTICO BRISBANE</p>
@@ -114,6 +128,22 @@ const MainNavbar = () => {
                         >
                             CONTACT
                         </a>
+                        {isAuthenticated && (
+                            <>
+                                <a
+                                    className="font-semibold linegrow"
+                                    onClick={() => navigate('/admin')}
+                                >
+                                    ADMIN
+                                </a>
+                                <a
+                                    className="font-semibold"
+                                    onClick={handleLogout}
+                                >
+                                    <img className="w-6" src="/images/logout.png" alt="Logout" />
+                                </a>
+                            </>
+                        )}
                     </div>
                 </div>
                 {isOpen && (
@@ -167,6 +197,22 @@ const MainNavbar = () => {
                             >
                                 CONTACT
                             </a>
+                            {isAuthenticated && (
+                            <>
+                                <a
+                                    className="font-semibold linegrow"
+                                    onClick={() => navigate('/admin')}
+                                >
+                                    ADMIN
+                                </a>
+                                <a
+                                    className="font-semibold"
+                                    onClick={handleLogout}
+                                >
+                                    <img className="w-6" src="/images/logout.png" alt="Logout" />
+                                </a>
+                            </>
+                        )}
                         </div>
                     </div>
                 )}

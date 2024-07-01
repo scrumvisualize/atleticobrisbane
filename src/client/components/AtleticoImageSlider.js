@@ -67,7 +67,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[498px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
+            <div className="relative h-96 md:h-[504px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
                     <div className="ml-8 mt-10">
                         <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                     </div>
