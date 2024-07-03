@@ -10,6 +10,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
 const usersSchema = require('../modals/user');
 const registerPlayerSchema = require('../modals/registerPlayer');
+const sponsorsSchema = require('../modals/sponsors');
 
 const cors = require('cors');
 
@@ -39,6 +40,8 @@ const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
 
 const UserModel = usersSchema(sequelize, DataTypes);
 const RegisterModel = registerPlayerSchema(sequelize, DataTypes);
+const SponsorModel = sponsorsSchema(sequelize, DataTypes);
+
 
 app.use(cors()) 
 
@@ -201,6 +204,72 @@ app.get('/service/mastersPlayerList', async (req, res) => {
     res.status(500).json({ message: e.message });
   }
 });
+
+/* Adding of a sponsor from the admin page */ 
+app.post('/service/addSponsor', upload.single('imageUpload'), async (req, res, next) => {
+
+  try {
+
+    const { titleSponsor, sponsorHeader, urlLink, category, description } = req.body;
+    let photoPath = 'logo192.png';
+    if (req.file) {
+      photoPath = req.file.path.replace(/^public\\/, '');
+    }
+    var sponsorData = { logo: photoPath, link: urlLink, header: sponsorHeader, titlesponsor: titleSponsor, category: category, description: description };
+    await SponsorModel.create(sponsorData);
+    res.status(200).json({ success: true });
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e.message });
+    return next(e);
+  }
+});
+
+
+/* Updating a sponsor from the admin page via Edit button */ 
+app.put('/service/updateSponsor/:id', upload.single('imageUpload'), async (req, res, next) => {
+  const sponsorId = parseInt(req.params.id, 10);
+  const { titleSponsor, sponsorHeader, urlLink, category, description } = req.body;
+
+  try {
+    const sponsor = await SponsorModel.findByPk(sponsorId);
+    if(sponsor){
+      let photoPath = 'logo192.png';
+      var updateSponsorData = { logo: photoPath, link: urlLink, header: sponsorHeader, titlesponsor: titleSponsor, category: category, description: description };
+      if (req.file) {
+        updateSponsorData.logo = req.file.path.replace(/^public\\/, '');
+        await SponsorModel.update(updateSponsorData, {
+          where: {
+            id: sponsorId
+          }
+        });
+        const updatedSponsor = await SponsorModel.findByPk(sponsorId);
+        res.status(200).json({ message: 'Sponsor updated successfully', sponsor:updatedSponsor });
+      } 
+    } else{
+      res.status(404).json({ message: 'Sponsor not found' });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e.message });
+    return next(e);
+  }
+});
+
+
+/* Below get method will pull the list of sponsors to display in AB website */ 
+app.get('/service/sponsorsList', async (req, res) => {
+  try {
+    const sponsors = await SponsorModel.findAll({
+      attributes: ['id','logo', 'link', 'header', 'titlesponsor', 'category', 'description']
+    });
+    res.status(200).json({ sponsors });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 
 (async () => {
   try {

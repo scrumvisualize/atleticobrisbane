@@ -51,7 +51,7 @@ const updates = [
 
 const Home = () => {
     return (
-        <div className="container mx-auto p-0">
+        <div className="container mx-auto p-2">
             {/* <TopBanner/> */}
             {/* <MainNavbar/> */}
             <Banner/>

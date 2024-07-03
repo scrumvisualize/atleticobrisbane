@@ -2,14 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminNavbar from "./AdminNavbar";
 import MainNavbar from "./MainNavbar";
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import SponsorDialog from './SponsorDialog';
 
 const appURL = process.env.REACT_APP_URL;
 
 const Admin = () => {
+    
     const [searchTerm, setSearchTerm] = useState("");
     const [requestList, setRequestList] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [showStatus, setShowStatus] = useState(false);
+    const [showSponsorDialog, setShowSponsorDialog] = useState(false);
+    const [sponsorsList, setSponsorsList] =useState([]);
+    const [editSponsorId, setEditSponsorId] = useState(null);
+    const [currentSponsor, setCurrentSponsor] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -57,11 +65,13 @@ const Admin = () => {
     const handleSave = async () => {
         try {
             const res = await axios.post('/service/updatePlayerStatus', requestList);
-            if (res.data.success) {
-                setRequestList(res.data.updatedPlayers);
-                setSearchResults(res.data.updatedPlayers);
+            if (res.status === 200) {
+                setShowStatus(true);
+                fetchPlayerRequests();
+                setTimeout(() => {
+                    setShowStatus(false);
+                }, 2000);
             }
-            console.log("Save response:", res.data);
         } catch (error) {
             console.error("Error saving data:", error);
         }
@@ -77,9 +87,36 @@ const Admin = () => {
         setSearchResults(results);
     }, [searchTerm, requestList]);
 
+    const sponsorDialog =() =>{
+        setShowSponsorDialog(true);
+    }
+
+    const closeDialog = () => {
+        setShowSponsorDialog(false);
+        setCurrentSponsor(null);
+    };
+
+    
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+              const res = await axios.get(`${appURL}/service/sponsorsList`);
+              setSponsorsList(res.data.sponsors);
+            } catch (e) {
+              console.log(e);
+            }
+          }
+          fetchData();
+    }, []);
+
+    const handleEdit = (sponsor) => {
+        setEditSponsorId(sponsor.id);
+        setCurrentSponsor(sponsor);
+        setShowSponsorDialog(true);
+    };
+
     return (
         <div className="container mx-auto px-4 py-8">
-            
             <div className="text-center font-semibold text-base mt-2">
                 <h3>Home &#8594; Manage Players</h3>
             </div>
@@ -94,8 +131,7 @@ const Admin = () => {
                                 className="w-full border-gray-300 rounded-l-md py-0 px-4 focus:outline-none focus:ring focus:border-blue-300 border rounded-md px-4 py-2 mb-4"
                             />
                         </div>
-
-                        <div className="space-y-1 px-2 h-[360px] overflow-y-auto">
+                        <div className="space-y-1 px-2 h-[335px] overflow-y-auto">
                             {searchResults.map((item) => (
                                 <div
                                     key={item.id}
@@ -103,17 +139,17 @@ const Admin = () => {
                                 >
                                     <img src={item.photo.replace(/^(\.\.\\)+public\\/, '')} alt="Player" className="w-12 h-12 rounded-full ml-2 mr-2" />
                                     <div className="flex-1">
-                                        <div className="grid grid-cols-1 md:grid-cols-3">
-                                            <div className="md:col-span-1">
+                                        <div className="flex flex-wrap items-center space-x-4">
+                                            <div className="flex flex-col">
                                                 <span className="text-gray-700 text-base font-semibold">{item.name}</span>
                                             </div>
-                                            <div className="md:col-span-2">
+                                            <div className="flex flex-col">
                                                 <span className="text-gray-700 text-xs">{item.email}</span>
                                             </div>
-                                            <div className="md:col-span-2">
+                                            <div className="flex flex-col">
                                                 <span className="text-gray-700 text-xs">{item.mobile}</span>
                                             </div>
-                                            <div className="md:col-span-3">
+                                            <div className="flex flex-col">
                                                 <span className="text-gray-700 text-xs">{item.position}</span>
                                             </div>
                                         </div>
@@ -156,9 +192,40 @@ const Admin = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="md:col-span-1">
-                    <h1>This is space can be used for any other functional needs</h1>
+                    {showStatus && (
+                        <div className="bg-[#a7f2d8] text-[#313233] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                            Player status updated successfully !
+                        </div>
+                    )}
+                    <button onClick={sponsorDialog} className="md:block relative top-[40px] left-28 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow">Add Sponsor</button>
+                    {
+                        showSponsorDialog && (
+                            <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
+                        )}
+                    <div className="space-y-1 px-2 h-[335px] overflow-y-auto">
+                    {
+                      sponsorsList.map((item, index) =>(
+                    <div key={index} className="border-2 border-gray-300 rounded-lg p-2 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between mt-12">
+                        <h1 className="text-xs font-semibold">{item.header}</h1>
+                        <a href={item.link} className="text-xs text-[#25afe6] hover:underline mt-2 md:mt-0">{item.link}</a>
+                        <div className="flex mt-2 md:mt-0">
+                            <button
+                                onClick={() => handleEdit(item)}
+                                className="px-4 py-2 bg-[#25afe6] text-white font-semibold rounded-md shadow mr-2"
+                            >
+                                Edit
+                            </button>
+                            <button
+                                onClick={() => alert('Delete Sponsor')}
+                                className="px-4 py-2 bg-red-500 text-white font-semibold rounded-md shadow"
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                     ))}
+                  </div>
                 </div>
             </div>
         </div>

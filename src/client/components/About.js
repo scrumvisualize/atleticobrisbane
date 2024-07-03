@@ -23,23 +23,23 @@ const About = () => {
                 <h1 className="text-3xl font-bold text-center mb-8">Committee Team</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
-                        <img src="https://via.placeholder.com/150" alt="Person 1" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Arun</h2>
+                        <img src="images/profilePhoto-1719751282312.png" alt="Person 1" className="w-[130px] h-[130px] mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
+                        <h2 className="text-xl font-semibold">Arun Kalluparambil</h2>
                         <h3 className="text-gray-600">President</h3>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
-                        <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Joji</h2>
+                        <img src="images/profilePhoto-1720012131829.png" alt="Person 2" className="w-[130px] h-[130px] mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
+                        <h2 className="text-xl font-semibold">Joji James</h2>
                         <p className="text-gray-600">Vice President</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="images/profilePhoto-1719710686554.jpeg" alt="Person 3" className="w-28 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
-                        <h2 className="text-xl font-semibold">Saju</h2>
+                        <h2 className="text-xl font-semibold">Saju Varghese</h2>
                         <p className="text-gray-600">Secretary</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="images/profilePhoto-1719717154481.jpeg" alt="Person 4" className="w-28 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
-                        <h2 className="text-xl font-semibold">Vinod</h2>
+                        <h2 className="text-xl font-semibold">Vinod Mathew</h2>
                         <p className="text-gray-600">Joint Secretary</p>
                     </div>
                 </div>
