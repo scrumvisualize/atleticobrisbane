@@ -7,16 +7,19 @@ const appURL = process.env.REACT_APP_URL;
 const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
     const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm();
     const [validationText, setValidationText] = useState('');
-
+    const [isTitleSponsor, setIsTitleSponsor] = useState(false);
+    
     useEffect(() => {
         if (sponsor) {
             // Populate the form with the current sponsor data
             //setValue('titleSponsor', sponsor.titlesponsor);
+            const titleSponsorValue = sponsor.titlesponsor === 'true' || sponsor.titlesponsor === true;
             setValue('sponsorHeader', sponsor.header);
             setValue('imageUpload', sponsor.logo);
             setValue('urlLink', sponsor.link);
             setValue('category', sponsor.category);
             setValue('description', sponsor.description);
+            setIsTitleSponsor(titleSponsorValue);
         } else {
             // Reset the form
             reset();
@@ -27,7 +30,8 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
 
         // Create a FormData object
         const formData = new FormData();
-        formData.append('titleSponsor', data.titleSponsor);
+        //formData.append('titleSponsor', data.titleSponsor);
+        formData.append('titleSponsor', data.titleSponsor ? 'true' : 'false'); // Send as string 'true' or 'false'
         formData.append('sponsorHeader', data.sponsorHeader);
         formData.append('urlLink', data.urlLink);
         formData.append('category', data.category);
@@ -48,8 +52,7 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
                 });
                 if (res.status === 200) {
                     onClose();
-                    // what should we do here ?
-
+                    window.location.reload(true);
                 } else {
                     setValidationText(res.data.message);
                 }
@@ -94,11 +97,15 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
         onClose(); // Assuming onClose is a function passed as a prop to close the dialog
     };
 
+    const handleCheckboxChange = (e) => {
+        setIsTitleSponsor(e.target.checked);
+    };
+
 
     return (
         <div className="fixed inset-0 mt-20 flex items-center justify-center bg-gray-900 bg-opacity-50 z-199">
             <div className="bg-white p-4 rounded-lg shadow-xl">
-                <h2 className="text-2xl font-bold mb-6">Manage Sponsors</h2>
+                <h2 className="text-2xl font-bold mb-6">Add Sponsor</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto h-[420px] overflow-y-auto" encType="multipart/form-data">
                     <div>
                         <label htmlFor="titleSponsor" className="block mb-[-15px] text-sm font-medium text-gray-700">Title Sponsor</label>
@@ -106,9 +113,9 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
                             type="checkbox"
                             id="titleSponsor"
                             className="block w-full px-3 py-2 mb-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            {...register('titleSponsor', {
-                            })
-                            }
+                            {...register('titleSponsor')}
+                            checked={isTitleSponsor}
+                            onChange={handleCheckboxChange}
                         />
                     </div>
                     <div>

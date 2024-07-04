@@ -50,12 +50,20 @@ const Footer = () => {
             </div>
             
             <div className="flex">
-                <p className="text-[#ffffff] text-[8px] ml-8 mb-4 md:mb-2 md:ml-8">© 2024 Atlètico Brisbane</p>
-                <p className="flex items-center text-[8px] text-[#e8f2ff] ml-10 md:mt-1 md:px-8">
-                    Designed & Developed by Vinod Mathew
-                    <img src="images/profilePhoto-1719717154481.jpeg" className="w-8 h-8 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Profile Photo" />
+                <p className="flex items-center text-[8px] text-[#e8f2ff] ml-10 md:mt-1 md:px-8 mb-0">
+                <img src="images/ablogo.png" className="w-6 h-6 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Ab logo" />
+                © 2024 Atlètico Brisbane Soccer Club
                 </p>
             </div>
+            
+            <div className="flex">
+                <p className="flex items-center text-[8px] text-[#e8f2ff] ml-10 md:mt-1 md:px-8 mb-0">
+                    Designed & Developed by Vinod Mathew
+                    <img src="images/profilePhoto-1719717154481.jpeg" className="w-6 h-6 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Profile Photo" />
+                </p>
+            </div>
+            
+            
         </div>
 
     );

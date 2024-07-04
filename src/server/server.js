@@ -226,7 +226,6 @@ app.post('/service/addSponsor', upload.single('imageUpload'), async (req, res, n
   }
 });
 
-
 /* Updating a sponsor from the admin page via Edit button */ 
 app.put('/service/updateSponsor/:id', upload.single('imageUpload'), async (req, res, next) => {
   const sponsorId = parseInt(req.params.id, 10);
@@ -258,13 +257,31 @@ app.put('/service/updateSponsor/:id', upload.single('imageUpload'), async (req, 
 });
 
 
-/* Below get method will pull the list of sponsors to display in AB website */ 
+/* Below get service method will pull the list of sponsors to display in AB website */ 
 app.get('/service/sponsorsList', async (req, res) => {
   try {
     const sponsors = await SponsorModel.findAll({
       attributes: ['id','logo', 'link', 'header', 'titlesponsor', 'category', 'description']
     });
     res.status(200).json({ sponsors });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+/* Below delete service will delete a sponsor by an admin user from AB website */ 
+app.delete('/service/deleteSponsor/:id', async (req, res) => {
+  const sponsorId = parseInt(req.params.id, 10);
+  try {
+    const sponsor = await SponsorModel.findByPk(sponsorId);
+    if(sponsor){
+        await SponsorModel.destroy({
+        where: { id: sponsorId }
+      });
+      res.status(200).json({ success: true });
+    } else{
+      res.status(404).json({ message: 'Sponsor not found' });
+    }
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

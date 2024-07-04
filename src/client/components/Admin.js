@@ -14,10 +14,12 @@ const Admin = () => {
     const [requestList, setRequestList] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
     const [showStatus, setShowStatus] = useState(false);
+    const [deleteStatus, setDeleteStatus] = useState(false);
     const [showSponsorDialog, setShowSponsorDialog] = useState(false);
     const [sponsorsList, setSponsorsList] =useState([]);
     const [editSponsorId, setEditSponsorId] = useState(null);
     const [currentSponsor, setCurrentSponsor] = useState(null);
+    const [deleteSponsorId, setDeleteSponsorId] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -115,10 +117,28 @@ const Admin = () => {
         setShowSponsorDialog(true);
     };
 
+    const handleDeleteSponsor = (sponsor) => {
+       
+        const fetchData = async () => {
+            try {
+                const res = await axios.delete(`${appURL}/service/deleteSponsor/${sponsor.id}`);
+                if (res.status === 200) {
+                    setDeleteStatus("Sponsor deleted successfully !");
+                    window.location.reload(true);
+                } else {
+                    setDeleteStatus(res.data.message);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        fetchData();
+    }
+
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="text-center font-semibold text-base mt-2">
-                <h3>Home &#8594; Manage Players</h3>
+                <h3>Home &#8594; Admin &#8594; Manage players</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
                 <div className="md:col-span-2">
@@ -193,9 +213,17 @@ const Admin = () => {
                     </div>
                 </div>
                 <div className="md:col-span-1">
+                    <div className="text-2xl text-center font-semibold">
+                        <h1>Manage Sponsors</h1>
+                    </div>
                     {showStatus && (
                         <div className="bg-[#a7f2d8] text-[#313233] px-4 py-2 rounded-md mt-4 animate-fadeOut">
                             Player status updated successfully !
+                        </div>
+                    )}
+                    {deleteStatus && (
+                        <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                            Sponsor deleted successfully !
                         </div>
                     )}
                     <button onClick={sponsorDialog} className="md:block relative top-[40px] left-28 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow">Add Sponsor</button>
@@ -217,7 +245,7 @@ const Admin = () => {
                                 Edit
                             </button>
                             <button
-                                onClick={() => alert('Delete Sponsor')}
+                                onClick={() => handleDeleteSponsor(item)}
                                 className="px-4 py-2 bg-red-500 text-white font-semibold rounded-md shadow"
                             >
                                 Delete
