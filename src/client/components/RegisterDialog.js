@@ -197,10 +197,15 @@ const RegisterDialog = ({ onClose }) => {
             type="file"
             name="profilePhoto"
             accept="image/*"
-            {...register('profilePhoto', { required: true })}
+            {...register('profilePhoto', {
+              required: true,
+              validate: {
+                lessThan800KB: (files) => files[0]?.size <= 800 * 1024 || 'File size cannot be greater than 800 KB',
+               }
+            })}
             className="w-full border rounded-md px-4 py-2 mb-4"
           />
-          {errors.profilePhoto && <span className="text-red-500">Profile photo is required</span>}
+          {errors.profilePhoto && <span className="text-red-500">{errors.profilePhoto.message}</span>}
 
         <textarea 
           name="comments" 

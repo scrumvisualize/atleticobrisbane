@@ -12,7 +12,6 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
     useEffect(() => {
         if (sponsor) {
             // Populate the form with the current sponsor data
-            //setValue('titleSponsor', sponsor.titlesponsor);
             const titleSponsorValue = sponsor.titlesponsor === 'true' || sponsor.titlesponsor === true;
             setValue('sponsorHeader', sponsor.header);
             setValue('imageUpload', sponsor.logo);
@@ -30,7 +29,6 @@ const SponsorDialog = ({ openDialog, onClose, sponsor }) => {
 
         // Create a FormData object
         const formData = new FormData();
-        //formData.append('titleSponsor', data.titleSponsor);
         formData.append('titleSponsor', data.titleSponsor ? 'true' : 'false'); // Send as string 'true' or 'false'
         formData.append('sponsorHeader', data.sponsorHeader);
         formData.append('urlLink', data.urlLink);

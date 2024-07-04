@@ -11,6 +11,7 @@ import MensSquad from "./client/components/teams/MensSquad";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
+import PageNotFound from './client/components/PageNotFound'
 
 import './index.css';
 
@@ -20,7 +21,7 @@ const App = () => {
     Boolean(localStorage.getItem('loginEmail'))
   );
 
-  console.log("What is coming here:::"+isAuthenticated)
+  console.log("What is auth status here:::"+isAuthenticated);
 
   return (
     <Router>
@@ -42,6 +43,7 @@ const App = () => {
         ) : (
           <Route path="/admin" element={<Navigate to="/login" />} />
         )}
+         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

@@ -15,12 +15,14 @@ const About = () => {
 
             <div className="container mx-auto my-5 px-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <p className='text-[#3c3e40]'>React Hooks are a powerful feature that allow you to use state and other React features without writing a class. Hooks make it easier to share logic between components, reduce the complexity of your code, and improve performance. They also enable you to use functional components for more complex tasks, making your codebase more consistent and easier to understand. Whether you're building a small project or a large application, React Hooks can help you write more concise and readable code.</p>
-                    <p className='text-[#3c3e40]'>The two most commonly used hooks are `useState` and `useEffect`. `useState` allows you to add state to functional components, while `useEffect` lets you perform side effects in function components. There are also other hooks like `useContext`, `useReducer`, `useCallback`, and `useMemo`, each serving specific purposes to enhance your React development experience. Understanding and utilizing these hooks effectively can significantly streamline your development process and improve the maintainability of your code.</p>
+                    <p className='text-[#3c3e40]'>Atlético Brisbane is a welcoming soccer club formed by the Malayali community, bringing together soccer enthusiasts of all ages in Brisbane since its establishment in 2018 and official registration in 2020. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.</p>
+                    <p className='text-[#3c3e40]'>Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Noby, Robin, and Joppan, who have been our proud supporters from the beginning</p>
+                    <p className='text-[#3c3e40]'>Atlético Brisbane actively participates in major soccer tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in another prestigious tournament.</p>
+                    <p className='text-[#3c3e40]'> We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer.</p>
                 </div>
             </div>
             <div className="container mx-auto my-10 px-5">
-                <h1 className="text-3xl font-bold text-center mb-8">Committee Team</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Committee 2024 Team</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="images/profilePhoto-1719751282312.png" alt="Person 1" className="w-[130px] h-[130px] mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />

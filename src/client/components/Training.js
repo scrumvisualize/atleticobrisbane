@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
+import TrainingDialog from './TrainingDialog';
 
 const Training = () => {
+
+    const [showTrainingDialog, setShowTrainingDialog] = useState(false);
+
+    const openDialog  = () =>{
+        setShowTrainingDialog(true);
+    }
+    const closeDialog = () => {
+        setShowTrainingDialog(false);
+    };
 
     return (
         <div className="bg-cover bg-bottom bg-no-repeat h-[80px] md:h-[100px] lg:h-100 mt-2" style={{ backgroundImage: "url('images/tbanner2.png')" }}>
@@ -20,9 +30,14 @@ const Training = () => {
                             <span>please contact us here </span>
                         </div>
                     </div>
-                    <button className="border border-white text-white px-2 md:px-4 py-2 md:py-3 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
+                    <button onClick={()=>openDialog ()} className="border border-white text-white px-2 md:px-4 py-2 md:py-3 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
                         Training
                     </button>
+                    {
+                        showTrainingDialog && (
+                            <TrainingDialog onClose={closeDialog}/>
+                        )
+                    }
                 </div>
             </div>
         </div>

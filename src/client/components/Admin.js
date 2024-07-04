@@ -137,7 +137,7 @@ const Admin = () => {
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="text-center font-semibold text-base mt-2">
+            <div className="text-center text-[#002d75] font-semibold text-base mt-2">
                 <h3>Home &#8594; Admin &#8594; Manage players</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
@@ -195,7 +195,7 @@ const Admin = () => {
                                                 onChange={() => handleDeclinePlayer(item.id)}
                                                 checked={item.status === 'declined'}
                                             />
-                                            <span className="ml-2 text-xs">Decline Player</span>
+                                            <span className="ml-2 text-xs mr-1">Decline Player</span>
                                         </label>
                                     </div>
                                 </div>
@@ -213,7 +213,7 @@ const Admin = () => {
                     </div>
                 </div>
                 <div className="md:col-span-1">
-                    <div className="text-2xl text-center font-semibold">
+                    <div className="text-xl text-[#002d75] text-center font-semibold">
                         <h1>Manage Sponsors</h1>
                     </div>
                     {showStatus && (
@@ -226,7 +226,7 @@ const Admin = () => {
                             Sponsor deleted successfully !
                         </div>
                     )}
-                    <button onClick={sponsorDialog} className="md:block relative top-[40px] left-28 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow">Add Sponsor</button>
+                    <button onClick={sponsorDialog} className="md:block relative top-[20px] left-28 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow">Add Sponsor</button>
                     {
                         showSponsorDialog && (
                             <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
@@ -240,7 +240,7 @@ const Admin = () => {
                         <div className="flex mt-2 md:mt-0">
                             <button
                                 onClick={() => handleEdit(item)}
-                                className="px-4 py-2 bg-[#25afe6] text-white font-semibold rounded-md shadow mr-2"
+                                className="px-4 py-2 ml-2 bg-[#25afe6] text-white font-semibold rounded-md shadow mr-2"
                             >
                                 Edit
                             </button>

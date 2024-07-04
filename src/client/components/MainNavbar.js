@@ -45,7 +45,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         />
                         <div className="text-[#6232a8] font-semibold">
                             <p className="text-lg">ATLÉTICO BRISBANE</p>
-                            <p className="text-xs ml-8 mt-[-2px] text-[#f0cb13] uppercase">
+                            <p className="text-[10px] ml-10 mt-[-2px] text-[#f0cb13] uppercase">
                                 Dare to dream
                             </p>
                         </div>
