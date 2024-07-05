@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const appUrl = process.env.REACT_APP_URL;
 
-const Login = ({ setAuthenticated }) => {
+const Login = ({ setAuthenticated, setDisplayName }) => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,6 +32,15 @@ const Login = ({ setAuthenticated }) => {
           console.log("Login success message::" + res.data.success);
           if (res.data.success) {
               localStorage.setItem('loginEmail', email);
+              const match = email.match(/^([^@]*)@/);
+              let displayName = '';
+              if (match && match[1]) {
+                displayName = match[1];
+                setDisplayName(displayName);
+              } else {
+                setDisplayName("");
+              }
+              localStorage.setItem('displayName', displayName);
               setAuthenticated(true);
               navigate('/admin');
           }
@@ -45,7 +54,6 @@ const Login = ({ setAuthenticated }) => {
       }
   }
   fetchData();
-
   };
 
   return (

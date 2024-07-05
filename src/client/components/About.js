@@ -17,7 +17,7 @@ const About = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <p className='text-[#3c3e40]'>Atlético Brisbane is a welcoming soccer club formed by the Malayali community, bringing together soccer enthusiasts of all ages in Brisbane since its establishment in 2018 and official registration in 2020. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.</p>
                     <p className='text-[#3c3e40]'>Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Noby, Robin, and Joppan, who have been our proud supporters from the beginning</p>
-                    <p className='text-[#3c3e40]'>Atlético Brisbane actively participates in major soccer tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in another prestigious tournament.</p>
+                    <p className='text-[#3c3e40]'>Atlético Brisbane actively participates in major soccer 7's tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in prestigious Kairali tournament.</p>
                     <p className='text-[#3c3e40]'> We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer.</p>
                 </div>
             </div>

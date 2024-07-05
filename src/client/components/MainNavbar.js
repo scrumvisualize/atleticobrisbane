@@ -22,7 +22,9 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
 
     const handleLogout = () => {
         localStorage.removeItem('loginEmail');
+        localStorage.removeItem('displayName');
         setAuthenticated(false);
+        window.location.reload(true);
         navigate('/login');
     };
 
@@ -136,6 +138,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 >
                                     ADMIN
                                 </a>
+
                                 <a
                                     className="font-semibold"
                                     onClick={handleLogout}

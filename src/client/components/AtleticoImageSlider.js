@@ -31,9 +31,17 @@ const AtleticoImageSlider = () => {
         autoplaySpeed: 4000, // Set autoplay speed to 4 seconds
     };
 
+    const handleImageLoad = () => {
+        setLoading(false);
+    };
+
     useEffect(() => {
-        setSlideImages(slides);
-    }, []);
+        setLoading(true);
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, [slideImages]);
 
     const handleLeftArrowClick = () => {
         if (sliderRef.current) {
@@ -70,7 +78,7 @@ const AtleticoImageSlider = () => {
                             <img
                                 src={item.src}
                                 alt={`Slide ${index + 1}`}
-                                onLoad={() => setLoading(false)}
+                                onLoad={handleImageLoad}
                             />
                             <section className="overlay-text rounded-lg">
                                 <div className="text-center p-2 ml-[-20px]">{item.text}</div>
