@@ -7,6 +7,53 @@ const appURL = process.env.REACT_APP_URL;
 
 const options = ["Striker", "Midfielder", "Defender", "Goal Keeper"];
 
+const clubData = [
+    {
+        favclub: "Arsenal",
+        clublogo: "images/f_arsenal.PNG"
+    },
+    {
+        favclub: "Barcelona",
+        clublogo: "images/f_barca.png"
+    },
+    {
+        favclub: "Chelsea",
+        clublogo: "images/f_chelsea.PNG"
+    },
+    {
+        favclub: "Manchester City",
+        clublogo: "images/f_city.png"
+    },
+    {
+        favclub: "Manchester United",
+        clublogo: "images/f_united.png"
+    },
+    {
+        favclub: "Real Madrid",
+        clublogo: "images/f_madrid.png"
+    },
+    {
+        favclub: "Liverpool",
+        clublogo: "images/f_liverpool.png"
+    },
+    {
+        favclub: "Bayern Munich",
+        clublogo: "images/f_bayern.png"
+    },
+    {
+        favclub: "PSG",
+        clublogo: "images/f_psg.png"
+    },
+    {
+        favclub: "Borussia Dortmund",
+        clublogo: "images/f_dortmund.png"
+    },
+    {
+        favclub: "Tottenham",
+        clublogo: "images/f_tottenham.png"
+    },
+];
+
 const MensSquad = () => {
 
     const [mensSquad, setMensSquad] = useState([]);
@@ -43,6 +90,11 @@ const MensSquad = () => {
     useEffect(() => {
         setMensSquad(mensSquad);
     }, []);
+
+    const getClubLogo = (favclub) => {
+        const club = clubData.find(c => c.favclub === favclub);
+        return club ? club.clublogo : null;
+    };
 
 
     return (
@@ -121,8 +173,18 @@ const MensSquad = () => {
                                     </div>
                                     <div className="absolute bottom-0 left-0 right-0 p-2 bg-[#CDCD32]">
                                         <p className="text-xs font-semibold text-white text-center uppercase">{player.position}</p>
-                                        <p className="mt-1 text-lg font-bold text-white text-center">{player.name}</p>
-                                        <div className="h-px bg-white my-2"></div> {/* Line separator */}
+                                        <p className="mt-1 text-lg font-bold text-white text-center flex items-center justify-center">
+                                            {player.name}
+                                            {player.favclub && (
+                                                <img
+                                                    src={getClubLogo(player.favclub)}
+                                                    alt={player.favclub}
+                                                    className="ml-2 w-6 h-6 rounded-full"
+                                                />
+                                            )}
+                                        </p>
+                                        <div className="h-px bg-white my-2">
+                                        </div>
                                     </div>
                                 </div>
                             ))}

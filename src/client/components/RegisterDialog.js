@@ -79,9 +79,9 @@ const RegisterDialog = ({ onClose }) => {
             {...register('name', {
               required: true
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.name && <span className="text-red-500">Name is required</span>}
+          {errors.name && <span className="text-xs text-red-500">Name is required</span>}
 
           <input
             type="tel"
@@ -94,9 +94,9 @@ const RegisterDialog = ({ onClose }) => {
                 message: "Invalid mobile number"
               }
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.mobile && <span className="text-red-500">{errors.mobile.message}</span>}
+          {errors.mobile && <span className="text-xs text-red-500">{errors.mobile.message}</span>}
 
           <input
             type="email"
@@ -110,9 +110,9 @@ const RegisterDialog = ({ onClose }) => {
               }
             })
             }
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+          {errors.email && <span className="text-xs text-red-500">{errors.email.message}</span>}
 
           <input
             type="tel"
@@ -125,9 +125,9 @@ const RegisterDialog = ({ onClose }) => {
                 message: "Invalid Jersey number"
               }
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.jerseynumber && <span className="text-red-500">{errors.jerseynumber.message}</span>}
+          {errors.jerseynumber && <span className="text-xs text-red-500">{errors.jerseynumber.message}</span>}
 
           <div className="age-group-selector pb-4">
             <div className="text-xs font-bold pb-2">Select Age Group</div>
@@ -183,7 +183,7 @@ const RegisterDialog = ({ onClose }) => {
             </div>
           </div>
 
-          <select name="position" {...register('position', { required: true })} className="w-full border rounded-md px-4 py-2 mb-4">
+          <select name="position" {...register('position', { required: true })} className="w-full border rounded-md px-4 py-1 mb-2">
             <option value="">Select Position</option>
             <option value="Striker">Striker</option>
             <option value="Defender">Defender</option>
@@ -191,7 +191,7 @@ const RegisterDialog = ({ onClose }) => {
             <option value="Keeper">Goal Keeper</option>
             <option value="coaching">Football Coaching</option>
           </select>
-          {errors.position && <p className="text-red-500">Position is required</p>}
+          {errors.position && <p className="text-xs text-red-500">Position is required</p>}
 
           <input
             type="file"
@@ -203,10 +203,24 @@ const RegisterDialog = ({ onClose }) => {
                 lessThan800KB: (files) => files[0]?.size <= 800 * 1024 || 'File size cannot be greater than 800 KB',
                }
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.profilePhoto && <span className="text-red-500">{errors.profilePhoto.message}</span>}
+          {errors.profilePhoto && <span className="text-xs text-red-500">{errors.profilePhoto.message}</span>}
 
+          <select name="favclub" {...register('favclub', { required: false })} className="w-full border rounded-md px-4 py-1 mb-2">
+            <option value="select">What's your favourite soccer club?</option>
+            <option value="Chelsea">Chelsea</option>
+            <option value="Arsenal">Arsenal</option>
+            <option value="City">Manchester City</option>
+            <option value="United">Manchester United</option>
+            <option value="Liverpool">Liverpool</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="RealMadrid">Real Madrid</option>
+            <option value="Bayern">Bayern Munich</option>
+            <option value="Dortmund">Borussia Dortmund</option>
+            <option value="PSG">PSG</option>
+            <option value="Tottenham">Tottenham</option>
+          </select>
         <textarea 
           name="comments" 
           rows="3" 
@@ -223,10 +237,10 @@ const RegisterDialog = ({ onClose }) => {
               message: "Invalid characters provided. Only alphanumeric and !#$%&()+=.,?'-\" are allowed"
             }
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           >
           </textarea>
-          {errors.comments && <span className="text-red-500">{errors.comments.message}</span>}
+          {errors.comments && <span className="text-xs text-red-500">{errors.comments.message}</span>}
 
           <input
             type="text"
@@ -239,9 +253,9 @@ const RegisterDialog = ({ onClose }) => {
                 message: "Invalid code provided"
               }
             })}
-            className="w-full border rounded-md px-4 py-2 mb-4"
+            className="w-full border rounded-md px-4 py-1 mb-2"
           />
-          {errors.code && <span className="text-red-500">{errors.code.message}</span>}
+          {errors.code && <span className="text-xs text-red-500">{errors.code.message}</span>}
           <span className="text-base text-red-500">{validationText}</span>
           <div className="flex justify-between">
             <button type="submit" className="bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Submit</button>

@@ -34,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
         photo: {
             type: DataTypes.STRING(300),
         },
+        favclub:{
+            type: DataTypes.STRING(100),
+            allowNull: true
+        },
         code: {
             type: DataTypes.STRING(50),
         },

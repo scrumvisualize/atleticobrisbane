@@ -11,7 +11,8 @@ import MensSquad from "./client/components/teams/MensSquad";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
-import PageNotFound from './client/components/PageNotFound'
+import PageNotFound from './client/components/PageNotFound';
+import InactivityLogout from './client/components/InactivityLogout';
 
 import './index.css';
 
@@ -35,6 +36,7 @@ const App = () => {
     <Router>
       <TopBanner displayName={displayName}/>
       <MainNavbar isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />
+      {isAuthenticated && <InactivityLogout setAuthenticated={setAuthenticated} />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

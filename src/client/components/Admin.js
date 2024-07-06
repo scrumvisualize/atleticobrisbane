@@ -162,8 +162,8 @@ const Admin = () => {
                     <div>
 
                         <div className="container mx-auto px-2">
-                            <div className="text-center text-[#002d75] font-semibold text-base mt-2">
-                                <h3> Manage players</h3>
+                            <div className="text-xl ml-[85px] md:ml-[395px] text-[#002d75] font-semibold text-base mt-2">
+                                <h3> Manage Players</h3>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 mt-4 gap-4">
                                 <div className="md:col-span-2">

@@ -177,7 +177,7 @@ app.post('/service/updatePlayerStatus', async (req, res) => {
 app.get('/service/mensPlayerList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
       where: {
         status: 'Yes',
         agegroup: 'Open'
@@ -193,7 +193,7 @@ app.get('/service/mensPlayerList', async (req, res) => {
 app.get('/service/mastersPlayerList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
       where: {
         status: 'Yes',
         agegroup: 'AB40'
