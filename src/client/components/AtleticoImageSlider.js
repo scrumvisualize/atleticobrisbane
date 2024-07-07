@@ -13,8 +13,9 @@ const AtleticoImageSlider = () => {
         { id: 2, src: 'images/ab-slider-2.JPG', text: 'Curious Crowd' },
         { id: 3, src: 'images/juniors.JPG', text: 'Our Junior Boys' },
         { id: 4, src: 'images/ab-slider-3.JPG', text: 'Mens Squad' },
-        { id: 5, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
-        { id: 6, src: 'images/training.jpeg', text: 'Training' },
+        { id: 5, src: 'images/sydney.JPEG', text: 'At Sydney' },
+        { id: 6, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
+        { id: 7, src: 'images/training.jpeg', text: 'Training' },
     ];
 
     const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ const AtleticoImageSlider = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-            <div className="relative w-full h-80 md:h-[498px]">
+            <div className="relative w-full h-80 md:h-[497px]">
                 {
                     loading && (
                         <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 z-30">
@@ -87,7 +88,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[499px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
+            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
                 <div className="ml-8 mt-10">
                     <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                 </div>

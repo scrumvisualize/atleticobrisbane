@@ -22,7 +22,7 @@ const About = () => {
                 </div>
             </div>
             <div className="container mx-auto my-10 px-5">
-                <h1 className="text-3xl font-bold text-center mb-8">Committee 2024 Team</h1>
+                <h1 className="text-3xl font-bold text-center mb-8">Committee 2024</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="images/profilePhoto-1719751282312.png" alt="Person 1" className="w-[130px] h-[130px] mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />

@@ -4,7 +4,7 @@ const WeeklyGames = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 h-[450px] mt-4 md:mt-[-80px] gap-2">
-            <div className="bg-[#f7f9fa] p-4 relative rounded-lg">
+            <div className="bg-[#f8f6fc] p-4 relative rounded-lg">
                 <h2 className="text-2xl text-[#181c1c] font-bold mb-2">Weekly Games</h2>
                 <h3 className="text-lg text-[#b778d6] font-semibold mb-2">Sunnybank, Brisbane</h3>
                 <p className="text-sm text-[#3c3e40]">
