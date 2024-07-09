@@ -92,13 +92,13 @@ const PaymentTracking = () => {
                             <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200">
                                 {row[1]} {/* Player Name */}
                             </td>
-                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell">
+                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell hidden md:table-cell">
                                 {row[2]} {/* Month */}
                             </td>
-                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200">
+                            <td className={`px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 ${row[3] == 'Paid' ? 'text-green-500' : 'text-red-500'}`}>
                                 {row[3]} {/* Status */}
                             </td>
-                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell">
+                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell hidden md:table-cell">
                                 {row[4]} {/* Games Played */}
                             </td>
                             <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200">

@@ -6,7 +6,7 @@ const About = () => {
     return (
         <div className="bg-gray-100 text-gray-900">
             {/* <MainNavbar /> */}
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[130px] md:h-[200px] lg:h-128" style={{ backgroundImage: "url('images/about.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128" style={{ backgroundImage: "url('images/about.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
                 <h3>Home &#8594; About </h3>

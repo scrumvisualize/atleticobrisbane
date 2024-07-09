@@ -8,8 +8,8 @@ const TopBanner = ({displayName}) => {
     const navigate = useNavigate();
 
     const data = [
-        { src: "images/email-50.png", value: "atleticobris-info@gmail.com" },
-        { src: "images/phone-50.png", value: "+61 023-456-7890" },
+        { src: "images/email-50.png", value: "atleticobris-info@test.com" },
+        { src: "images/phone-50.png", value: "+61 099-999-9999" },
     ];
 
     useEffect(() => {

@@ -20,7 +20,7 @@ const SponsorList = () => {
 
     return (
         <div className='relative'>
-            <div className='text-center text-[#002d75] text-3xl font-bold mt-[-10px] mt-6 md:mt-8'>
+            <div className='text-center text-[#002d75] text-3xl font-bold mt-[20px] md:mt-8'>
                 <h1>Our Prospective Sponsors</h1>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">

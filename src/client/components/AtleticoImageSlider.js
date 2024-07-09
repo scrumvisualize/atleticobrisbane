@@ -67,19 +67,20 @@ const AtleticoImageSlider = () => {
                             </div>
                         </div>
                     )}
-                <div onClick={handleLeftArrowClick} className="absolute top-20 md:top-64 left-0 z-10">
+                <div onClick={handleLeftArrowClick} className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer">
                     <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
-                <div onClick={handleRightArrowClick} className="absolute top-20 right-0 z-10 md:top-64">
+                <div onClick={handleRightArrowClick} className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer">
                     <img src="images/arrow-right.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
                 <Slider ref={sliderRef} {...settings}>
                     {slideImages.map((item, index) => (
-                        <div key={index}>
+                        <div key={index} className="w-full h-full">
                             <img
                                 src={item.src}
                                 alt={`Slide ${index + 1}`}
                                 onLoad={handleImageLoad}
+                                className="w-full h-full object-cover rounded"
                             />
                             <section className="overlay-text rounded-lg">
                                 <div className="text-center p-2 ml-[-20px]">{item.text}</div>
@@ -88,7 +89,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0">
+            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-73px] md:mt-0 rounded">
                 <div className="ml-8 mt-10">
                     <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                 </div>

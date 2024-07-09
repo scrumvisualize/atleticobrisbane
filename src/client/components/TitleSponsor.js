@@ -5,7 +5,7 @@ const TitleSponsor = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[642px] md:mt-[40px] mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[600px] md:mt-[40px] mb-2">
                 <div className="bg-white border border-gray-300 shadow-lg rounded-lg p-2">
                     <div className="bg-cover bg-no-repeat bg-contain h-96 md:h-[600px] lg:h-[800px] flex items-center justify-center gap-2 inset-x-0 top-0 bg-white" style={{ backgroundImage: "url('images/indus.jpeg')" }}>
                     </div>
@@ -21,7 +21,7 @@ const TitleSponsor = () => {
                             Also, thank you for referring friends and family to me.
                             <span className="italic text-4xl font-bold">&quot;</span>
                         </p>
-                        <div className="border border-white text-white px-2 md:px-4 py-2 mb-4 md:mb-4 md:py-4 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
+                        <div className="border border-white text-white px-2 md:px-4 py-2 mb-6 md:mb-4 md:py-4 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
                             <button onClick={() => { navigate('/sponsors'); }}>View more sponsors &#x2192;&#x2192;</button>
                         </div>
                     </div>

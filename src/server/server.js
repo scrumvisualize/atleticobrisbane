@@ -11,6 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 const usersSchema = require('../modals/user');
 const registerPlayerSchema = require('../modals/registerPlayer');
 const sponsorsSchema = require('../modals/sponsors');
+const announcementSchema = require('../modals/announcement');
 
 const cors = require('cors');
 
@@ -41,6 +42,7 @@ const sequelize = new Sequelize(DB_NAME, DB_USERNAME, DB_PASSWORD, {
 const UserModel = usersSchema(sequelize, DataTypes);
 const RegisterModel = registerPlayerSchema(sequelize, DataTypes);
 const SponsorModel = sponsorsSchema(sequelize, DataTypes);
+const AnnouncementModel = announcementSchema(sequelize, DataTypes);
 
 
 app.use(cors()) 
@@ -269,6 +271,7 @@ app.get('/service/sponsorsList', async (req, res) => {
   }
 });
 
+
 /* Below delete service will delete a sponsor by an admin user from AB website */ 
 app.delete('/service/deleteSponsor/:id', async (req, res) => {
   const sponsorId = parseInt(req.params.id, 10);
@@ -282,6 +285,76 @@ app.delete('/service/deleteSponsor/:id', async (req, res) => {
     } else{
       res.status(404).json({ message: 'Sponsor not found' });
     }
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+
+/* Adding an announcement details by an admin person from admin component */ 
+app.post('/service/announcementdetails', upload.single('announceImage'), async (req, res, next) => {
+
+  try {
+
+    const { heading, urllink, description, email } = req.body;
+    let photoPath = 'images/updates.PNG';
+    if (req.file) {
+      photoPath = req.file.path.replace(/^public\\/, '');
+    }
+    var announcementData = { announcementheading: heading, image: photoPath, urllink: urllink, description: description, email: email };
+    await AnnouncementModel.create(announcementData);
+    res.status(200).json({ success: true });
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e.message });
+    return next(e);
+  }
+});
+
+
+/* Update announcement details from the announcement page via edit pen icon */
+app.put('/service/update-announcement-details/:id', upload.single('announceImage'), async (req, res, next) => {
+  const announcementId = parseInt(req.params.id, 10);
+  const { heading, urllink, description, email } = req.body;
+
+  try {
+    const announcement = await AnnouncementModel.findByPk(announcementId);
+    if (announcement) {
+
+      let photoPath = 'images/updates.PNG';
+
+      var updateAnnouncementData = { announcementheading: heading, image: photoPath, urllink: urllink, description: description, email: email };
+      if (req.file) {
+        
+        updateAnnouncementData.image = req.file.path.replace(/^public\\/, '');
+
+        await AnnouncementModel.update(updateAnnouncementData, {
+          where: {
+            id: announcementId
+          }
+        });
+        const updatedAnnouncement = await AnnouncementModel.findByPk(announcementId);
+        res.status(200).json({ message: 'Announcement details updated successfully', announcement: updatedAnnouncement });
+      }
+    } else {
+      res.status(404).json({ message: 'Announcement not found' });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e.message });
+    return next(e);
+  }
+});
+
+
+/* Below get service method will get the list of announcements from database to display under the General updates area */ 
+app.get('/service/announcementsList', async (req, res) => {
+  try {
+    const announcements = await AnnouncementModel.findAll({
+      attributes: ['id','announcementheading', 'email', 'image', 'urllink', 'description', 'createdAt']
+    });
+    res.status(200).json({ announcements });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

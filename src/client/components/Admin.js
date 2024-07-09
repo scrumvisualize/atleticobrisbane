@@ -262,7 +262,7 @@ const Admin = () => {
                                             Sponsor deleted successfully !
                                         </div>
                                     )}
-                                    <button onClick={sponsorDialog} className="md:block relative top-[20px] left-24 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow-lg">Add Sponsor</button>
+                                    <button onClick={sponsorDialog} className="md:block relative top-[3px] md:top-[20px] left-24 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow-lg">Add Sponsor</button>
                                     {
                                         showSponsorDialog && (
                                             <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
