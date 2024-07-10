@@ -83,8 +83,8 @@ const Contact = () => {
                             <div className="text-gray-700 flex items-center space-x-2">
                                 <span className="text-xl font-semibold">Saju :</span>
                                 <a href="tel:+0422258810" className="flex items-center space-x-1 hover:underline">
-                                    <img src="images/call-50.png" className="h-6 w-6 text-gray-500" />
-                                    <span className="font-semibold ml-4"> &#8594; 0422258810</span>
+                                    <img src="images/call-50.png" className="h-6 w-6 text-gray-500 ml-2" />
+                                    <span className="font-semibold"> &#8594; 0422258810</span>
                                 </a>
                             </div>
                             <div className="text-gray-700 flex items-center space-x-2">

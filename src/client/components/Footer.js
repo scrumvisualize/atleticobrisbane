@@ -26,11 +26,11 @@ const Footer = () => {
                 <h3 className="text-2xl text-[#e6e4f0] font-bold mt-6 mb-4">Follow Us</h3>
                 <div className="flex space-x-4 mt-4">
 
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                        <img src="images/instagram.png" alt="Instagram" className="h-6 w-6 md:h-8 md:w-8 ml-2 rounded-full" />
+                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white group">
+                        <img src="images/instagram.png" alt="Instagram" className="h-6 w-6 md:h-8 md:w-8 ml-2 rounded-full group-hover:animate-pulse" />
                     </a>
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
-                        <img src="images/facebook.png" alt="Facebook" className="h-6 w-6 md:h-8 md:w-8 ml-2 rounded-full" />
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white group">
+                        <img src="images/facebook.png" alt="Facebook" className="h-6 w-6 md:h-8 md:w-8 ml-2 rounded-full group-hover:animate-pulse border-2" />
                     </a>
                 </div>
             </div>

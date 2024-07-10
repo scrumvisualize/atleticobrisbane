@@ -51,18 +51,14 @@ const GeneralUpdate = ({ imageSrc, title, date, url, text}) => {
                         />
                     </div>
                     <p className="text-[13px] text-[#3c3e40]">
-                        {showFullText ? (
-                            <span dangerouslySetInnerHTML={{ __html: highlightURLs(text) }} />
-                        ) : (
-                            <span dangerouslySetInnerHTML={{ __html: highlightURLs(truncatedText) }} />
+                        <span dangerouslySetInnerHTML={{ __html: highlightURLs(truncatedText) }} />
+                        {showFullText && (
+                            <span className="ml-1" dangerouslySetInnerHTML={{ __html: highlightURLs(remainingText) }} />
                         )}
-                        {text.length > 100 && (
+                        {text.length > 150 && (
                             <span onClick={handleClick} className="inline-block rounded-full px-2 bg-[#c9a214] border border-[#FAFCF6] text-white cursor-pointer">
                                 {showFullText ? 'Read less' : 'Read more...'}
                             </span>
-                        )}
-                        {showFullText && remainingText && (
-                            <span className="ml-1" dangerouslySetInnerHTML={{ __html: highlightURLs(remainingText) }} />
                         )}
                         {url && (
                             <span className="block bg-gray-200 p-0 text-center rounded mt-2">

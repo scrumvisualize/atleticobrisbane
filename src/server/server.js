@@ -88,10 +88,10 @@ app.post('/service/login', async (req, res) => {
       if (comparedResult) {
         res.status(200).json({ success: true });
       } else {
-        res.status(403).json({ fail: "Password is incorrect!" });
+        res.status(403).json({ fail: "Sorry, password is incorrect!" });
       }      
     } else {
-      res.status(403).json({ fail: "Email address is not correct!" });
+      res.status(403).json({ fail: "Sorry, email address is not correct!" });
     }
   } catch (e) {
     console.log(e);

@@ -32,7 +32,7 @@ const InactivityLogout = ({ setAuthenticated }) => {
             return prev - 1;
           });
         }, 1000);
-      }, 180000); // 3 minute
+      }, 120000); // 2 minute
     };
 
     window.addEventListener('mousemove', handleActivity);
