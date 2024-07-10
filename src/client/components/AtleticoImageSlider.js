@@ -29,7 +29,7 @@ const AtleticoImageSlider = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 4000, // Set autoplay speed to 4 seconds
+        autoplaySpeed: 3000, // Set autoplay speed to 4 seconds
     };
 
     const handleImageLoad = () => {
