@@ -291,7 +291,7 @@ app.delete('/service/deleteSponsor/:id', async (req, res) => {
 });
 
 
-/* Adding an announcement details by an admin person from admin component */ 
+/* Adding an announcement details by an admin person from the announcement component */ 
 app.post('/service/announcementdetails', upload.single('announceImage'), async (req, res, next) => {
 
   try {
@@ -313,7 +313,7 @@ app.post('/service/announcementdetails', upload.single('announceImage'), async (
 });
 
 
-/* Update announcement details from the announcement page via edit pen icon */
+/* Update an announcement details via edit pen icon in the announcement page */
 app.put('/service/update-announcement-details/:id', upload.single('announceImage'), async (req, res, next) => {
   const announcementId = parseInt(req.params.id, 10);
   const { heading, urllink, description, email } = req.body;
@@ -344,6 +344,25 @@ app.put('/service/update-announcement-details/:id', upload.single('announceImage
     console.log(e);
     res.status(500).json({ message: e.message });
     return next(e);
+  }
+});
+
+
+/* Below delete service will delete an announcement by an admin user from the website */ 
+app.delete('/service/deleteAnnouncement/:id', async (req, res) => {
+  const announcementId = parseInt(req.params.id, 10);
+  try {
+    const announcement = await AnnouncementModel.findByPk(announcementId);
+    if(announcement){
+        await AnnouncementModel.destroy({
+        where: { id: announcementId }
+      });
+      res.status(200).json({ success: true });
+    } else{
+      res.status(404).json({ message: 'Announcement details not found' });
+    }
+  } catch (e) {
+    res.status(500).json({ message: e.message });
   }
 });
 

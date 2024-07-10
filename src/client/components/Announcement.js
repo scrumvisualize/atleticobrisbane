@@ -5,16 +5,11 @@ import axios from 'axios';
 const appURL = process.env.REACT_APP_URL;
 
 const Announcement = () => {
-    const [announcementDialog, setAnnouncementDialog] = useState('');
+    
     const [announcementList, setAnnouncementList] = useState([]);
     const [showDialog, setShowDialog] = useState(false);
-    const [editAnnouncementId, setEditAnnouncementId] = useState(null);
     const [currentAnnouncement, setCurrentAnnouncement] = useState(null);
-    const [heading, setHeading] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
-    const [linkUrl, setLinkUrl] = useState('');
-    const [description, setDescription] = useState('');
-    const [error, setError] = useState('');
+    const [deleteStatus, setDeleteStatus] = useState(false);
 
     
     const displayDialog = () => {
@@ -36,21 +31,8 @@ const Announcement = () => {
         fetchAnnouncements();
     }, []);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const res = await axios.get(`${appURL}/service/announcementsList`);
-    //             const sortedAnnouncements = res.data.announcements.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    //             setAnnouncementList(sortedAnnouncements);
-    //         } catch (e) {
-    //             console.log(e);
-    //         }
-    //     }
-    //     fetchData();
-    // }, []);
-
+  
     const handleEdit = (announcement) => {
-        // setEditAnnouncementId(announcement.id);
         setCurrentAnnouncement(announcement);
         setShowDialog(true);
     };
@@ -60,6 +42,24 @@ const Announcement = () => {
         setShowDialog(false);
         fetchAnnouncements(); // Re-fetch announcements after closing the dialog
     };
+
+    const handleDeleteAnnouncement = (announcement) => {
+
+        const fetchData = async () => {
+            try {
+                const res = await axios.delete(`${appURL}/service/deleteAnnouncement/${announcement.id}`);
+                if (res.status === 200) {
+                    setDeleteStatus("Announcement deleted successfully!");
+                    window.location.reload(true);
+                } else {
+                    setDeleteStatus(res.data.message);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        fetchData();
+    }
 
     return (
         <div className="container mx-auto px-4 py-8">
@@ -83,7 +83,7 @@ const Announcement = () => {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-2.036a2.5 2.5 0 113.536 3.536L7.5 21H3v-4.5L16.732 3.268z" />
                             </svg>
                         </button>
-                        <button className="text-red-500 hover:text-red-700">
+                        <button onClick={() => handleDeleteAnnouncement(item)} className="text-red-500 hover:text-red-700">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -92,6 +92,11 @@ const Announcement = () => {
                 </div>
                 )) }
             </div>
+            {deleteStatus && (
+                <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                    Announcement deleted successfully!
+                </div>
+            )}
             {showDialog && (
                 <AnnouncementDialog onClose={closeDialog} announcement={currentAnnouncement}/>
             )}

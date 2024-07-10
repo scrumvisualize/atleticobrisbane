@@ -29,7 +29,7 @@ const Login = ({ setAuthenticated, setDisplayName }) => {
           const email = data.email;
           const password = data.password;
           const res = await axios.post(`${appUrl}/service/login`, { email, password });
-          console.log("Login success message::" + res.data.success);
+          console.log("Front end receiving login status ::" + res.data.success);
           if (res.data.success) {
               localStorage.setItem('loginEmail', email);
               const match = email.match(/^([^@]*)@/);

@@ -23,7 +23,7 @@ const App = () => {
   );
   const [displayName, setDisplayName] = useState("");
 
-  console.log("What is auth status here:::"+isAuthenticated);
+  console.log("Auth status after successful login:::"+isAuthenticated);
 
   useEffect(() => {
     const storedDisplayName = localStorage.getItem('displayName');
