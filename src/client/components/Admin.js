@@ -208,6 +208,9 @@ const Admin = () => {
                                                             <div className="flex flex-col">
                                                                 <span className="text-gray-700 text-xs">{item.position}</span>
                                                             </div>
+                                                            <div className="flex flex-col">
+                                                                <span className="text-gray-700 text-xs">{item.comments}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div className="md:ml-4 mt-4 md:mt-0 flex space-x-2">

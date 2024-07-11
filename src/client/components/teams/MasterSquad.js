@@ -177,7 +177,7 @@ const MasterSquad = () => {
                                                 <img
                                                     src={getClubLogo(player.favclub)}
                                                     alt={player.favclub}
-                                                    className="ml-2 w-6 h-6 rounded-full"
+                                                    className="ml-2 w-8 h-8 rounded-full"
                                                 />
                                             )}
                                         </p>

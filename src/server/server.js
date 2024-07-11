@@ -104,7 +104,7 @@ app.put('/service/registerPlayer', upload.single('profilePhoto'), async (req, re
 
   try {
 
-    const { name, mobile, email, jerseynumber, ageGroup, position, comments, code } = req.body;
+    const { name, mobile, email, jerseynumber, ageGroup, position, favclub, comments, code } = req.body;
 
     if (code == validCode) {
       const playerEmail = await RegisterModel.count({ where: { email: email } });
@@ -114,17 +114,19 @@ app.put('/service/registerPlayer', upload.single('profilePhoto'), async (req, re
         if (req.file) {
           photoPath = req.file.path.replace(/^public\\/, ''); 
         } 
-        var playerData = { name: name, mobile: mobile, email: email, jerseynumber: jerseynumber, agegroup: ageGroup, position: position, photo: photoPath, comments: comments, code: code};
+        var playerData = { name: name, mobile: mobile, email: email, jerseynumber: jerseynumber, agegroup: ageGroup, position: position, photo: photoPath, favclub: favclub, comments: comments, code: code};
         await RegisterModel.create(playerData);
         res.status(200).json({ success: true });
 
       } else {
-        var updatePlayerData = { name: name, mobile: mobile, jerseynumber: jerseynumber, agegroup: ageGroup, position: position, comments: comments, code: code };
+        let photoPath = 'barca.PNG';
         if (req.file) {
-          updatePlayerData.photo = req.file.path.replace(/^public\\/, '');
-        } 
+          photoPath = req.file.path.replace(/^public\\/, ''); 
+        }
+        var updatePlayerData = { name: name, mobile: mobile, jerseynumber: jerseynumber, agegroup: ageGroup, position: position, photo: photoPath, favclub: favclub, comments: comments, code: code };
         await RegisterModel.update(updatePlayerData, { where: { email: email } });
-        res.status(200).send('Player data updated successfully !');
+        res.status(200).json({ success: true });
+
       }
 
     } else {

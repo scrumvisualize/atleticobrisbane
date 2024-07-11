@@ -20,6 +20,7 @@ const RegisterDialog = ({ onClose }) => {
     formData.append('jerseynumber', data.jerseynumber);
     formData.append('ageGroup', data.ageGroup);
     formData.append('position', data.position);
+    formData.append('favclub', data.favclub);
     formData.append('comments', data.comments);
     formData.append('code', data.code);
 

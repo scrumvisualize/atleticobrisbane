@@ -21,15 +21,15 @@ const clubData = [
         clublogo: "images/f_chelsea.PNG"
     },
     {
-        favclub: "Manchester City",
+        favclub: "City",
         clublogo: "images/f_city.png"
     },
     {
-        favclub: "Manchester United",
+        favclub: "United",
         clublogo: "images/f_united.png"
     },
     {
-        favclub: "Real Madrid",
+        favclub: "RealMadrid",
         clublogo: "images/f_madrid.png"
     },
     {
@@ -37,7 +37,7 @@ const clubData = [
         clublogo: "images/f_liverpool.png"
     },
     {
-        favclub: "Bayern Munich",
+        favclub: "Bayern",
         clublogo: "images/f_bayern.png"
     },
     {
@@ -45,7 +45,7 @@ const clubData = [
         clublogo: "images/f_psg.png"
     },
     {
-        favclub: "Borussia Dortmund",
+        favclub: "Dortmund",
         clublogo: "images/f_dortmund.png"
     },
     {
@@ -179,7 +179,7 @@ const MensSquad = () => {
                                                 <img
                                                     src={getClubLogo(player.favclub)}
                                                     alt={player.favclub}
-                                                    className="ml-2 w-6 h-6 rounded-full"
+                                                    className="ml-2 w-8 h-8 rounded-full"
                                                 />
                                             )}
                                         </p>
