@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TopBanner from "./TopBanner";
 import MainNavbar from "./MainNavbar";
 import Banner from "./Banner";
@@ -10,16 +10,23 @@ import TitleSponsor from "./TitleSponsor";
 import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
 
-const Home = () => {
+const Home = ({ darkMode }) => {
+    
     return (
-        <div className="container mx-auto p-2">
+        <div
+            className={`container mx-auto p-2 transition-colors duration-500 ${darkMode ? 'text-white' : 'text-black'}`}
+            style={{
+                //background: darkMode ? 'linear-gradient(135deg, #0C1324, #cb6ce6)' : 'white',
+                background: darkMode ? '#A18DDD' : 'white',
+            }}
+        >
             <Banner/>
             <AtleticoImageSlider/>
             <Training/>
-            <AtleticoUpdates/>
+            <AtleticoUpdates darkMode={darkMode}/>
             <WeeklyGames/>
             <TitleSponsor/>
-            <SponsorsList/>
+            <SponsorsList darkMode={darkMode}/>
             <Footer/>
         </div>
     );

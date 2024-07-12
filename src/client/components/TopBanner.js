@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
-const TopBanner = ({displayName}) => {
+const TopBanner = ({displayName, setDarkMode, isAuthenticated}) => {
 
     const [topbanner, setTopbanner] = useState([]);
     const [loginName, setLoginName] = useState('');
+    const [isDarkMode, setIsDarkMode] = useState(false);
+    const [isPulsing, setIsPulsing] = useState(false);
     const navigate = useNavigate();
 
     const data = [
@@ -16,6 +18,16 @@ const TopBanner = ({displayName}) => {
         setTopbanner(data);
     }, []);
 
+    
+    const toggleDarkMode = () => {
+        setIsDarkMode(!isDarkMode);
+        setDarkMode(!isDarkMode);  // Update the dark mode state in Index.js
+        setIsPulsing(true);
+        setTimeout(() => {
+            setIsPulsing(false);
+        }, 2000); // Duration of the pulse animation
+    };
+
     return ( 
         <div className="flex justify-between items-center bg-gradient-to-r from-blue-600 via-[#cb6ce6] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6] text-white">
             <div className="flex-1 flex justify-center items-center">
@@ -26,9 +38,14 @@ const TopBanner = ({displayName}) => {
                     </div>
                 ))}
             </div>
-            <div className="flex items-center">
-                <img onClick={() => navigate('/login')} src="images/login-50.png" className="w-6 h-6 cursor-pointer mx-2" />
+            <div onClick={toggleDarkMode} 
+             className={`w-8 h-8 mt-1 mb-1 mr-2 rounded-full half-circle ${isPulsing ? 'animate-pulse' : ''}`}>
             </div>
+            {!isAuthenticated && (
+                <div className="flex items-center">
+                    <img onClick={() => navigate('/login')} src="images/login-50.png" className="w-6 h-6 cursor-pointer mx-2" />
+                </div>
+            )}
             <div className="pr-4">
                 {displayName}
             </div>

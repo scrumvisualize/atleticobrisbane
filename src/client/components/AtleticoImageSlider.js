@@ -82,14 +82,18 @@ const AtleticoImageSlider = () => {
                                 onLoad={handleImageLoad}
                                 className="w-full h-full object-cover rounded"
                             />
-                            <section className="overlay-text rounded-lg">
-                                <div className="text-center p-2 ml-[-20px]">{item.text}</div>
-                            </section>
+                            <div className="absolute overlay-text rounded-lg mt-4 md:mt-2 py-[10px]">
+                                <div className="w-full h-full flex items-center justify-center">
+                                    <div className="absolute inset-x-0 bottom-0 mb-2 md:mb-0 md:relative md:bottom-auto text-base text-center p-2 ml-[-20px]">
+                                        {item.text}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-45px] md:mt-0 rounded">
+            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-72px] md:mt-0 rounded">
                 <div className="ml-8 mt-10">
                     <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                 </div>

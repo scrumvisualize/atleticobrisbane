@@ -76,3 +76,8 @@ code {
     margin-bottom: 50px; /* Adjust margin bottom for larger screens */
   }
 }
+
+.half-circle {
+  background: linear-gradient(to right, #A18DDD 50%, #ffffff 50%);
+  border: 3px solid #f5f8fc;
+}

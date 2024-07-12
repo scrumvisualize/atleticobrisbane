@@ -22,6 +22,7 @@ const App = () => {
     Boolean(localStorage.getItem('loginEmail'))
   );
   const [displayName, setDisplayName] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   console.log("Auth status after successful login:::"+isAuthenticated);
 
@@ -34,11 +35,11 @@ const App = () => {
 
   return (
     <Router>
-      <TopBanner displayName={displayName}/>
+      <TopBanner displayName={displayName} setDarkMode={setDarkMode} isAuthenticated={isAuthenticated}/>
       <MainNavbar isAuthenticated={isAuthenticated} setAuthenticated={setAuthenticated} />
       {isAuthenticated && <InactivityLogout setAuthenticated={setAuthenticated} />}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home darkMode={darkMode} />} />
         <Route path="/about" element={<About />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/menssquad" element={<MensSquad />} />

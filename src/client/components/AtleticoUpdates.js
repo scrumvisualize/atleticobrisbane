@@ -73,7 +73,7 @@ const GeneralUpdate = ({ imageSrc, title, date, url, text}) => {
     );
 };
 
-const AtleticoUpdates = () => {
+const AtleticoUpdates = ({darkMode}) => {
 
     const [announcementList, setAnnouncementList] = useState([]);
     const [visibleItems, setVisibleItems] = useState(4);
@@ -97,7 +97,7 @@ const AtleticoUpdates = () => {
 
     return (
         <div>
-            <h1 className="text-2xl text-[#002d75] font-bold mt-2 mb-2">Atletico Updates</h1>
+            <h1 className={`text-2xl text-[#002d75] font-bold mt-2 mb-2 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>Atletico Updates</h1>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-24">
                 {announcementList.slice(0, visibleItems).map(update => (
                     <GeneralUpdate
