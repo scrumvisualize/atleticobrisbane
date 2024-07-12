@@ -16,7 +16,6 @@ const Home = ({ darkMode }) => {
         <div
             className={`container mx-auto p-2 transition-colors duration-500 ${darkMode ? 'text-white' : 'text-black'}`}
             style={{
-                //background: darkMode ? 'linear-gradient(135deg, #0C1324, #cb6ce6)' : 'white',
                 background: darkMode ? '#A18DDD' : 'white',
             }}
         >

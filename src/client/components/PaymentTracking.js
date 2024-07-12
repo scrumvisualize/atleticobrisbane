@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const sheetId = '1736ESOSSAoABXEpbb1vK1tuoHnUPlS6mqRFKx52r2Uk';
+const sheetId = process.env.REACT_APP_GOOGLE_SHEETS_ID;
 const apiKey = process.env.REACT_APP_GOOGLE_SHEETS_API_KEY;
 
-const useGoogleSheet = (sheetId, apiKey) => {
+const useGoogleSheet = (sheetId, apiKey ) => {
     const [data, setData] = useState([]);
+    const [currentMonth, setCurrentMonth] = useState("");
     const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/Sheet1!A1:Z1000?key=${apiKey}`);
-                setData(response.data.values || []); // Ensure data is set to an array
+                const sheetData = response.data.values || [];
+                setData(sheetData);
             } catch (error) {
                 console.error('Error fetching data from Google Sheets', error);
             } finally {
@@ -23,11 +26,17 @@ const useGoogleSheet = (sheetId, apiKey) => {
         fetchData();
     }, [sheetId, apiKey]);
 
-    return { data, loading };
+    useEffect(() => {
+        if (data.length > 1) {
+            setCurrentMonth(data[1][2]); // Assuming current month is at index 2 of the second row
+        }
+    }, [data]); // Update currentMonth whenever data changes
+
+    return { data, loading, currentMonth };
 };
 
-const PaymentTracking = () => {
-    const { data, loading } = useGoogleSheet(sheetId, apiKey);
+const PaymentTracking = ({}) => {
+    const { data, loading, currentMonth } = useGoogleSheet(sheetId, apiKey);
     const [editingData, setEditingData] = useState([]);
 
     useEffect(() => {
@@ -63,14 +72,14 @@ const PaymentTracking = () => {
             <table className="min-w-full bg-white border border-gray-200">
                 <thead className="bg-blue-800 text-white">
                     <tr>
-                        <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold">
+                        <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold hidden md:table-cell">
                             Serial No
                         </th>
                         <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold">
                             Player Name
                         </th>
-                        <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold hidden md:table-cell">
-                            Month
+                        <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold">
+                            {currentMonth} 
                         </th>
                         <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold">
                             Status
@@ -86,13 +95,13 @@ const PaymentTracking = () => {
                 <tbody>
                     {editingData.slice(2).map((row, rowIndex) => (
                         <tr key={rowIndex} className="hover:bg-gray-100">
-                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200">
+                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell">
                                 {row[0]} {/* Serial No */}
                             </td>
                             <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200">
                                 {row[1]} {/* Player Name */}
                             </td>
-                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 hidden md:table-cell hidden md:table-cell">
+                            <td className="px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 ">
                                 {row[2]} {/* Month */}
                             </td>
                             <td className={`px-4 py-2 sm:px-6 sm:py-3 border-b border-gray-200 ${row[3] == 'Paid' ? 'text-green-500' : 'text-red-500'}`}>

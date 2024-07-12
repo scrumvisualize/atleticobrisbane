@@ -58,7 +58,7 @@ const AtleticoImageSlider = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
-            <div className="relative w-full h-80 md:h-[497px]">
+            <div className="relative w-full h-80">
                 {
                     loading && (
                         <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-75 z-30">
@@ -93,7 +93,7 @@ const AtleticoImageSlider = () => {
                     ))}
                 </Slider>
             </div>
-            <div className="relative h-96 md:h-[497px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-72px] md:mt-0 rounded">
+            <div className="relative h-96 md:h-[498px] bg-gradient-to-br from-[#0C1324] to-[#cb6ce6] mt-[-72px] md:mt-0 rounded">
                 <div className="ml-8 mt-10">
                     <h1 className="text-[#f0184a] text-xl">Ipswich Arena</h1>
                 </div>
