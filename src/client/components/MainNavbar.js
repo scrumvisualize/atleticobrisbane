@@ -7,6 +7,16 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
+    const [isTournamentOpen, setIsTournamentOpen] = useState(true);
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        setIsTournamentOpen(true);
+    };
+
+    const closePopup = () => {
+        setIsTournamentOpen(false);
+    };
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -51,6 +61,39 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 Dare to dream
                             </p>
                         </div>
+                    </div>
+                    <div>
+                        <div className="text-xl text-blue-500 hidden sm:block">
+                            <a href="#" onClick={handleClick}>United Kerala Brisbane, 7's Football Mamangham</a>
+                        </div>
+                        <div className="text-xs text-blue-500 block sm:hidden">
+                            <a href="#" onClick={handleClick} className="underline">
+                                United Kerala, 7's Football..
+                            </a>
+                        </div>
+
+                        {isTournamentOpen && (
+                            <div className="fixed inset-0 flex items-center justify-center z-50">
+                            <div className="fixed inset-0 bg-black opacity-50" onClick={closePopup}></div>
+                            <div className="bg-white rounded-lg relative max-w-[380px] w-full max-h-[90vh] p-2 overflow-hidden">
+                                <button
+                                    className="absolute top-4 right-4 w-10 h-10 bg-orange-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-orange-600 transition"
+                                    aria-label="Close"
+                                    onClick={closePopup} // Ensure the button closes the popup
+                                >
+                                    ×
+                                </button>
+                                <div className="flex justify-center items-center w-full h-full">
+                                    <img
+                                        src="/images/unitedkerala.jpeg"
+                                        alt="United Kerala Brisbane 7's Tournament"
+                                        className="w-full h-auto max-h-[80vh] object-contain w-3/4 h-auto mx-auto block sm:w-full"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        )}
                     </div>
                     <div className="lg:hidden">
                         <button

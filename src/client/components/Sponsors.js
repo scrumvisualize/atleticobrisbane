@@ -21,7 +21,7 @@ const Sponsors = () => {
     }, []);
 
     return (
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2">
             <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128 " style={{ backgroundImage: "url('images/sponsors.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs mb-2">
@@ -29,6 +29,11 @@ const Sponsors = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-2">
                 {
+                    sponsorsList.length === 0 ? (
+                        <div className="flex justify-center items-center col-span-1 md:col-span-3 h-[50px] text-center font-semibold mt-4 text-gray-600">
+                            Sorry, no sponsor data available to display.
+                        </div>
+                    ) : (
                     sponsorsList.map((item, index) => (
                         <a key={item.id} href={item.url}>
                             <div className="bg-[#f7f9fa] p-4 rounded-lg">
@@ -50,7 +55,7 @@ const Sponsors = () => {
                                 </div>
                             </div>
                         </a>
-                    ))
+                    )))
                 }
             </div>
             <Footer />
