@@ -49,7 +49,7 @@ const Footer = () => {
             <div className="p-4 text-white">
                 <h3 className="text-2xl text-[#e6e4f0] font-bold mb-4">Contact</h3>
                 <ul>
-                    <li className="text-sm font-semibold ml-2 mb-2"><a href="tel:0234567890" className='mt-1'>+61 234567890</a></li>
+                    <li className="text-sm font-semibold ml-2 mb-2"><a href="tel:0234567890" className='mt-1'>0234567890</a></li>
                     <li className="text-sm font-semibold ml-2 mb-2">atleticobris-info@gmail.com</li>
                     <li className="text-sm font-semibold ml-2 mb-2">ABN-1234780</li>
                 </ul>
