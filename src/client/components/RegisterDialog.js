@@ -213,14 +213,18 @@ const RegisterDialog = ({ onClose }) => {
             <option value="Chelsea">Chelsea</option>
             <option value="Arsenal">Arsenal</option>
             <option value="City">Manchester City</option>
-            <option value="United">Manchester United</option>
-            <option value="Liverpool">Liverpool</option>
             <option value="Barcelona">Barcelona</option>
             <option value="RealMadrid">Real Madrid</option>
+            <option value="United">Manchester United</option>
+            <option value="Liverpool">Liverpool</option>
             <option value="Bayern">Bayern Munich</option>
             <option value="Dortmund">Borussia Dortmund</option>
             <option value="PSG">PSG</option>
             <option value="Tottenham">Tottenham</option>
+            <option value="Atletico">Atlético Madrid</option>
+            <option value="Juventus">Juventus</option>
+            <option value="Milan">Inter Milan</option>
+            <option value="Leverkusen">Bayer Leverkusen</option>
           </select>
         <textarea 
           name="comments" 

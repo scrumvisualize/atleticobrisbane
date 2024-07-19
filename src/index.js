@@ -13,6 +13,7 @@ import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
 import PageNotFound from './client/components/PageNotFound';
 import InactivityLogout from './client/components/InactivityLogout';
+import ResetPassword from './client/components/ResetPassword';
 
 import './index.css';
 
@@ -45,6 +46,7 @@ const App = () => {
         <Route path="/menssquad" element={<MensSquad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/resetPassword" element={<ResetPassword/>} />
         <Route
           path="/login"
           element={<Login setAuthenticated={setAuthenticated} setDisplayName={setDisplayName} />}

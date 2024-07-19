@@ -36,11 +36,15 @@ const Login = ({ setAuthenticated, setDisplayName }) => {
               let displayName = '';
               if (match && match[1]) {
                 displayName = match[1];
-                setDisplayName(displayName);
+                const dName = displayName.replace(/^./, (match) => match.toUpperCase());
+                const strData = `Welcome, ${dName}`;
+                setDisplayName(strData);
               } else {
                 setDisplayName("");
               }
-              localStorage.setItem('displayName', displayName);
+              const dName = displayName.replace(/^./, (match) => match.toUpperCase());
+              const strData = `Welcome, ${dName}`;
+              localStorage.setItem('displayName', strData);
               setAuthenticated(true);
               navigate('/admin');
           }
@@ -104,6 +108,9 @@ const Login = ({ setAuthenticated, setDisplayName }) => {
           >
             Sign In
           </button>
+        </div>
+        <div className="mt-4 text-center">
+          <a onClick={() => navigate('/resetPassword')} className="text-blue-500 hover:underline">Forgot Password?</a>
         </div>
       </form>
     </div>

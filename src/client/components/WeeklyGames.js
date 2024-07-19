@@ -7,9 +7,9 @@ const WeeklyGames = () => {
             <div className="bg-[#f8f6fc] p-4 relative rounded-lg">
                 <h2 className="text-2xl text-[#002d75] font-bold mb-2">Weekly Games</h2>
                 <h3 className="text-lg text-[#b778d6] font-semibold mb-2">Sunnybank, Brisbane</h3>
-                <p className="text-[13px] text-[#3c3e40]">
+                <p className="text-[14px] text-[#3c3e40]">
                     We hold regular sessions at 65 Gager St, Sunnybank, playing on Wednesdays and Saturdays from 6:30 pm to 8:30 pm. Junior training commences at 5:45 pm, followed by the men's regular game from 7:00 pm to 8:30 pm. On Wednesdays, we engage in a full-court game with 8 players per side, while Saturdays feature a half-court game with 6 players. </p>
-                <p className="text-[13px] text-[#3c3e40]">We prioritize fair play and prohibit aggressive tackles or behavior. Based on consistent player performance, we select our main division players for open-age tournaments for all categories. Identified players, then engage in regular games and friendly matches to enhance their competency. We welcome all soccer enthusiasts to join our regular sessions on Wednesdays and Saturdays for a nominal monthly fee.
+                <p className="text-[14px] text-[#3c3e40]">We prioritize fair play and prohibit aggressive tackles or behavior. Based on consistent player performance, we select our main division players for open-age tournaments for all categories. Identified players, then engage in regular games and friendly matches to enhance their competency. We welcome all soccer enthusiasts to join our regular sessions on Wednesdays and Saturdays for a nominal monthly fee.
                 </p>
                 <div className="embed-responsive relative inset-0 flex justify-bottom">
                     <iframe

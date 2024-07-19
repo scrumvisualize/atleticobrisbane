@@ -9,6 +9,7 @@ import WeeklyGames from "./WeeklyGames";
 import TitleSponsor from "./TitleSponsor";
 import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
+import Vision from './Vision';
 
 const Home = ({ darkMode }) => {
     
@@ -22,6 +23,7 @@ const Home = ({ darkMode }) => {
             <Banner/>
             <AtleticoImageSlider/>
             <Training/>
+            <Vision darkMode={darkMode}/>
             <AtleticoUpdates darkMode={darkMode}/>
             <WeeklyGames/>
             <TitleSponsor/>

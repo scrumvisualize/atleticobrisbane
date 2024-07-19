@@ -5,6 +5,7 @@ const multer  = require('multer');
 const path = require('path');
 const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
+const saltRounds = 10;
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
@@ -12,6 +13,7 @@ const usersSchema = require('../modals/user');
 const registerPlayerSchema = require('../modals/registerPlayer');
 const sponsorsSchema = require('../modals/sponsors');
 const announcementSchema = require('../modals/announcement');
+const resetTokenSchema = require('../modals/resetToken');
 
 const cors = require('cors');
 
@@ -43,6 +45,7 @@ const UserModel = usersSchema(sequelize, DataTypes);
 const RegisterModel = registerPlayerSchema(sequelize, DataTypes);
 const SponsorModel = sponsorsSchema(sequelize, DataTypes);
 const AnnouncementModel = announcementSchema(sequelize, DataTypes);
+const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
 
 
 app.use(cors()) 
@@ -64,6 +67,10 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 
 const validCode = process.env.ATLETICO_JOIN_CODE;
+const sajuCode = process.env.RESET_CODE_SAJU;
+const arunCode = process.env.RESET_CODE_ARUN;
+const clitusCode = process.env.RESET_CODE_CLITUS;
+const vinCode = process.env.RESET_CODE_VINOD;
 
 /* Below service is used to login to the Atletico club site by an admin user */
 
@@ -71,13 +78,17 @@ app.post('/service/login', async (req, res) => {
   try {
     const userEmail = req.body.email;
     const userPassword = req.body.password;
-    const sqlQuery = await UserModel.findAll({ attributes: ['email', 'password'] }, { where: { email: userEmail } });
+   // const sqlQuery = await UserModel.findOne({ attributes: ['email', 'password'] }, { where: { email: userEmail } });
+    const sqlQuery = await UserModel.findOne({
+      attributes: ['email', 'password'],
+      where: { email: userEmail }
+    });
     console.log("Records from DB" + sqlQuery);
     if (sqlQuery == null || sqlQuery == '') {
       res.status(403).json({ fail: "Invalid admin user details !" });
     }
-    const email = sqlQuery[0].email;
-    const hashedPassword = sqlQuery[0].password;
+    const email = sqlQuery.email;
+    const hashedPassword = sqlQuery.password;
     
     if (email === userEmail) {
       var comparedResult = bcrypt.compareSync(userPassword, hashedPassword);
@@ -375,6 +386,120 @@ app.get('/service/announcementsList', async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: e.message });
   }
+});
+
+const generateToken = async () => {
+  const currentDate = new Date().toISOString();
+  const baseString = `${currentDate}+atletico+bris`;
+  return await bcrypt.hash(baseString, saltRounds);
+};
+
+
+/* Generate and Save token to database for reset */
+app.put('/service/generateAndSaveToken', async (req, res) => {
+  try {
+    const token = await generateToken();
+    var tokenData = { token: token };
+    await ResetTokenModel.create(tokenData);
+    res.status(200).json({ token });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to generate token' });
+  }
+});
+
+/* Get latest token from database */
+
+app.get('/service/getLatestToken', async (req, res) => {
+  try {
+
+    const tokenData = await ResetTokenModel.findOne({
+      attributes: ['id', 'token', 'createdAt'],
+      order: [['createdAt', 'DESC']],
+    });
+
+    const token = tokenData.token;
+
+    if (token != null) {
+      res.status(200).json({ token });
+    } else {
+      res.json({ valid: false });
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get the token details' });
+  }
+});
+
+
+app.post('/api/verifyEmail', async (req, res) => {
+  const { email } = req.body;
+
+  try {
+
+    const userEmail = await UserModel.findOne({
+      attributes: ['email'],
+      where: { email: email }
+    });
+
+    if (userEmail) {
+      res.json({ valid: true });
+    } else {
+      res.json({ valid: false });
+    }
+
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get the email details' });
+  }
+});
+
+app.post('/api/verifyToken', async (req, res) => {
+
+  const { token } = req.body;
+  try {
+
+    const tokenData = await ResetTokenModel.findOne({
+      attributes: ['id', 'token', 'createdAt'],
+      order: [['createdAt', 'DESC']],
+    });
+
+    if (!tokenData) {
+      console.log('Token not found');
+      return null;
+    }
+    if (token === tokenData.token) {
+      res.json({ valid: true });
+    } else {
+      res.json({ valid: false });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to generate a token' });
+  }
+
+});
+
+app.post('/api/verifyResetCode', (req, res) => {
+  
+  const { resetCode } = req.body;
+  if (resetCode === sajuCode ) {
+    res.json({ valid: true });
+  }else if (resetCode === arunCode) {
+    res.json({ valid: true });
+  } else if (resetCode === clitusCode) {
+    res.json({ valid: true });
+  } else if (resetCode === vinCode) {
+    res.json({ valid: true });
+  } else {
+    res.json({ valid: false });
+  }
+});
+
+/* Saving new password flow - yet to do */
+app.post('/api/resetPassword', async (req, res) => {
+  const { token, newPassword } = req.body;
+  // Example logic for password reset
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+  // Save the hashed password in the database
+  res.json({ success: true });
 });
 
 

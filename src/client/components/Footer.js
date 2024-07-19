@@ -1,9 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+
+const appUrl = process.env.REACT_APP_URL;
 
 const Footer = () => {
+
+    const [token, setToken] = useState('');
     const navigate = useNavigate();
 
+    const genTkn = () => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.put(`${appUrl}/service/generateAndSaveToken`);
+            } catch (error) {
+                console.error('Error saving token:', error);
+            }
+        };
+        fetchData();
+    }
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(`${appUrl}/service/getLatestToken`);
+                setToken(response.data.token);
+            } catch (error) {
+                console.error('Error fetching token:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657] mt-[50px] md:mt-10">
             <div className="p-4">
@@ -52,6 +82,8 @@ const Footer = () => {
                     <img src="images/ablogo.png" className="w-6 h-6 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Ab logo" />
                     © 2024 Atlètico Brisbane Soccer Club
                 </p>
+                <button onClick={genTkn} className="text-xs text-[#2e2657] ml-2">atletico</button>
+                <p hidden>{token}</p>
             </div>
 
             <div className="flex">

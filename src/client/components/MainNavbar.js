@@ -63,21 +63,43 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         </div>
                     </div>
                     <div>
-                        <div className="text-xl text-blue-500 hidden sm:block">
-                            <a href="#" onClick={handleClick}>United Kerala Brisbane, 7's Football Mamangham</a>
+                        <div className="pt-2">
+                            <div
+                                onClick={handleClick}
+                                className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[550px] lg:w-[550px] h-10 md:h-[40px] mr-2 md:ml-20 flex text-base text-white hidden sm:block highlight-text"
+                                style={{ backgroundImage: "url('images/united.png')" }}
+                            >
+                                <a href="#"></a>
+                            </div>
                         </div>
-                        <div className="text-xs text-blue-500 block sm:hidden">
-                            <a href="#" onClick={handleClick} className="underline">
-                                United Kerala, 7's Football..
-                            </a>
-                        </div>
-
+                            <style>
+                            {`
+                            @keyframes runningText {
+                                0% {
+                                    background-position: 0 100%;
+                                }
+                                100% {
+                                    background-position: 100% 100%;
+                                }
+                            }
+                            .highlight-text {
+                                display: inline-block;
+                                background: linear-gradient(90deg, #7f5ec4, #c24682, #7f5ec4);
+                                color: #000;
+                                padding: 7px 7px 7px 7px;
+                                animation: runningText 5s linear infinite;
+                                border-radius: 5px;
+                                text-decoration:underline;
+                                color: #ffffff; 
+                                font-weight: bold;
+                            }
+                        `}</style>
                         {isTournamentOpen && (
                             <div className="fixed inset-0 flex items-center justify-center z-50">
                             <div className="fixed inset-0 bg-black opacity-50" onClick={closePopup}></div>
                             <div className="bg-white rounded-lg relative max-w-[380px] w-full max-h-[90vh] p-2 overflow-hidden">
                                 <button
-                                    className="absolute top-4 right-4 w-10 h-10 bg-orange-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-orange-600 transition"
+                                    className="absolute top-4 right-4 w-10 h-10 bg-[#42cbf5] font-bold text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#1184a6] transition"
                                     aria-label="Close"
                                     onClick={closePopup} // Ensure the button closes the popup
                                 >
@@ -95,6 +117,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         
                         )}
                     </div>
+                    
                     <div className="lg:hidden">
                         <button
                             className="bg-gray-800 text-white focus:outline-none"

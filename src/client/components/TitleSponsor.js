@@ -5,7 +5,7 @@ const TitleSponsor = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[624px] md:mt-[10px] mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[624px] md:mt-[40px] mb-2">
                 <div className="bg-white border border-gray-300 shadow-lg rounded-lg p-2">
                     <div className="bg-cover bg-no-repeat bg-contain h-96 md:h-[600px] lg:h-[800px] flex items-center justify-center gap-2 inset-x-0 top-0 bg-white" style={{ backgroundImage: "url('images/indus.jpeg')" }}>
                     </div>
