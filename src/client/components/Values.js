@@ -20,7 +20,7 @@ const Values = () => {
                 </div>
                 <div className="w-full md:w-1/3 p-2">
                     <div className="bg-[#f8f6fc] rounded-lg shadow-lg p-4 flex flex-col items-center">
-                        <img src="images/relationship.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
+                        <img src="images/excellence.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
                         <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Excellence</h2>
                         <ul className="list-disc text-[#3c3e40] list-inside text-sm mt-2">
                             <h2 className="text-base font-semibold text-[#337ab7]">Commitment to Improvement:</h2>
@@ -32,7 +32,7 @@ const Values = () => {
                 </div>
                 <div className="w-full md:w-1/3 p-2">
                     <div className="bg-[#f8f6fc] rounded-lg shadow-lg p-4 flex flex-col items-center">
-                        <img src="images/relationship.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
+                        <img src="images/teamwork.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
                         <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Teamwork</h2>
                         <ul className="list-disc text-[#3c3e40] list-inside text-sm mt-2">
                             <h2 className="text-base font-semibold text-[#337ab7]">Collaboration and Support:</h2>
@@ -44,7 +44,7 @@ const Values = () => {
                 </div>
                 <div className="w-full md:w-1/3 p-2">
                     <div className="bg-[#f8f6fc] rounded-lg shadow-lg p-4 flex flex-col items-center">
-                        <img src="images/relationship.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
+                        <img src="images/commitment.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
                         <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Commitment</h2>
                         <ul className="list-disc text-[#3c3e40] list-inside text-sm mt-2">
                             <h2 className="text-base font-semibold text-[#337ab7]">Dedication to the Team:</h2>
@@ -56,7 +56,7 @@ const Values = () => {
                 </div>
                 <div className="w-full md:w-1/3 p-2">
                     <div className="bg-[#f8f6fc] rounded-lg shadow-lg p-4 flex flex-col items-center">
-                        <img src="images/relationship.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
+                        <img src="images/team.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
                         <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Friendship</h2>
                         <ul className="list-disc text-[#3c3e40] list-inside text-sm mt-2">
                             <h2 className="text-base font-semibold text-[#337ab7]">Support and Trust:</h2>
@@ -68,13 +68,13 @@ const Values = () => {
                 </div>
                 <div className="w-full md:w-1/3 p-2">
                     <div className="bg-[#f8f6fc] rounded-lg shadow-lg p-4 flex flex-col items-center">
-                        <img src="images/relationship.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
-                        <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Perseverance</h2>
+                        <img src="images/tactics.png" alt="Vision" className="w-20 h-auto rounded-t-lg" />
+                        <h2 className="text-xl font-bold mt-4 text-[#337ab7]">Tactical</h2>
                         <ul className="list-disc text-[#3c3e40] list-inside text-sm mt-2">
-                            <h2 className="text-base font-semibold text-[#337ab7]">Overcoming Challenges:</h2>
-                            <li className='text-[13px]'>Demonstrating resilience by pushing through difficulties and setbacks to achieve long-term goals, maintaining focus and effort despite obstacles.</li>
+                            <h2 className="text-base font-semibold text-[#337ab7]">Strategy:</h2>
+                            <li className='text-[13px]'>Developing and implementing strategic game plans to exploit opponents' weaknesses and maximize team strengths.</li>
                             <h2 className="text-base font-semibold text-[#337ab7]">Consistent Effort:</h2>
-                            <li className='text-[13px]'>Committing to continuous improvement and persistent action, even when progress is slow, to ensure steady advancement towards objectives.</li> 
+                            <li className='text-[13px]'>Continuously analyzing in-game situations to make real-time decisions and adjustments for optimal performance.</li> 
                         </ul>
                     </div>
                 </div>

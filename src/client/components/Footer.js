@@ -33,9 +33,9 @@ const Footer = () => {
         fetchData();
     }, []);
 
-    
+    //bg-[#2e2657] 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 bg-[#2e2657] mt-[50px] md:mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-[50px] md:mt-10 bg-gradient-to-br from-[#0C1324] to-[#cb6ce6]">
             <div className="p-4">
                 <h3 className="text-2xl text-[#e6e4f0] font-bold mb-2 ml-4">About Atlètico</h3>
                 <p className="text-sm md:text-left p-4 font-sans-serif text-white">
@@ -82,7 +82,7 @@ const Footer = () => {
                     <img src="images/ablogo.png" className="w-6 h-6 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Ab logo" />
                     © 2024 Atlètico Brisbane Soccer Club
                 </p>
-                <button onClick={genTkn} className="text-xs text-[#2e2657] ml-2">atletico</button>
+                <button onClick={genTkn} className="text-xs text-[#834694] ml-2">atletico</button>
                 <p hidden>{token}</p>
             </div>
 

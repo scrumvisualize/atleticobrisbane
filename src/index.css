@@ -41,19 +41,6 @@ code {
   width: 100%; /* Grow the line to full width on hover */
 }
 
-/* .overlay-text {
-  height:50px;
-  width: 335px;
-  position: relative;
-  bottom: 70px; 
-  left: 26%; 
-  color: white;
-  font-size: 37px;
-  background-color: #531b7a; 
-  padding-left: 30px;
-  margin-bottom: 50px;
-} */
-
 .overlay-text {
   height: 50px;
   width: 100%; /* Adjust width to 100% for full width */
@@ -78,6 +65,12 @@ code {
 }
 
 .half-circle {
-  background: linear-gradient(to right, #A18DDD 50%, #ffffff 50%);
+  background: linear-gradient(to right, #0c183b 50%, #ffffff 50%);
   border: 3px solid #f5f8fc;
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #b45cd1, #d448b8, #8651db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

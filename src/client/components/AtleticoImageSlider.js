@@ -67,10 +67,10 @@ const AtleticoImageSlider = () => {
                             </div>
                         </div>
                     )}
-                <div onClick={handleLeftArrowClick} className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer">
+                <div onClick={handleLeftArrowClick} className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer mt-2 md:mt-20">
                     <img src="images/arrow-left.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
-                <div onClick={handleRightArrowClick} className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer">
+                <div onClick={handleRightArrowClick} className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer mt-2 md:mt-20">
                     <img src="images/arrow-right.PNG" className="w-12 h-12 md:w-20 md:h-20"></img>
                 </div>
                 <Slider ref={sliderRef} {...settings}>

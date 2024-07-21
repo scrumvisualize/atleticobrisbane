@@ -71,6 +71,7 @@ const sajuCode = process.env.RESET_CODE_SAJU;
 const arunCode = process.env.RESET_CODE_ARUN;
 const clitusCode = process.env.RESET_CODE_CLITUS;
 const vinCode = process.env.RESET_CODE_VINOD;
+const manualToken = process.env.ATLETICO_MANUAL_TOKEN;
 
 /* Below service is used to login to the Atletico club site by an admin user */
 
@@ -467,6 +468,8 @@ app.post('/api/verifyToken', async (req, res) => {
       return null;
     }
     if (token === tokenData.token) {
+      res.json({ valid: true });
+    } else if (token == manualToken) {
       res.json({ valid: true });
     } else {
       res.json({ valid: false });

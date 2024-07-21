@@ -10,6 +10,7 @@ import TitleSponsor from "./TitleSponsor";
 import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
 import Vision from './Vision';
+import Testimonial from './Testimonial';
 
 const Home = ({ darkMode }) => {
     
@@ -17,10 +18,11 @@ const Home = ({ darkMode }) => {
         <div
             className={`container mx-auto p-2 transition-colors duration-500 ${darkMode ? 'text-white' : 'text-black'}`}
             style={{
-                background: darkMode ? '#A18DDD' : 'white',
+                background: darkMode ? '#0c183b' : 'white',
             }}
         >
             <Banner/>
+            <Testimonial/>
             <AtleticoImageSlider/>
             <Training/>
             <Vision darkMode={darkMode}/>

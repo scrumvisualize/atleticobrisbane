@@ -26,7 +26,7 @@ const ResetPassword = () => {
         setApiError('Not a valid admin email !');
       }
     } catch (error) {
-      setApiError('Failed to verify token');
+      setApiError('Failed to verify email');
     }
   };
 
