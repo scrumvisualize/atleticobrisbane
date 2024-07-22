@@ -11,6 +11,7 @@ import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
 import Vision from './Vision';
 import Testimonial from './Testimonial';
+import Para from './Para';
 
 const Home = ({ darkMode }) => {
     

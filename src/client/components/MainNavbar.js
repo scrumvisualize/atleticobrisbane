@@ -57,16 +57,19 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         />
                         <div className="text-[#6232a8] font-semibold">
                             <p className="text-lg">ATLÉTICO BRISBANE</p>
-                            <p className="text-[10px] ml-10 mt-[-2px] text-[#f0cb13] uppercase">
+                            <p className="text-[10px] ml-10 mt-[-2px] text-[#fc1930] uppercase">
                                 Dare to dream
                             </p>
+                        </div>
+                        <div className="flex-shrink-0 w-[calc(20%-40px)] mt-[-10px] ml-28">
+                            <img className="w-full h-auto" src="images/discount.png" alt="Discount" />
                         </div>
                     </div>
                     <div>
                         <div className="pt-2">
                             <div
                                 onClick={handleClick}
-                                className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[550px] lg:w-[550px] h-10 md:h-[40px] mr-2 md:ml-20 flex text-base text-white hidden sm:block highlight-text"
+                                className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[100px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-100px] flex text-base text-white hidden sm:block highlight-text"
                                 style={{ backgroundImage: "url('images/united.png')" }}
                             >
                                 <a href="#"></a>

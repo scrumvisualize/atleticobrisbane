@@ -98,7 +98,7 @@ const AtleticoUpdates = ({darkMode}) => {
     return (
         <div>
             <h1 className={`text-2xl text-[#002d75] font-bold mt-2 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>Atletico Updates</h1>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-24">
+            <div className="py-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-24">
                 {announcementList.slice(0, visibleItems).map(update => (
                     <GeneralUpdate
                         key={update.id}
