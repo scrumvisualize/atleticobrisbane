@@ -51,18 +51,18 @@ const About = () => {
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 2</h2>
-                        <p className="text-gray-600">Brief details about Person 2. Expert in frontend development and user experience design.</p>
+                        <h2 className="text-xl font-semibold">Rajesh</h2>
+                        <p className="text-gray-600">Jt. Treasurer</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 3" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 3</h2>
-                        <p className="text-gray-600">Brief details about Person 3. Passionate about creating efficient and scalable React applications.</p>
+                        <h2 className="text-xl font-semibold">Paul</h2>
+                        <p className="text-gray-600">Committe Member</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 4" className="mx-auto rounded-full mb-4" />
-                        <h2 className="text-xl font-semibold">Person 4</h2>
-                        <p className="text-gray-600">Brief details about Person 4. Specializes in modern JavaScript frameworks and tooling.</p>
+                        <h2 className="text-xl font-semibold">Jimmy</h2>
+                        <p className="text-gray-600">Committe Member</p>
                     </div>
                 </div>
             </div>

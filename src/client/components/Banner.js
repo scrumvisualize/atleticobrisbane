@@ -5,8 +5,8 @@ const Banner = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
-
   const images = ['images/ab-slide-1.JPG', 'images/ab-slider-3.JPG', 'images/wewilldoit.JPG', 'images/juniors.JPG'];
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -47,30 +47,30 @@ const Banner = () => {
         <div className="relative w-1/2" style={{ zIndex: 4 }}>
           <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center text-center" style={{ clipPath: 'polygon(0 0, 100% 0, 70% 100%, 0% 100%)', background: 'linear-gradient(to right, rgba(40, 5, 97, 1.00), rgba(164, 64, 194, 1.00), rgba(220, 87, 169, 0.82))' }}>
             <div className="flex flex-wrap justify-between items-center">
-              <div className="flex-shrink-0 w-[calc(25%-30px)] mt-[10px] mb-2">
-                <img className="w-full h-auto" src="images/arrow-f.png" alt="Arrow 1" />
+              <div className="flex-shrink-0 w-[calc(25%-35px)] mt-[10px] mb-2">
+                <img className="w-full h-auto" src="images/arrow-f.png" alt="Arrow 1"/>
               </div>
-              <div className="flex-shrink-0 w-[calc(25%-30px)] mt-[10px] mb-2">
-                <img className="w-30 h-auto" src="images/arrow-f.png" alt="Arrow 2" />
+              <div className="flex-shrink-0 w-[calc(25%-35px)] mt-[10px] mb-2">
+                <img className="w-30 h-auto" src="images/arrow-f.png" alt="Arrow 2"/>
               </div>
             </div>
             <h1 className="text-5xl font-bold text-white ml-[-30px] px-2 mb-4">Welcome to Atlético Brisbane</h1>
             <span className="text-3xl font-semibold ml-[-40px] text-[#3cfffc]">a malayali soccer club <span className="text-3xl font-semibold text-[#3cfffc]">in Brisbane </span></span>
             <ul className="mt-6 ml-[-150px]">
               <li>
-                <div class="flex items-start"><svg class="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span class="ml-2 text-white">Community Engagement</span>
+                <div className="flex items-start"><svg className="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span className="ml-2 text-white">Community Engagement</span>
                 </div>
               </li>
               <li>
-                <div class="flex items-start"><svg class="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span class="ml-2 text-white">Skill Development</span>
+                <div className="flex items-start"><svg className="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span className="ml-2 text-white">Skill Development</span>
                 </div>
               </li>
               <li>
-                <div class="flex items-start"><svg class="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span class="ml-2 text-white">Goals Oriented</span>
+                <div className="flex items-start"><svg className="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span className="ml-2 text-white">Goals Oriented</span>
                 </div>
               </li>
               <li>
-                <div class="flex items-start mb-2"><svg class="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span class="ml-2 text-white">Fun-loving & Friendly </span>
+                <div className="flex items-start mb-2"><svg className="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span className="ml-2 text-white">Fun-loving & Friendly </span>
                 </div>
               </li>
             </ul>
@@ -81,11 +81,12 @@ const Banner = () => {
         </div>
         <div className="relative w-1/2 -ml-[194px]" style={{ zIndex: 3 }}>
           <div className="absolute scale-10 top-0 left-0 right-0 bottom-0 bg-cover bg-contain bg-no-repeat animate-slide" 
-          style={{ 
-          clipPath: 'polygon(30% 0, 100% 0, 80% 100%, 0 100%)', 
-          backgroundImage: `url(${images[currentImage]})`
-          }}
-          ></div>
+            style={{ 
+            clipPath: 'polygon(30% 0, 100% 0, 80% 100%, 0 100%)', 
+             backgroundImage: `url(${images[currentImage]})`
+            }}
+          >
+          </div>
         </div>
         <div className="relative w-1/3 -ml-[160px]" style={{ zIndex: 1 }}>
           <div className="absolute top-0 left-0 right-0 bottom-0 bg-cover bg-center" style={{ clipPath: 'polygon(20% 0, 100% 0, 80% 100%, 0 100%)', backgroundImage: "url('images/top2.JPG')" }}></div>

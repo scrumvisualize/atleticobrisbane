@@ -201,6 +201,41 @@ app.get('/service/mensPlayerList', async (req, res) => {
   }
 });
 
+
+/* Below get method will pull the U16 squad players data list from the database and pass to U16 page */ 
+app.get('/service/u16playersList', async (req, res) => {
+  try {
+    const players = await RegisterModel.findAll({
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      where: {
+        status: 'Yes',
+        agegroup: 'U16'
+      }
+    });
+    res.status(200).json({ players });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+
+/* Below get method will pull the U12 squad players data list from the database and pass to U12 page */ 
+app.get('/service/u12playersList', async (req, res) => {
+  try {
+    const players = await RegisterModel.findAll({
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      where: {
+        status: 'Yes',
+        agegroup: 'U12'
+      }
+    });
+    res.status(200).json({ players });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+
 /* Below get method will pull the Master squad player list data from the database and pass to Master Squad page */ 
 app.get('/service/mastersPlayerList', async (req, res) => {
   try {

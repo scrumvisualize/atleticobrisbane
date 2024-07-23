@@ -53,9 +53,9 @@ const clubData = [
     },
 ];
 
-const MensSquad = () => {
+const U12Squad = () => {
 
-    const [mensSquad, setMensSquad] = useState([]);
+    const [u12Squad, setU12Squad] = useState([]);
     const [filteredSquad, setFilteredSquad] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -67,9 +67,9 @@ const MensSquad = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${appURL}/service/mensPlayerList`);
+                const res = await axios.get(`${appURL}/service/u12playersList`);
                 const sortedPlayers = res.data.players.sort((a, b) => a.name.localeCompare(b.name));
-                setMensSquad(sortedPlayers);
+                setU12Squad(sortedPlayers);
                 setFilteredSquad(sortedPlayers);
             } catch (e) {
                 console.log(e);
@@ -82,12 +82,12 @@ const MensSquad = () => {
         setSelectedOption(option);
         setIsOpen(false); // Close the dropdown after selecting an option
         // Filter players based on selected option
-        const filteredPlayers = option ? mensSquad.filter(player => player.position === option) : mensSquad;
+        const filteredPlayers = option ? u12Squad.filter(player => player.position === option) : u12Squad;
         setFilteredSquad(filteredPlayers);
     };
 
     useEffect(() => {
-        setMensSquad(mensSquad);
+        setU12Squad(u12Squad);
     }, []);
 
     const getClubLogo = (favclub) => {
@@ -98,10 +98,10 @@ const MensSquad = () => {
 
     return (
         <div>
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128" style={{ backgroundImage: "url('images/mensq1.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128" style={{ backgroundImage: "url('images/u12squad.png')" }}>
             </div>
             <div className="text-center font-semibold text-xs">
-                <h3>Home &#8594; Teams &#8594; Mens Squad </h3>
+                <h3>Home &#8594; Teams &#8594; U12 Squad </h3>
             </div>
             <div className="relative inline-block text-left ml-4 md:ml-8">
                 <div>
@@ -193,4 +193,4 @@ const MensSquad = () => {
     );
 };
 
-export default MensSquad;
+export default U12Squad;

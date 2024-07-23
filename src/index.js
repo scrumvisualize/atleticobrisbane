@@ -8,6 +8,8 @@ import Admin from "./client/components/Admin";
 import Sponsors from "./client/components/Sponsors";
 import Contact from "./client/components/Contact";
 import MensSquad from "./client/components/teams/MensSquad";
+import U16Squad from "./client/components/teams/U16Squad";
+import U12Squad from "./client/components/teams/U12Squad";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
@@ -44,6 +46,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/menssquad" element={<MensSquad />} />
+        <Route path="/u16squad" element={<U16Squad />} />
+        <Route path="/u12squad" element={<U12Squad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/resetPassword" element={<ResetPassword/>} />

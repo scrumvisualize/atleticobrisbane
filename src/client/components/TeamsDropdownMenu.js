@@ -13,10 +13,10 @@ const TeamsDropdownMenu = ({ toggleDropdown }) => {
                     <a onClick={() => navigate('/mastersquad')} className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">Master Squad</a>
                 </li>
                 <li>
-                    <a href="#" className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">U16 Boys</a>
+                    <a onClick={() => navigate('/u16squad')} className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">U16 Boys</a>
                 </li>
                 <li>
-                    <a href="#" className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">U12 Boys</a>
+                    <a onClick={() => navigate('/u12squad')} className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">U12 Boys</a>
                 </li>
             </ul>
         </div>
