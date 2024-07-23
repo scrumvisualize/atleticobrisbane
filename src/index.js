@@ -13,6 +13,7 @@ import U12Squad from "./client/components/teams/U12Squad";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
+import TeamGenerator from './client/components/TeamGenerator';
 import PageNotFound from './client/components/PageNotFound';
 import InactivityLogout from './client/components/InactivityLogout';
 import ResetPassword from './client/components/ResetPassword';
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/u12squad" element={<U12Squad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/teamgenerator" element={<TeamGenerator />} />
         <Route path="/resetPassword" element={<ResetPassword/>} />
         <Route
           path="/login"

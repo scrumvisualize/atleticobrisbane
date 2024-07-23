@@ -189,6 +189,12 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         </div>
                         <a
                             className="font-semibold linegrow"
+                            onClick={() => navigate('/teamgenerator')}
+                        >
+                            TEAM GENERATOR
+                        </a>
+                        <a
+                            className="font-semibold linegrow"
                             onClick={() => navigate('/sponsors')}
                         >
                             SPONSORS
@@ -257,6 +263,12 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 <TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
+                            <a
+                                className="font-semibold linegrow"
+                                onClick={() => navigate('/teamgenerator')}
+                            >
+                                TEAM GENERATOR
+                            </a>
                             <a                  
                                 className="font-semibold linegrow"
                                 onClick={() => navigate('/sponsors')}
