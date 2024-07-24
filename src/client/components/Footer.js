@@ -72,6 +72,8 @@ const Footer = () => {
                     <li><span onClick={() => navigate('/about')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">About</span></li>
                     <li><span onClick={() => navigate('/menssquad')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">Mens Squad</span></li>
                     <li><span onClick={() => navigate('/mastersquad')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">Masters Squad</span></li>
+                    <li><span onClick={() => navigate('/u16squad')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">U16 Boys</span></li>
+                    <li><span onClick={() => navigate('/u12squad')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">U12 Boys</span></li>
                     <li><span onClick={() => navigate('/sponsors')} className="text-sm font-bold mb-2 block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500">Sponsors</span></li>
                     <li><span onClick={() => navigate('/contact')} className="text-sm font-bold block pl-5 pr-4 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</span></li>
                 </ul>
@@ -88,8 +90,8 @@ const Footer = () => {
 
             <div className="flex">
                 <p className="flex items-center text-[8px] text-[#e8f2ff] ml-4 md:mt-1 md:px-[-10px] mb-0">
-                     Designed & Developed by Vinod Mathew
                     <img src="images/profilePhoto-1719717154481.jpeg" className="w-6 h-6 mx-2 rounded-full border-2 border-[#2f73fa]" alt="Profile Photo" />
+                     Designed & Developed by Vinod Mathew
                 </p>
             </div>
         </div>

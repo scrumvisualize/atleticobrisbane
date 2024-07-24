@@ -74,7 +74,7 @@ const Banner = () => {
                 </div>
               </li>
             </ul>
-            <button onClick={registerDialog} className="hidden md:block ml-[-150px] px-4 py-2 bg-[#fc1930] text-white font-semibold border border-2 border-white rounded-full shadow mt-2">Register</button>
+            <button onClick={registerDialog} className="hidden hover:bg-[#c2192a] md:block ml-[-150px] px-4 py-2 bg-[#fc1930] text-white font-semibold border border-2 border-white rounded-full shadow mt-2">Register</button>
             <p className="text-base font-semibold text-[#3cfffc] ml-[-100px] mt-4 mb-2">Please register and join us for weekly games</p>
             <p className="text-[12px] font-semibold text-white ml-[-150px] underline mt-0 mb-2">www.atleticobrisbane.com.au</p>
           </div>
