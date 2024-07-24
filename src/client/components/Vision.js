@@ -6,7 +6,7 @@ const Vision = ({darkMode}) => {
 
     return (
         <div className="container mx-auto p-2">
-            <div className="flex flex-col items-center -mx-2">
+            <div className="flex flex-col items-center -mx-2 bg-gradient-to-r from-blue-100 to-pink-100">
                 <div className="w-full">
                     <h1 className={`text-3xl text-[#002d75] font-bold text-center mt-8 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>Our Vision</h1>
                     <p className={`mt-4 text-left text-[14px] text-[#3c3e40] max-w-5xl mx-auto ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>

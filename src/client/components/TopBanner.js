@@ -10,8 +10,8 @@ const TopBanner = ({displayName, setDarkMode, isAuthenticated}) => {
     const navigate = useNavigate();
 
     const data = [
-        { src: "images/email-50.png", value: "atleticobris-info@test.com" },
-        { src: "images/phone-50.png", value: "+61 099-999-9999" },
+        { src: "images/email-50.png", value: "atleticobne@gmail.com" },
+        { src: "images/phone-50.png", value: "+61  0451145007" },
     ];
 
     useEffect(() => {

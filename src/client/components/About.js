@@ -9,11 +9,11 @@ const About = () => {
             <div className="text-center font-semibold text-xs">
                 <h3>Home &#8594; About </h3>
             </div>
-            <div className="my-5 text-center"><p className="text-2xl text-red-500">Founders of Altletico Brisbane Soccer Club </p></div>
+            <div className="my-5 text-center"><p className="text-2xl text-red-500">Founders of Atlético Brisbane Soccer Club </p></div>
 
             <div className="container mx-auto my-5 px-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <p className='text-[#3c3e40]'>Atlético Brisbane is a welcoming soccer club formed by the Malayali community, bringing together soccer enthusiasts of all ages in Brisbane since its establishment in 2018 and official registration in 2020. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.</p>
+                    <p className='text-[#3c3e40]'>Atlético Brisbane (formerly known as Southside Soccer Studs, Incorporation No: IA59554) is a welcoming soccer club formed by the Malayali community. Since its establishment in 2018 and official registration in 2020, the club has brought together soccer enthusiasts of all ages in Brisbane. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.</p>
                     <p className='text-[#3c3e40]'>Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Ajay, Noby, Robin, and Joe Paul, who have been our proud supporters from the beginning</p>
                     <p className='text-[#3c3e40]'>Atlético Brisbane actively participates in major soccer 7's tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in prestigious Kairali tournament.</p>
                     <p className='text-[#3c3e40]'> We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer.</p>
@@ -40,7 +40,7 @@ const About = () => {
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="images/profilePhoto-1719717154481.jpeg" alt="Person 4" className="w-28 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
                         <h2 className="text-xl font-semibold">Vinod Mathew</h2>
-                        <p className="text-gray-600">Joint Secretary</p>
+                        <p className="text-gray-600">Jt. Secretary</p>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-4 md:mt-4">

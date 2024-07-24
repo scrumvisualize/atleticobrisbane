@@ -19,7 +19,7 @@ const Contact = () => {
                 <div className="md:w-1/2 md:pr-4">
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Club Joining & Membership Enquiries</h2>
                     <p className="text-base text-gray-700 mb-4">For club joining and membership-related queries, please contact us at:</p>
-                    <p className="text-base text-[#337ab7] mb-4 font-semibold">secretary@atletico.com.au</p>
+                    <p className="text-base text-[#337ab7] mb-4 font-semibold">atleticobne@gmail.com</p>
                     <div className="container mx-auto p-0">
                         <p className="text-base text-gray-700 mb-4">Please download, fill the membership form and email back to us:</p>
                         <div className="border rounded-md shadow-md mb-4">
@@ -61,11 +61,11 @@ const Contact = () => {
                     </div>
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Sponsorship Matters</h2>
                     <p className="text-base text-gray-700 mb-4">For sponsorship matters, please reach out to below email:</p>
-                    <p className="text-base text-[#337ab7] mb-4 font-semibold">secretary@atletico.com.au</p>
+                    <p className="text-base text-[#337ab7] mb-4 font-semibold">atleticobne@gmail.com</p>
 
                     <h2 className="text-2xl font-bold text-gray-800 mb-4">Working Days and Time</h2>
                     <p className="text-base text-gray-700 mb-4">Monday to Saturday</p>
-                    <p className="text-base text-gray-700 mb-4">9:00 AM to 7:00 PM</p>
+                    <p className="text-base text-gray-700 mb-4">9:00 AM to 5:00 PM</p>
                 </div>
 
                 <div className="md:w-1/2 md:pl-4">
@@ -75,23 +75,23 @@ const Contact = () => {
                         <div className="grid gap-4">
                             <div className="text-gray-700 flex items-center space-x-2">
                                 <span className="text-xl font-semibold">Arun :</span>
-                                <a href="tel:+0433359920" className="flex items-center space-x-1 hover:underline">
+                                <a href="tel:+0431533623" className="flex items-center space-x-1 hover:underline">
                                     <img src="images/call-50.png" className="h-6 w-6 text-gray-500" />
-                                    <span className="font-semibold">&#8594; 0433359920</span>
+                                    <span className="font-semibold">&#8594; 0431533623</span>
                                 </a>
                             </div>
                             <div className="text-gray-700 flex items-center space-x-2">
                                 <span className="text-xl font-semibold">Saju :</span>
-                                <a href="tel:+0422258810" className="flex items-center space-x-1 hover:underline">
+                                <a href="tel:+0451145007" className="flex items-center space-x-1 hover:underline">
                                     <img src="images/call-50.png" className="h-6 w-6 text-gray-500 ml-2" />
-                                    <span className="font-semibold"> &#8594; 0422258810</span>
+                                    <span className="font-semibold"> &#8594; 0451145007</span>
                                 </a>
                             </div>
                             <div className="text-gray-700 flex items-center space-x-2">
                                 <span className=" text-xl font-semibold">Clitus :</span>
-                                <a href="tel:+0423456710" className="flex items-center space-x-1 hover:underline">
+                                <a href="tel:+0421936406" className="flex items-center space-x-1 hover:underline">
                                     <img src="images/call-50.png" className="h-6 w-6 text-gray-500" />
-                                    <span className="font-semibold">&#8594; 0423456710</span>
+                                    <span className="font-semibold">&#8594; 0421936406</span>
                                 </a>
                             </div>
                         </div>

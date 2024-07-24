@@ -19,8 +19,8 @@ const SponsorList = ({darkMode}) => {
     }, []);
 
     return (
-        <div className='relative'>
-            <div className={`text-center text-3xl font-bold mt-[20px] md:mt-8 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>
+        <div className='relative bg-gradient-to-r from-blue-100 to-pink-100' >
+            <div className={`text-center text-3xl font-bold mt-[20px] md:mt-2 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>
                 <h1>Our Prospective Sponsors</h1>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
