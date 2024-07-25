@@ -37,7 +37,8 @@ const Admin = () => {
             const response = await axios.get(`${appURL}/service/registerPlayerList`);
             const updatedRequests = response.data.requests.map(player => ({
                 ...player,
-                status: player.status === 'Yes' ? 'accepted' : player.status === 'No' ? 'declined' : ''
+                status: player.status === 'Yes' ? 'accepted' : player.status === 'No' ? 'declined' : '',
+                hidePhoto: player.hidephoto === 'Yes' ? 'Yes' : null  // Ensure hidePhoto is correctly mapped
             }));
             const sortedPlayers = updatedRequests.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
             setRequestList(sortedPlayers);
@@ -65,8 +66,20 @@ const Admin = () => {
         setRequestList(updatedList);
     };
 
+    const handleHidePhotoChange = (playerId, isChecked) => {
+        const updatedList = requestList.map(player =>
+            player.id === playerId
+                ? { ...player, hidePhoto: isChecked ? 'Yes' : null }
+                : player
+        );
+        console.log("hidephotcheck::"+updatedList.hidePhoto);
+        setRequestList(updatedList);
+        setSearchResults(updatedList); // Ensure searchResults is also updated
+    };
+
     const handleSave = async () => {
         try {
+
             const res = await axios.post('/service/updatePlayerStatus', requestList);
             if (res.status === 200) {
                 setShowStatus(true);
@@ -208,8 +221,18 @@ const Admin = () => {
                                                             <div className="flex flex-col">
                                                                 <span className="text-gray-700 text-xs">{item.position}</span>
                                                             </div>
-                                                            <div className="flex flex-col">
+                                                            {/* <div className="flex flex-col">
                                                                 <span className="text-gray-700 text-xs">{item.comments}</span>
+                                                            </div> */}
+                                                            {/* Add checkbox for hiding profile photo */}
+                                                            <div className="flex items-center space-x-2">
+                                                                <input
+                                                                    type="checkbox"
+                                                                    checked={item.hidePhoto === 'Yes'}
+                                                                    onChange={(e) => handleHidePhotoChange(item.id, e.target.checked)}
+                                                                    className="form-checkbox text-blue-500"
+                                                                />
+                                                                <span className="text-gray-700 text-xs">Hide Profile Photo</span>
                                                             </div>
                                                         </div>
                                                     </div>

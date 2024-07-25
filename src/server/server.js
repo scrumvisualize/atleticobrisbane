@@ -168,13 +168,18 @@ app.post('/service/updatePlayerStatus', async (req, res) => {
 
     const updatedPlayers = await Promise.all(players.map(async player => {
       const status = player.status === 'accepted' ? 'Yes' : player.status === 'declined' ? 'No' : null;
+      //const hidePhoto = player.hidePhoto === true ? 'Yes' : null;
+      const hidePhoto = player.hidePhoto === 'Yes' ? 'Yes' : null;
 
-      if (status !== null) {
+      if (status !== null || hidePhoto !== null ) {
         await RegisterModel.update(
-          { status: status },
+          { 
+            status: status, 
+            hidephoto: hidePhoto 
+          },
           { where: { id: player.id } }
         );
-        return { ...player, status };  // Return the updated player with the new status
+        return { ...player, status, hidePhoto };  // Return the updated player with the new status
       }
       return player;
     }));
@@ -189,7 +194,7 @@ app.post('/service/updatePlayerStatus', async (req, res) => {
 app.get('/service/mensPlayerList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub', 'hidephoto'],
       where: {
         status: 'Yes',
         agegroup: 'Open'
@@ -206,7 +211,7 @@ app.get('/service/mensPlayerList', async (req, res) => {
 app.get('/service/u16playersList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub', 'hidephoto'],
       where: {
         status: 'Yes',
         agegroup: 'U16'
@@ -223,7 +228,7 @@ app.get('/service/u16playersList', async (req, res) => {
 app.get('/service/u12playersList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub', 'hidephoto'],
       where: {
         status: 'Yes',
         agegroup: 'U12'
@@ -240,7 +245,7 @@ app.get('/service/u12playersList', async (req, res) => {
 app.get('/service/mastersPlayerList', async (req, res) => {
   try {
     const players = await RegisterModel.findAll({
-      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub'],
+      attributes: ['name', 'position', 'photo', 'jerseynumber', 'favclub', 'hidephoto'],
       where: {
         status: 'Yes',
         agegroup: 'AB40'

@@ -51,7 +51,7 @@ const Footer = () => {
                 <ul>
                     <li className="text-sm font-semibold ml-2 mb-2"><a href="tel:0234567890" className='mt-1'>+61 0451145007</a></li>
                     <li className="text-sm font-semibold ml-2 mb-2">atleticobne@gmail.com</li>
-                    <li className="text-sm font-semibold ml-2 mb-2">Incorporation No: IA59554</li>
+                    <li className="text-sm font-semibold ml-2 mb-2">ABN: 14 184 396 442</li>
                 </ul>
                 <h3 className="text-2xl text-[#e6e4f0] font-bold mt-6 mb-4">Follow Us</h3>
                 <div className="flex space-x-4 mt-4">
