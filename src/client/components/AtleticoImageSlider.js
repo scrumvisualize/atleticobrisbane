@@ -13,7 +13,7 @@ const AtleticoImageSlider = () => {
         { id: 2, src: 'images/ab-slider-2.JPG', text: 'Curious Crowd' },
         { id: 3, src: 'images/juniors.JPG', text: 'Our Junior Boys' },
         { id: 4, src: 'images/ab-slider-3.JPG', text: 'Mens Squad' },
-        { id: 5, src: 'images/sydney.JPEG', text: 'At Sydney' },
+        { id: 5, src: 'images/Sydney.jpeg', text: 'At Sydney' },
         { id: 6, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
         { id: 7, src: 'images/training.jpeg', text: 'Training' },
     ];
