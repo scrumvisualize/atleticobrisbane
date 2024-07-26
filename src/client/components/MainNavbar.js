@@ -57,9 +57,9 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             className="h-16 mr-2"
                             onClick={() => navigate('/')}
                         />
-                        <div className="text-[#6232a8] font-semibold">
-                            <p className="text-lg">ATLÉTICO BRISBANE</p>
-                            <p className="text-[10px] ml-10 mt-[-2px] text-[#fc1930] uppercase">
+                        <div className="text-[#6232a8] font-semibold flex flex-col items-center md:flex-col md:items-start">
+                            <p className="text-lg md:text-base text-center md:text-left">ATLÉTICO BRISBANE</p>
+                            <p className="text-[10px] ml-0 md:ml-6 mt-1 text-[#fc1930] uppercase md:text-xs md:mt-1">
                                 Dare to dream
                             </p>
                         </div>
