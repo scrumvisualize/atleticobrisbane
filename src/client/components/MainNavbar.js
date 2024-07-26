@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import TeamsDropdownMenu from './TeamsDropdownMenu';
 import { useNavigate, useLocation  } from 'react-router-dom';
 
+const appURL = process.env.REACT_APP_URL;
+
 const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -50,7 +52,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                 <div className="flex justify-between items-center py-4">
                     <div className="flex items-center">
                         <img
-                            src="images/ablogo.PNG"
+                            src="images/ablogo.png"
                             alt="Logo"
                             className="h-16 mr-2"
                             onClick={() => navigate('/')}
@@ -70,7 +72,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             <div
                                 onClick={handleClick}
                                 className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[100px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-100px] flex text-base text-white hidden sm:block highlight-text"
-                                style={{ backgroundImage: "url('images/united.png')" }}
+                                style={{ backgroundImage: `url(${appURL}/images/united.png')` }}
                             >
                                 <a href="#"></a>
                             </div>

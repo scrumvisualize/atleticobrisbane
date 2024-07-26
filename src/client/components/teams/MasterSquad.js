@@ -8,11 +8,11 @@ const options = ["Striker", "Midfielder", "Defender", "Goal Keeper"];
 const clubData = [
     {
         favclub: "Arsenal",
-        clublogo: "images/f_arsenal.PNG"
+        clublogo: "images/f_arsenal.png"
     },
     {
         favclub: "Barcelona",
-        clublogo: "images/f_barca.png"
+        clublogo: "images/f_barca.PNG"
     },
     {
         favclub: "Chelsea",
