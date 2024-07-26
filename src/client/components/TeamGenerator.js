@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
 const TeamGenerator = () => {
@@ -12,6 +12,12 @@ const TeamGenerator = () => {
   const [playersPerSide, setPlayersPerSide] = useState(7);
   const [error, setError] = useState(null);
   const captureRef = useRef(null);
+
+  /* In useEffect while reloading the component or during page refresh will remove the savedTeams from the localStorage */
+
+  useEffect(() => {
+    localStorage.removeItem('savedTeams');
+  }, []);
 
   const sanitizeInput = (input) => {
     return input.replace(/[^a-zA-Z0-9-\n\s]/g, '');
@@ -154,7 +160,7 @@ const TeamGenerator = () => {
           >
             Download Teams Image
           </button>
-          <div ref={captureRef} className="flex mt-4 border p-2">
+          {/* <div ref={captureRef} className="flex mt-4 border p-2">
             <div className="w-1/3 p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
               <h2 className="text-2xl text-orange-600 font-extrabold mb-4 border-b-2 border-orange-600 pb-2">Team 1</h2>
               <ul className="list-none p-0">
@@ -178,6 +184,40 @@ const TeamGenerator = () => {
             {numTeams === 3 && (
               <div className="w-1/3 p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
                 <h2 className="text-2xl text-blue-600 font-extrabold mb-4 border-b-2 border-blue-600 pb-2">Team 3</h2>
+                <ul className="list-none p-0">
+                  {sortPlayers(team3).map((player, index) => (
+                    <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
+                      {player.replace(/-(A|B|C)/, '')}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div> */}
+          <div ref={captureRef} className={`grid gap-4 mt-4 border p-2 ${numTeams === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+            <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+              <h2 className="text-2xl text-center text-orange-600 font-extrabold mb-4 border-b-2 border-orange-600 pb-2">Team 1</h2>
+              <ul className="list-none p-0">
+                {sortPlayers(team1).map((player, index) => (
+                  <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
+                    {player.replace(/-(A|B|C)/, '')}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+              <h2 className="text-2xl text-center text-green-600 font-extrabold mb-4 border-b-2 border-green-600 pb-2">Team 2</h2>
+              <ul className="list-none p-0">
+                {sortPlayers(team2).map((player, index) => (
+                  <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
+                    {player.replace(/-(A|B|C)/, '')}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {numTeams === 3 && (
+              <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
+                <h2 className="text-2xl text-center text-blue-600 font-extrabold mb-4 border-b-2 border-blue-600 pb-2">Team 3</h2>
                 <ul className="list-none p-0">
                   {sortPlayers(team3).map((player, index) => (
                     <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>

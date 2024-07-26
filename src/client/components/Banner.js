@@ -5,7 +5,7 @@ const Banner = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
-  const images = ['images/ab-slide-1.JPG', 'images/ab-slider-3.JPG', 'images/wewilldoit.JPG', 'images/juniors.JPG'];
+  const images = ['images/ab-slide-1.JPG', 'images/ab-slider-3.JPG', 'images/juniors.JPG'];
 
 
   useEffect(() => {

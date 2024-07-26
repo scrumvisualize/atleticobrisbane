@@ -159,15 +159,15 @@ const MasterSquad = () => {
                             filteredSquad.map((player, index) => (
                                 <div key={index} className="relative overflow-hidden rounded-lg shadow-md bg-white bg-gradient-to-r from-blue-600 via-[#0c50f3] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6]" >
                                     <img
-                                        src={player.hidephoto === 'Yes' ? '/images/man1.PNG' : player.photo.replace(/^(\.\.\\)+public\\/, '')}
+                                        src={player.hidephoto === 'Yes' ? '/images/man3.PNG' : player.photo.replace(/^(\.\.\\)+public\\/, '')}
                                         alt={player.name}
-                                        className="w-full h-full transition duration-300 transform hover:grayscale hover:brightness-75 hover:scale-105 transition-transform duration-300"
-                                        style={{ minHeight: '100%', minWidth: '100%' }}
+                                        className="w-full transition duration-300 transform hover:grayscale hover:brightness-75 hover:scale-105 transition-transform duration-300"
+                                        style={{ minHeight: '96%', minWidth: '100%' }}
                                     />
                                     <div className="absolute top-0 left-0 p-4 text-white bg-black bg-opacity-75 rounded-tr-md">
                                         <span className="text-lg font-bold">{player.jerseynumber}</span>
                                     </div>
-                                    <div className="absolute bottom-0 left-0 right-0 p-2 bg-[#CDCD32]">
+                                    <div className="absolute h-[77px] bottom-0 left-0 right-0 p-2 bg-[#CDCD32]">
                                         <p className="text-xs font-semibold text-white text-center uppercase">{player.position}</p>
                                         <p className="mt-1 text-lg font-bold text-white text-center flex items-center justify-center">
                                             {player.name}

@@ -161,7 +161,7 @@ const U12Squad = () => {
                             filteredSquad.map((player, index) => (
                                 <div key={index} className="relative overflow-hidden rounded-lg shadow-md bg-white bg-gradient-to-r from-blue-600 via-[#0c50f3] bg-gradient-to-r from-[#0C1324] to-[#cb6ce6]" >
                                     <img
-                                        src={player.hidephoto === 'Yes' ? '/images/man1.PNG' : player.photo.replace(/^(\.\.\\)+public\\/, '')}
+                                        src={player.hidephoto === 'Yes' ? '/images/man3.PNG' : player.photo.replace(/^(\.\.\\)+public\\/, '')}
                                         alt={player.name}
                                         className="w-full h-full transition duration-300 transform hover:grayscale hover:brightness-75 hover:scale-105 transition-transform duration-300"
                                         style={{ minHeight: '100%', minWidth: '100%' }}

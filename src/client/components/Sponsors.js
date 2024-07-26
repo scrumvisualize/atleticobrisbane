@@ -36,7 +36,7 @@ const Sponsors = () => {
                     ) : (
                     sponsorsList.map((item, index) => (
                         <a key={item.id} href={item.url}>
-                            <div className="bg-[#f7f9fa] p-4 rounded-lg">
+                            <div className="bg-white p-4 rounded-lg">
                                 <div className="w-[100px] h-[100px] mx-auto mb-4 rounded overflow-hidden">
                                     <img
                                         src={`${item.logo.replace(/^(\.\.\\)+public\\/, '')}`}
