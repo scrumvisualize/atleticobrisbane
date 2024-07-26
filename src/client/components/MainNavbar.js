@@ -69,7 +69,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                     </div>
                     <div>
                         <div className="pt-2">
-                            <div onClick={handleClick} className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[100px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-100px] flex text-base text-white hidden sm:block highlight-text" style={{ backgroundImage: "url(images/united.PNG');" }}>
+                            <div onClick={handleClick} className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[100px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-100px] flex text-base text-white hidden sm:block highlight-text" style={{ backgroundImage: "url('images/united.PNG')" }}>
                                 <a href="#"></a>
                             </div>
                         </div>
