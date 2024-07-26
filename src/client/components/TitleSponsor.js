@@ -5,13 +5,13 @@ const TitleSponsor = () => {
     const navigate = useNavigate();
     return (
         <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[646px] md:mt-[40px] mb-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-[650px] md:mt-[44px] mb-2">
                 <div className="bg-white border border-gray-300 shadow-lg rounded-lg p-2">
                     <div className="bg-cover bg-no-repeat bg-contain h-96 md:h-[600px] lg:h-[800px] flex items-center justify-center gap-2 inset-x-0 top-0 bg-white" style={{ backgroundImage: "url('images/indus.jpeg')" }}>
                     </div>
                 </div>
                 <div className="bg-[#f7f9fa] border border-gray-300 justify-center items-center shadow-lg rounded-lg">
-                <h1 className="text-center text-[#002d75] text-3xl font-bold mt-[-10px] md:mt-6">Main Sponsor</h1>
+                <h1 className="text-center text-[#002d75] text-3xl font-bold mt-[-6px] md:mt-6">Main Sponsor</h1>
                 <h4 className="text-center text-[#b778d6] text-sm ">indus MORTGAGES</h4>
                     <div className="flex flex-col items-center justify-center h-full">
                         

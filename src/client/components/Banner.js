@@ -27,7 +27,7 @@ const Banner = () => {
 
   return (
     <div>
-      <div id="formobile" className="bg-cover bg-center bg-no-repeat h-[130px] md:h-[450px] lg:h-128 relative block md:hidden" style={{ backgroundImage: "url('images/mainbanner.png')" }}>
+      <div id="formobile" className="bg-cover bg-center bg-no-repeat h-[125px] md:h-[450px] lg:h-128 relative block md:hidden" style={{ backgroundImage: "url('images/mainbanner.png')" }}>
         <button
           onClick={registerDialog}
           className="hidden md:block absolute left-64 top-[290px] px-4 py-2 bg-[#d41743] text-white font-semibold border border-2 border-white rounded-full shadow"
