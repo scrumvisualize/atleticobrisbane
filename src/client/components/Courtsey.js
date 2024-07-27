@@ -34,7 +34,7 @@ const Courtesy = () => {
             <h1 className="text-3xl font-semibold mb-4 text-center text-gradient">
                 Special Thanks To Our Supporters
             </h1>
-            <div className="w-96 h-48 mb-8 p-0">
+            <div className="w-96 h-48 mb-8">
                 <Slider {...settings}>
                     {images.map((image, index) => (
                         <div key={index} className="flex justify-center items-center">
@@ -42,7 +42,7 @@ const Courtesy = () => {
                                 src={image.src}
                                 alt={`Slide ${index}`}
                                 className="w-full h-full object-contain border-4 border-gray-300 rounded-lg"
-                                style={{ height: '200px', width: '400px' }}
+                                style={{ height: '186px', width: '400px' }}
                             />
                         </div>
                     ))}
