@@ -120,7 +120,7 @@ const About = () => {
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
                         <img src="https://via.placeholder.com/150" alt="Person 4" className="mx-auto rounded-full mb-4" />
                         <h2 className="text-xl font-semibold">Jimmy</h2>
-                        <p className="text-[12px] font-semibold text-gray-600">Committee Member</p>
+                        <p className="text-[12px] font-semibold text-gray-600">PRO</p>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import SponsorsList from "./SponsorsList";
 import Footer from "./Footer";
 import Vision from './Vision';
 import Testimonial from './Testimonial';
+import Courtsey from './Courtsey';
 import Para from './Para';
 
 const Home = ({ darkMode }) => {
@@ -24,6 +25,7 @@ const Home = ({ darkMode }) => {
         >
             <Banner/>
             <Testimonial/>
+            <Courtsey/>
             <AtleticoImageSlider/>
             <Training/>
             <Vision darkMode={darkMode}/>

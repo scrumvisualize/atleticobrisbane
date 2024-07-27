@@ -76,3 +76,12 @@ code {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* Courtesy.css */
+.slick-dots li button:before {
+  color: #6232a8; /* Custom color for inactive dots */
+}
+
+.slick-dots li.slick-active button:before {
+  color: #fc1930; /* Custom color for active dots */
+}
