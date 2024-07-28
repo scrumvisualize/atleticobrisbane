@@ -149,6 +149,7 @@ const Admin = () => {
         fetchData();
     }
 
+    /* replace(/^(\.\.\\)+public\\/, '') */ 
     return (
         <div className="container mx-auto px-4">
             <div className="flex justify-start items-center py-4 space-x-2">
@@ -206,7 +207,7 @@ const Admin = () => {
                                                     key={item.id}
                                                     className={`flex flex-col md:flex-row items-center border-b border-gray-200 rounded pb-2 ${item.status === 'accepted' ? 'bg-green-100' : item.status === 'declined' ? 'bg-red-100' : ''}`}
                                                 >
-                                                    <img src={item.photo.replace(/^(\.\.\\)+public\\/, '')} alt="Player" className="w-12 h-12 rounded-full ml-2 mr-2" />
+                                                    <img src={item.photo.replace(/^\/root\/atleticobrisbane\/public/, '')} alt="Player" className="w-12 h-12 rounded-full ml-2 mr-2" />
                                                     <div className="flex-1">
                                                         <div className="flex flex-wrap items-center space-x-4">
                                                             <div className="flex flex-col">

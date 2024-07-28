@@ -18,6 +18,7 @@ const SponsorList = ({darkMode}) => {
         fetchData();
     }, []);
 
+     /* replace(/^(\.\.\\)+public\\/, '') - for localhost path  */ 
     return (
         <div className='relative bg-gradient-to-r from-blue-100 to-pink-100' >
             <div className={`text-center text-3xl font-bold mt-[20px] md:mt-2 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>
@@ -28,12 +29,12 @@ const SponsorList = ({darkMode}) => {
                     sponsorsList.map((item, index) => (
                         <div key={index}>
                             <a href={item.link} className="flex flex-col items-center px-2 py-4">
-                                <img src={`${item.logo.replace(/^(\.\.\\)+public\\/, '')}`} className="w-[150px] h-[140px] rounded-lg" alt="Image 1" />
+                                <img src={`${item.logo.replace(/^\/root\/atleticobrisbane\/public/, '')}`} className="w-[150px] h-[140px] rounded-lg" alt="Image 1" />
                             </a>
                             <div className="bottom-0 w-full">
                                 <div className={`text-xs text-[#002d75] text-center font-semibold ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>{item.header}</div>
                             </div>
-                        </div>
+                        </div> 
                     ))}
             </div>
         </div>

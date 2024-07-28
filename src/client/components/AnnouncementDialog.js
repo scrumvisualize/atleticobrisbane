@@ -132,7 +132,7 @@ const AnnouncementDialog = ({ onClose, announcement }) => {
                         />
                         {errors.announceImage && <p className="text-red-500 text-xs mt-1">{errors.announceImage.message}</p>}
                         {announcement && (
-                            <img src={`${announcement.image.replace(/^(\.\.\\)+public\\/, '')}`} alt="Announcement Logo" className="mt-2 w-14 h-14 object-cover rounded-lg" />
+                            <img src={`${announcement.image.replace(/^\/root\/atleticobrisbane\/public/, '')}`} alt="Announcement Logo" className="mt-2 w-14 h-14 object-cover rounded-lg" />
                         )}
                     </div>
                     <div className="mb-4">
