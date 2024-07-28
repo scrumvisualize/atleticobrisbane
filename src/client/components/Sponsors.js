@@ -39,7 +39,8 @@ const Sponsors = () => {
                             <div className="bg-white p-4 rounded-lg">
                                 <div className="w-[100px] h-[100px] mx-auto mb-4 rounded overflow-hidden">
                                     <img
-                                        src={`${item.logo.replace(/^(\.\.\\)+public\\/, '')}`}
+                                        //src={`${item.logo.replace(/^(\.\.\\)+public\\/, '')}`}
+                                        src={`${item.logo.replace(/^\/root\/atleticobrisbane\/public/, '')}`}
                                         alt="Sponsor Logo"
                                         className="w-full h-full object-contain"
                                     />
