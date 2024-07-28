@@ -62,15 +62,29 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+// var storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     cb(null, '../../public/images/')
+//   },
+//   filename: function (req, file, cb) {
+//     var ext = file.originalname.split('.').pop();
+//     cb(null, file.fieldname + '-' + Date.now() + '.' + ext);
+//   }
+// });
+
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../../public/images/')
+    // Use path.join to create an absolute path
+    const uploadPath = path.join(__dirname, '../../public/images/');
+    cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
     var ext = file.originalname.split('.').pop();
     cb(null, file.fieldname + '-' + Date.now() + '.' + ext);
   }
 });
+
 
 var upload = multer({ storage: storage });
 
