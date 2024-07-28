@@ -98,7 +98,7 @@ const U16Squad = () => {
 
     return (
         <div>
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128" style={{ backgroundImage: "url('images/u16squad.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[150px] lg:h-128" style={{ backgroundImage: "url('images/u16boys.png')", backgroundPosition: 'center 80%' }}>
             </div>
             <div className="text-center font-semibold text-xs">
                 <h3>Home &#8594; Teams &#8594; U16 Squad </h3>

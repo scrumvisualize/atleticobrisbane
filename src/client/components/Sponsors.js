@@ -22,7 +22,7 @@ const Sponsors = () => {
 
     return (
         <div className="container mx-auto px-2">
-            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[145px] lg:h-128 " style={{ backgroundImage: "url('images/sponsors.png')" }}>
+            <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[150px] lg:h-128 " style={{ backgroundImage: "url('images/sponsors.png')", backgroundPosition: 'center 80%'  }}>
             </div>
             <div className="text-center font-semibold text-xs mb-2">
                 <h3>Home &#8594; Sponsors </h3>
