@@ -10,13 +10,13 @@ const defInput = `
 6.Abhiram-M-A
 7. Makvin-M-B
 8.Elon-M-A
-9.Rejin-M-A
+9.Rejin-M-B
 10. Sam-D-B
 11.Saju-F-A
 12.Dwyane-F-A
 13.Elias-F-B
-14. Sanju-D-B
-15.Rajesh-D-B
+14. Sanju-D-C
+15.Rajesh-D-C
 16. Vinod-M-B`;
 
 const TeamGenerator = () => {
@@ -27,7 +27,7 @@ const TeamGenerator = () => {
   const [subs, setSubs] = useState([]);
   const [savedTeams, setSavedTeams] = useState(JSON.parse(localStorage.getItem('savedTeams')) || []);
   const [numTeams, setNumTeams] = useState(2);
-  const [playersPerSide, setPlayersPerSide] = useState(7);
+  const [playersPerSide, setPlayersPerSide] = useState(6);
   const [error, setError] = useState(null);
   const captureRef = useRef(null);
 
@@ -142,7 +142,6 @@ const TeamGenerator = () => {
   };
 
   return (
-
     <div className="bg-gray-100 text-gray-900 bg-gradient-to-r from-blue-100 to-pink-100">
       <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[135px] lg:h-128" style={{ backgroundImage: "url('images/teamgen.png')", backgroundPosition: 'center 80%' }}>
       </div>
@@ -169,6 +168,7 @@ const TeamGenerator = () => {
           <div className="flex flex-col">
             <label className="text-sm font-bold mb-2">Players per Side</label>
             <select value={playersPerSide} onChange={handlePlayersPerSideChange} className="p-2 border rounded">
+              <option value={6}>6-a-side</option>
               <option value={7}>7-a-side</option>
               <option value={8}>8-a-side</option>
             </select>
@@ -189,40 +189,6 @@ const TeamGenerator = () => {
             >
               Download Teams Image
             </button>
-            {/* <div ref={captureRef} className="flex mt-4 border p-2">
-            <div className="w-1/3 p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-              <h2 className="text-2xl text-orange-600 font-extrabold mb-4 border-b-2 border-orange-600 pb-2">Team 1</h2>
-              <ul className="list-none p-0">
-                {sortPlayers(team1).map((player, index) => (
-                  <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                    {player.replace(/-(A|B|C)/, '')}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="w-1/3 p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-              <h2 className="text-2xl text-green-600 font-extrabold mb-4 border-b-2 border-green-600 pb-2">Team 2</h2>
-              <ul className="list-none p-0">
-                {sortPlayers(team2).map((player, index) => (
-                  <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                    {player.replace(/-(A|B|C)/, '')}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            {numTeams === 3 && (
-              <div className="w-1/3 p-4 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                <h2 className="text-2xl text-blue-600 font-extrabold mb-4 border-b-2 border-blue-600 pb-2">Team 3</h2>
-                <ul className="list-none p-0">
-                  {sortPlayers(team3).map((player, index) => (
-                    <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                      {player.replace(/-(A|B|C)/, '')}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div> */}
             <div ref={captureRef} className={`grid gap-4 mt-4 border p-2 ${numTeams === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
               <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
                 <h2 className="text-2xl text-center text-orange-600 font-extrabold mb-4 border-b-2 border-orange-600 pb-2">Team 1</h2>
@@ -308,6 +274,3 @@ const TeamGenerator = () => {
 };
 
 export default TeamGenerator;
-
-
-

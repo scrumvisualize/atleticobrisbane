@@ -32,7 +32,7 @@ const Courtesy = () => {
     return (
         <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-100 to-pink-100">
             <h1 className="text-3xl font-semibold mb-4 text-center text-gradient">
-                Special Thanks To Our Supporters
+                Sincere Thanks To Our Great Supporters
             </h1>
             <div className="w-96 h-48 mb-8">
                 <Slider {...settings}>

@@ -19,7 +19,7 @@ const About = () => {
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <p className="text-[14px] text-[#3c3e40] leading-relaxed">
-                            Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Ajay, Noby, Robin, and Jo Paul, who have been our proud supporters from the beginning.
+                            Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Ajay, Varghese Vadakkan, Noby, Robin, and Jo Paul, who have been our proud supporters from the beginning.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
@@ -108,7 +108,7 @@ const About = () => {
                         <p className="text-[12px] font-semibold text-gray-600">Treasurer</p>
                     </div>
                     <div className="bg-white p-5 rounded-lg shadow-lg text-center">
-                        <img src="https://via.placeholder.com/150" alt="Person 2" className="mx-auto rounded-full mb-4" />
+                        <img src="images/rajesh.png" alt="Person 2" className="w-32 h-32 mx-auto rounded-full border-2 border-[#2f73fa] mb-4" />
                         <h2 className="text-xl font-semibold">Rajesh</h2>
                         <p className="text-[12px] font-semibold text-gray-600">Jt. Treasurer</p>
                     </div>
