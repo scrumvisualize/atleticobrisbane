@@ -250,7 +250,7 @@ const RegisterDialog = ({ onClose }) => {
           <input
             type="text"
             name="code"
-            placeholder="Code"
+            placeholder="Registration code"
             {...register('code', {
               required: "Please provide a valid code",
               pattern: {

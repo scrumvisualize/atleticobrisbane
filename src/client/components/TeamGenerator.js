@@ -154,8 +154,8 @@ const TeamGenerator = () => {
           value={input}
           onChange={handleInputChange}
           className="w-full h-40 p-2 border rounded"
-          placeholder="Enter the player name, then position and then level of a player, for ex: John-D-A or Mark-M-B or Damian-F-A or Luke-D-C, each player on a new line."
-          title="Enter player names in the format: Name-Position-Category (e.g., John-D-A, Mark-M-B, Damian-F-A or Rod-D-B). Each player should be on a new line."
+          placeholder="Enter the player name, then player position and then level of a player, for ex: John-D-A or Mark-M-B or Damian-F-A or Luke-D-C. Please ensure each player on a new line."
+          title="Enter player names in the format: Name-Position-Category (ex: John-D-A, Mark-M-B, Damian-F-A or Rod-D-B). Each player should be on a new line."
         />
         <div className="flex mt-4 space-x-4">
           <div className="flex flex-col">
