@@ -46,7 +46,8 @@ const GeneralUpdate = ({ imageSrc, title, date, url, text}) => {
                     <div className="flex justify-center">
                         <img 
                         className="w-28 h-20 rounded transform transition-transform duration-700 ease-in-out hover:scale-110" 
-                        src={imageSrc.replace(/^(\.\.\\)+public\\/, '')} 
+                        //src={imageSrc.replace(/^(\.\.\\)+public\\/, '')} 
+                        src={imageSrc.replace(/^\/root\/atleticobrisbane\/public/, '')}
                         alt={title} 
                         />
                     </div>
