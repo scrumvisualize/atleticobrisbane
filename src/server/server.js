@@ -52,7 +52,7 @@ const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
 
 // CORS configuration
 app.use(cors({
-  origin: 'http://www.atleticobrisbane.com.au', // Replace with your actual client domain
+  origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
   methods: 'GET,POST,PUT,DELETE',
   credentials: true
 }));

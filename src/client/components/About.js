@@ -29,7 +29,7 @@ const About = () => {
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <p className="text-[14px] text-[#3c3e40] leading-relaxed">
-                            We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer. Related info : We bank with Commonwealth Bank, Acacia Ridge Branch, BSB: 064 159 Acc no: 1047 1551
+                            We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer. <span className='font-semibold'>Related info :</span> We bank with <span className='font-semibold'>Commonwealth Bank</span>, Acacia Ridge Branch BSB: 064 159 Acc no: 1047 1551
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
@@ -44,39 +44,6 @@ const About = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="container mx-auto my-5 px-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <p className='text-[#3c3e40]'>Atlético Brisbane (Erstwhile Southside Soccer Studs Inc ABN: 14 184 396 442) is a welcoming soccer club formed by the Malayali community. Since its establishment in 2018 and official registration in 2020, the club has brought together soccer enthusiasts of all ages in Brisbane. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.</p>
-                    <p className='text-[#3c3e40]'>Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Ajay, Noby, Robin, and Jo Paul, who have been our proud supporters from the beginning.</p>
-                    <p className='text-[#3c3e40]'>Atlético Brisbane actively participates in major soccer 7's tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in prestigious Kairali tournament.</p>
-                    <p className='text-[#3c3e40]'> We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer. We bank with Commonwealth Bank, Acacia Ridge Branch, BSB : 064 159 Acc no: 1047 1551</p>
-                    <p className='text-[#3c3e40]'> Our heartfelt gratitude is also extended to our wider malayali community and all internal and external stakeholders for their continuous support.</p>
-                    <p className='text-[#3c3e40] italic'> Please note: The legal name change is in process and expected to be approved soon.</p>
-                </div>
-            </div> */}
-            {/* <div className="container mx-auto my-5 px-5">
-                <div className="space-y-5">
-                    <p className="text-[#3c3e40]">
-                        Atlético Brisbane (Erstwhile Southside Soccer Studs Inc ABN: 14 184 396 442) is a welcoming soccer club formed by the Malayali community. Since its establishment in 2018 and official registration in 2020, the club has brought together soccer enthusiasts of all ages in Brisbane. Our club's mantra, "Aspire, Aim, Achieve," reflects our commitment to excellence, resilience, dedication, and passion for the sport.
-                    </p>
-                    <p className="text-[#3c3e40]">
-                        Our journey has been supported and driven by key founders including Prince Anand, Saljo, Jibu, Joji, Jibi, and Sibin. We are also grateful to Bhowmic, Ajay, Noby, Robin, and Jo Paul, who have been our proud supporters from the beginning.
-                    </p>
-                    <p className="text-[#3c3e40]">
-                        Atlético Brisbane actively participates in major soccer 7's tournaments across Australia, consistently striving for excellence. In 2024, our dedication was rewarded when our team secured the runner-up trophy in the above 40 category. In the same year, our open age boys proudly claimed third place in prestigious Kairali tournament.
-                    </p>
-                    <p className="text-[#3c3e40]">
-                        We invite you to join us in this exciting journey, as we continue to grow, compete, and celebrate the beautiful game of soccer. We bank with Commonwealth Bank, Acacia Ridge Branch, BSB : 064 159 Acc no: 1047 1551
-                    </p>
-                    <p className="text-[#3c3e40]">
-                        Our heartfelt gratitude is also extended to our wider Malayali community and all internal and external stakeholders for their continuous support.
-                    </p>
-                    <p className="text-[#3c3e40] italic">
-                        Please note: The legal name change is in process and expected to be approved soon.
-                    </p>
-                </div>
-            </div> */}
-
             <div className="container mx-auto my-10 px-5">
                 <h1 className="text-3xl font-bold text-center mb-8">Committee 2024</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
