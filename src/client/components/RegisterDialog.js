@@ -182,6 +182,8 @@ const RegisterDialog = ({ onClose }) => {
                 </label>
               </div>
             </div>
+            {errors.ageGroup && <p className="text-xs text-red-500">Age group selection is required !</p>}
+
           </div>
 
           <select name="position" {...register('position', { required: true })} className="w-full border rounded-md px-4 py-1 mb-2">

@@ -85,3 +85,11 @@ code {
 .slick-dots li.slick-active button:before {
   color: #fc1930; /* Custom color for active dots */
 }
+
+.slick-prev, .slick-next{
+  background-color: #8037ed !important;
+  opacity: 0.8;
+  height: 19px;
+  padding-top: 1px;
+  border-radius: 10px;
+}
