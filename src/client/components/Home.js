@@ -12,6 +12,7 @@ import Footer from "./Footer";
 import Vision from './Vision';
 import Testimonial from './Testimonial';
 import Courtsey from './Courtsey';
+import Status from './StatusCircle';
 import Para from './Para';
 
 const Home = ({ darkMode }) => {
@@ -28,6 +29,7 @@ const Home = ({ darkMode }) => {
             <Courtsey/>
             <AtleticoImageSlider/>
             <Training/>
+            <Status/>
             <Vision darkMode={darkMode}/>
             <AtleticoUpdates darkMode={darkMode}/>
             <WeeklyGames/>

@@ -25,13 +25,13 @@ const Training = () => {
                         <div className="hidden md:block">
                             <span>If you are interested for a </span>
                             <br />
-                            <span>paid 7-a side soccer training </span>
+                            <span>paid soccer training </span>
                             <br />
                             <span>please contact us here </span>
                         </div>
                     </div>
                     <button onClick={()=>openDialog ()} className="border border-white text-white px-2 md:px-4 py-2 md:py-3 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
-                        Training
+                        Book a training
                     </button>
                     {
                         showTrainingDialog && (

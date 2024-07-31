@@ -22,7 +22,7 @@ const TitleSponsor = () => {
                             Also, thank you for referring friends and family to me.
                             <span className="italic text-4xl font-bold">&quot;</span>
                         </p>
-                        <div className="border border-white text-white px-2 md:px-4 py-2 mb-6 md:mb-4 md:py-4 bg-[#25afe6] font-semibold rounded-lg text-xs md:text-base">
+                        <div className="border border-white text-white px-2 md:px-4 py-2 mb-6 md:mb-4 md:py-4 bg-[#25afe6] hover:bg-[#cd75f0] font-semibold rounded-lg text-xs md:text-base">
                             <button onClick={() => { navigate('/sponsors'); }}>View more sponsors &#x2192;&#x2192;</button>
                         </div>
                     </div>

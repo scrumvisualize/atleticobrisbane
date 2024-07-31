@@ -19,12 +19,12 @@ code {
 
 .linegrow {
   position: relative;
-  color: #1a69c4;
+  color: #7d45ed;
   text-decoration: bold;
-  font-size: 16px;
+  font-size: 14px;
 }
 .linegrow:hover {
-  font-weight:bold;
+  font-weight:600;
   color: #ba54d9;
 }
 .linegrow::before {
