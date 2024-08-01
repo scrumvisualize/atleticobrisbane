@@ -3,6 +3,8 @@ import axios from 'axios';
 import TeamGenerator from './TeamGenerator';
 import { useForm } from 'react-hook-form';
 
+const appUrl = process.env.REACT_APP_URL;
+
 const TeamTokenGenerator = () => {
 
     const [mobileNumber, setMobileNumber] = useState("");
@@ -34,7 +36,7 @@ const TeamTokenGenerator = () => {
         setMobileNumber(mobileNumber);
 
         try {
-            const response = await axios.post('/service/teamTokenGenerator', { name, mobile: mobileNumber });
+            const response = await axios.post(`${appUrl}/service/teamTokenGenerator`, { name, mobile: mobileNumber });
             const generatedToken = response.data.token;
             setToken(generatedToken);
         } catch (err) {
@@ -53,7 +55,7 @@ const TeamTokenGenerator = () => {
         } else {
 
             try {
-                const response = await axios.get('/service/validate-token', {
+                const response = await axios.get(`${appUrl}/service/validate-token`, {
                     params: {
                         mobile: mobileNumber,
                         token: inputToken
