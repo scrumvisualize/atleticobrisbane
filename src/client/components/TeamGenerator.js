@@ -62,10 +62,11 @@ const TeamGenerator = () => {
     const totalAvailablePlayers = cleanedPlayers.length + uniqueRepeatPlayers.length;
 
     // Check if we have enough players, including the repeat player
-    if (totalAvailablePlayers < 20) {
-      setError(`Insufficient players. You need at least ${totalRequiredPlayers} players for ${numTeams} teams.`);
-      return;
-    }
+    
+    // if (totalAvailablePlayers < totalRequiredPlayers) {
+    //   setError(`Insufficient players. You need at least ${totalRequiredPlayers} players for ${numTeams} teams.`);
+    //   return;
+    // }
 
     // Initialize teams and substitutes
     const mainTeams = Array.from({ length: numTeams }, () => []);
