@@ -14,6 +14,7 @@ const registerPlayerSchema = require('../modals/registerPlayer');
 const sponsorsSchema = require('../modals/sponsors');
 const announcementSchema = require('../modals/announcement');
 const resetTokenSchema = require('../modals/resetToken');
+const teamTokenGenSchema = require('../modals/teamTokenGenerator');
 
 const cors = require('cors');
 
@@ -46,6 +47,7 @@ const RegisterModel = registerPlayerSchema(sequelize, DataTypes);
 const SponsorModel = sponsorsSchema(sequelize, DataTypes);
 const AnnouncementModel = announcementSchema(sequelize, DataTypes);
 const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
+const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 
 
 //app.use(cors()) 
@@ -471,7 +473,6 @@ app.put('/service/generateAndSaveToken', async (req, res) => {
 });
 
 /* Get latest token from database */
-
 app.get('/service/getLatestToken', async (req, res) => {
   try {
 
@@ -565,6 +566,54 @@ app.post('/api/resetPassword', async (req, res) => {
   const hashedPassword = await bcrypt.hash(newPassword, 10);
   // Save the hashed password in the database
   res.json({ success: true });
+});
+
+/* For team generator generate token and save in database along with mobile number and name */
+app.post('/service/teamTokenGenerator', async (req, res) => {
+
+  try {
+
+    const { name, mobile } = req.body;
+
+    const getRandomThreeLetters = (str) => {
+      const upperName = str.toUpperCase();
+      const shuffled = upperName.split('').sort(() => 0.5 - Math.random()).join('');
+      return shuffled.substring(0, 3);
+    };
+    const randomThreeLetters = getRandomThreeLetters(name);
+    const lastFourDigits = mobile.replace(/\D/g, '').slice(-4);
+    const randomChars = (Math.random() + 1).toString(36).substring(2, 5).toUpperCase();
+    const token = `${randomThreeLetters}-${randomChars}-${lastFourDigits}`;
+    const newTokenEntry = await TeamTokenGenModel.create({ name, mobile, token });
+    res.status(200).json({ token, message: 'Token generated and saved successfully', data: newTokenEntry });
+  } catch (e) {
+    console.error(e); // Log the error for debugging
+    res.status(500).json({ error: 'An error occurred while generating the token' });
+  }
+});
+
+/* For team generator validate token to diplay Team Generator page */
+app.get('/service/validate-token', async (req, res) => {
+  const { mobile, token } = req.query;
+  try {
+    
+    const tokenData = await TeamTokenGenModel.findOne({
+      where: { mobile },
+      attributes: ['id', 'token', 'createdAt'],
+      order: [['createdAt', 'DESC']],
+    });
+    if (!tokenData) {
+      return res.status(404).json({ isValid: false, message: 'Token not found' });
+    }
+
+    // Check if the provided token matches the latest token
+    const isValid = tokenData.token === token;
+    res.status(200).json({ isValid });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to get the token details' });
+  }
 });
 
 

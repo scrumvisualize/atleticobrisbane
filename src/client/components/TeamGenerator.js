@@ -1,24 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
-const defInput = `
-1.Jithu-D-A
-2. Joji-D-A
-3.Clitus-D-B 
-4. Aby-D-A
-5.Sheyon-M-A
-6.Abhiram-M-A
-7. Makvin-M-B
-8.Elon-M-A
-9.Rejin-M-B
-10. Sam-D-B
-11.Saju-F-A
-12.Dwyane-F-A
-13.Elias-F-B
-14. Sanju-D-C
-15.Rajesh-D-C
-16. Vinod-M-B`;
-
 const TeamGenerator = () => {
   const [input, setInput] = useState('');
   const [team1, setTeam1] = useState([]);
@@ -27,11 +9,9 @@ const TeamGenerator = () => {
   const [subs, setSubs] = useState([]);
   const [savedTeams, setSavedTeams] = useState(JSON.parse(localStorage.getItem('savedTeams')) || []);
   const [numTeams, setNumTeams] = useState(2);
-  const [playersPerSide, setPlayersPerSide] = useState(6);
+  const [playersPerSide, setPlayersPerSide] = useState(7);
   const [error, setError] = useState(null);
   const captureRef = useRef(null);
-
-  /* In useEffect while reloading the component or during page refresh will remove the savedTeams from the localStorage */
 
   useEffect(() => {
     localStorage.removeItem('savedTeams');
@@ -61,38 +41,81 @@ const TeamGenerator = () => {
     }
 
     const players = input
-  .split('\n')
-  .map(player => player.trim())
-  .filter(player => player)
-  .map(player => player.replace(/^\d+\.\s*/, ''));
+      .split('\n')
+      .map(player => player.trim())
+      .filter(player => player)
+      .map(player => player.replace(/^\d+\.\s*/, ''));
 
-    // Determine the number of players required per team
-    const totalPlayers = players.length;
-    const playersPerTeam = playersPerSide;
-    const totalTeams = numTeams;
+    // Extract goalkeepers and outfield players
+    const goalkeepers = players.filter(player => player.includes('GK'));
+    const outfieldPlayers = players.filter(player => !player.includes('GK'));
 
-    // Ensure the total number of players is sufficient
-    if (totalPlayers < playersPerTeam * totalTeams) {
-      setError(`Insufficient players. You need at least ${playersPerTeam * totalTeams} players for ${totalTeams} teams.`);
+    // Identify repeat players (marked with -R)
+    const repeatPlayers = players.filter(player => player.includes('-R')).map(player => player.replace('-R', ''));
+    const uniqueRepeatPlayers = [...new Set(repeatPlayers)];
+
+    // Remove the repeat players from the list if exists
+    const cleanedPlayers = players.filter(player => !player.includes('-R'));
+
+    // Calculate the total number of required players
+    const totalRequiredPlayers = playersPerSide * numTeams;
+    const totalAvailablePlayers = cleanedPlayers.length + uniqueRepeatPlayers.length;
+
+    // Check if we have enough players, including the repeat player
+    if (totalAvailablePlayers < 20) {
+      setError(`Insufficient players. You need at least ${totalRequiredPlayers} players for ${numTeams} teams.`);
       return;
     }
 
-    const mainTeams = [];
-    const shuffledPlayers = players.sort(() => Math.random() - 0.5);
+    // Initialize teams and substitutes
+    const mainTeams = Array.from({ length: numTeams }, () => []);
+    const shuffledOutfieldPlayers = outfieldPlayers.sort(() => Math.random() - 0.5);
+    const availablePlayers = [...cleanedPlayers, ...uniqueRepeatPlayers];
 
-    for (let i = 0; i < totalTeams; i++) {
-      mainTeams.push(shuffledPlayers.slice(i * playersPerTeam, (i + 1) * playersPerTeam));
-    }
+    // Distribute goalkeepers among teams
+    const usedGoalkeepers = new Set();
+    goalkeepers.forEach(gk => {
+      if (usedGoalkeepers.size < numTeams) {
+        for (let i = 0; i < numTeams; i++) {
+          if (mainTeams[i].filter(player => player.includes('GK')).length === 0 && !usedGoalkeepers.has(gk)) {
+            mainTeams[i].push(gk);
+            usedGoalkeepers.add(gk);
+            break;
+          }
+        }
+      }
+    });
 
-    const totalPlayersInMainTeams = mainTeams.flat().length;
-    const substitutes = shuffledPlayers.slice(totalPlayersInMainTeams);
+    // Distribute outfield players among teams
+    let currentTeamIndex = 0;
+    shuffledOutfieldPlayers.forEach(player => {
+      if (mainTeams[currentTeamIndex].length < playersPerSide) {
+        mainTeams[currentTeamIndex].push(player);
+      }
+      currentTeamIndex = (currentTeamIndex + 1) % numTeams;
+    });
+
+    // Ensure repeat players are placed correctly in the white team
+    const whiteTeamIndex = numTeams === 3 ? 2 : 1; // Assuming white team is the last team if there are 3 teams
+    const whiteTeamPlayers = new Set(mainTeams[whiteTeamIndex]);
+    uniqueRepeatPlayers.forEach(player => {
+      if (!whiteTeamPlayers.has(player)) {
+        if (mainTeams[whiteTeamIndex].length < playersPerSide) {
+          mainTeams[whiteTeamIndex].push(player);
+          whiteTeamPlayers.add(player);
+        }
+      }
+    });
+
+    // Collect all players currently in teams
+    const allPlayersInTeams = mainTeams.flat();
+    // Calculate substitutes
+    const substitutePlayers = availablePlayers.filter(player => !allPlayersInTeams.includes(player));
 
     setTeam1(mainTeams[0]);
     setTeam2(mainTeams[1]);
-    if (numTeams === 3) {
-      setTeam3(mainTeams[2]);
-    }
-    setSubs(substitutes);
+    if (numTeams === 3) setTeam3(mainTeams[2]);
+    setSubs(substitutePlayers);
     setError(null);
 
     const newSavedTeams = [...savedTeams, { team1: mainTeams[0], team2: mainTeams[1], team3: mainTeams[2] || [], subs }];
@@ -102,17 +125,17 @@ const TeamGenerator = () => {
 
   const sortPlayers = (players) => {
     return players.sort((a, b) => {
-      const [aCategory, aGrade] = a.split('-').slice(1);
-      const [bCategory, bGrade] = b.split('-').slice(1);
+      const [aCategory, aLevel] = a.split('-').slice(1);
+      const [bCategory, bLevel] = b.split('-').slice(1);
 
-      const categoryOrder = ['D', 'M', 'F'];
-      const gradeOrder = ['A', 'B', 'C'];
+      const categoryOrder = ['GK', 'D', 'M', 'F'];
+      const levelOrder = ['A', 'B', 'C', 'D'];
 
       if (aCategory !== bCategory) {
         return categoryOrder.indexOf(aCategory) - categoryOrder.indexOf(bCategory);
       }
 
-      return gradeOrder.indexOf(aGrade) - gradeOrder.indexOf(bGrade);
+      return levelOrder.indexOf(aLevel) - levelOrder.indexOf(bLevel);
     });
   };
 
@@ -142,81 +165,88 @@ const TeamGenerator = () => {
   };
 
   return (
-    <div className="bg-gray-100 text-gray-900 bg-gradient-to-r from-blue-100 to-pink-100">
-      <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px] md:h-[135px] lg:h-128" style={{ backgroundImage: "url('images/teamgen.png')", backgroundPosition: 'center 80%' }}>
-      </div>
+    <div className="bg-gradient-to-r from-blue-100 to-pink-100 w-full min-h-[600px]">
+      <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px]" style={{ backgroundImage: "url('images/teamgen.png')", backgroundPosition: 'center 80%' }}></div>
       <div className="text-center font-semibold text-xs">
-        <h3>Home &#8594; Team Generator </h3>
+        <h3>Home &#8594; Team Generator</h3>
       </div>
 
-      <div className="max-w-4xl mx-auto p-4">
+      <div className="w-full max-w-4xl mx-auto p-4">
         <textarea
           value={input}
           onChange={handleInputChange}
-          className="w-full h-40 p-2 border rounded"
-          placeholder="Enter the player name, then player position and then level of a player, for ex: John-D-A or Mark-M-B or Damian-F-A or Luke-D-C. Please ensure each player on a new line."
-          title="Enter player names in the format: Name-Position-Category (ex: John-D-A, Mark-M-B, Damian-F-A or Rod-D-B). Each player should be on a new line."
+          className="w-full h-40 p-2 border rounded bg-white shadow-sm"
+          placeholder="Enter player details. Format: Name-Position-Level (e.g., John-GK-A, Mark-D-B). Each player on a new line."
         />
-        <div className="flex mt-4 space-x-4">
-          <div className="flex flex-col">
-            <label className="text-sm font-bold mb-2">Number of Teams</label>
-            <select value={numTeams} onChange={handleNumTeamsChange} className="p-2 border rounded">
-              <option value={2}>2 Teams</option>
-              <option value={3}>3 Teams</option>
+        <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
+          <div className="flex-1">
+            <label className="block text-sm font-bold mb-2">Number of Teams:</label>
+            <select value={numTeams} onChange={handleNumTeamsChange} className="w-full p-2 border rounded bg-white shadow-sm">
+              <option value={2}>2</option>
+              <option value={3}>3</option>
             </select>
           </div>
-          <div className="flex flex-col">
-            <label className="text-sm font-bold mb-2">Players per Side</label>
-            <select value={playersPerSide} onChange={handlePlayersPerSideChange} className="p-2 border rounded">
-              <option value={6}>6-a-side</option>
-              <option value={7}>7-a-side</option>
-              <option value={8}>8-a-side</option>
+          <div className="flex-1">
+            <label className="block text-sm font-bold mb-2">Players per Side:</label>
+            <select value={playersPerSide} onChange={handlePlayersPerSideChange} className="w-full p-2 border rounded bg-white shadow-sm">
+              <option value={6}>6</option>
+              <option value={7}>7</option>
+              <option value={8}>8</option>
             </select>
           </div>
         </div>
         <button
           onClick={splitTeams}
-          className="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded"
+          className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Generate Teams
         </button>
-        {error && <p className="text-red-500 mt-4">{error}</p>}
-        {(team1.length > 0 || team2.length > 0 || team3.length > 0) && (
-          <>
-            <button
-              onClick={downloadImage}
-              className="w-full mt-4 bg-green-500 text-white py-2 px-4 rounded"
-            >
-              Download Teams Image
-            </button>
-            <div ref={captureRef} className={`grid gap-4 mt-4 border p-2 ${numTeams === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
-              <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                <h2 className="text-2xl text-center text-orange-600 font-extrabold mb-4 border-b-2 border-orange-600 pb-2">Team 1</h2>
-                <ul className="list-none p-0">
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+        {team1.length > 0 && (
+          <div className="mt-6" ref={captureRef}>
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+              <div className="flex-1 p-4 bg-white rounded shadow-md">
+                <div className="text-center bg-[#d18df0]">
+                  <h2 className="text-xl text-[#f00e52] font-bold p-2 mb-4">Team Red</h2>
+                </div>
+                <ul className="list-none p-0 m-0 space-y-2">
                   {sortPlayers(team1).map((player, index) => (
-                    <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                      {player.replace(/-(A|B|C)/, '')}
+                    <li
+                      key={index}
+                      className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
+                    >
+                      <span className="text-gray-800 text-base font-medium">{player}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                <h2 className="text-2xl text-center text-green-600 font-extrabold mb-4 border-b-2 border-green-600 pb-2">Team 2</h2>
-                <ul className="list-none p-0">
+              <div className="flex-1 p-4 bg-white rounded shadow-md">
+                <div className="text-center bg-[#d18df0]">
+                  <h2 className="text-xl text-[#111112] font-bold p-2 mb-4">Team Black</h2>
+                </div>
+                <ul className="list-none p-0 m-0 space-y-2">
                   {sortPlayers(team2).map((player, index) => (
-                    <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                      {player.replace(/-(A|B|C)/, '')}
+                    <li
+                      key={index}
+                      className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
+                    >
+                      <span className="text-gray-800 text-base font-medium">{player}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               {numTeams === 3 && (
-                <div className="p-2 bg-gray-100 border border-gray-300 rounded-lg shadow-md">
-                  <h2 className="text-2xl text-center text-blue-600 font-extrabold mb-4 border-b-2 border-blue-600 pb-2">Team 3</h2>
-                  <ul className="list-none p-0">
+                <div className="flex-1 p-4 bg-white rounded shadow-md">
+                  <div className="text-center bg-[#d18df0]">
+                    <h2 className="text-xl text-[#ffffff] font-bold p-2 mb-4">Team White</h2>
+                  </div>
+                  <ul className="list-none p-0 m-0 space-y-2">
                     {sortPlayers(team3).map((player, index) => (
-                      <li className="bg-white text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                        {player.replace(/-(A|B|C)/, '')}
+                      <li
+                        key={index}
+                        className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
+                      >
+                        <span className="text-gray-800 text-base font-medium">{player}</span>
                       </li>
                     ))}
                   </ul>
@@ -224,52 +254,53 @@ const TeamGenerator = () => {
               )}
             </div>
             {subs.length > 0 && (
-              <div className="mt-4">
-                <h3 className="text-xl text-purple-600 font-extrabold mb-4 border-b-2 border-purple-600 pb-2">Substitutes</h3>
-                <ul className="list-none p-0">
-                  {sortPlayers(subs).map((sub, index) => (
-                    <li className="bg-gray-200 text-gray-800 font-semibold text-lg rounded-md mb-2 p-3 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer" key={index}>
-                      {sub.replace(/-(A|B|C)/, '')}
-                    </li>
+              <div className="mt-6 p-4 bg-white rounded shadow-md">
+                <h2 className="text-xl font-bold mb-2">Substitutes</h2>
+                <ul className="list-disc pl-5 space-y-1">
+                  {sortPlayers(subs).map((player, index) => (
+                    <li key={index} className="text-gray-800">{player}</li>
                   ))}
                 </ul>
               </div>
             )}
-            {savedTeams.length > 0 && (
-              <div className="mt-8">
-                <h2 className="text-xl font-bold mb-4">Saved Teams</h2>
-                <div className="flex flex-wrap -m-1 gap-2">
-                  {savedTeams.map((teams, index) => (
-                    <div
-                      key={index}
-                      className="relative hover:scale-105 transition-transform duration-300 bg-cover bg-center bg-no-repeat bg-gray-100 p-4 border border-gray-300 rounded-lg shadow-md flex flex-col items-center justify-center h-40 w-40 cursor-pointer"
-                      style={{ backgroundImage: 'url("images/savedicon.PNG")' }}
+            <div className="mt-6 text-center">
+              <button
+                onClick={downloadImage}
+                className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+              >
+                Download Teams as Image
+              </button>
+            </div>
+          </div>
+        )}
+        {savedTeams.length > 0 && (
+          <div className="mt-6 p-4 bg-white rounded shadow-md">
+            <h2 className="text-xl font-bold mb-2">Saved Teams</h2>
+            <ul className="list-disc pl-5 space-y-2">
+              {savedTeams.map((team, index) => (
+                <li key={index} className="flex justify-between items-center mb-2">
+                  <span className="text-[13px] font-semibold text-[#4491e3] bg-gray-100 p-1">Option {index + 1}</span>
+                  <div>
+                    <button
                       onClick={() => loadSavedTeam(index)}
+                      className="bg-blue-500 text-white py-1 px-2 rounded mr-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      <div className="absolute bottom-1 w-full text-center">
-                        <h3 className="text-base font-bold text-white text-bottom">Option-{index}</h3>
-                      </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          deleteSavedTeam(index);
-                        }}
-                        className="absolute top-2 right-2 text-red-600 hover:text-red-800"
-                      >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
+                      Load
+                    </button>
+                    <button
+                      onClick={() => deleteSavedTeam(index)}
+                      className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
       </div>
     </div>
-    
   );
 };
 

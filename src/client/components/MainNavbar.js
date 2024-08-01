@@ -187,7 +187,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         </div>
                         <a
                             className="font-semibold linegrow"
-                            onClick={() => navigate('/teamgenerator')}
+                            onClick={() => navigate('/teamtokengenerator')}
                         >
                             TEAM GENERATOR
                         </a>
@@ -263,7 +263,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         </div>
                             <a
                                 className="font-semibold linegrow"
-                                onClick={() => navigate('/teamgenerator')}
+                                onClick={() => navigate('/teamtokengenerator')}
                             >
                                 TEAM GENERATOR
                             </a>
