@@ -50,7 +50,7 @@ const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
 const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 
 
-//app.use(cors()) 
+//app.use(cors());
 
 // CORS configuration
 app.use(cors({
