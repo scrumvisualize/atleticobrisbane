@@ -64,17 +64,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// var storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, '../../public/images/')
-//   },
-//   filename: function (req, file, cb) {
-//     var ext = file.originalname.split('.').pop();
-//     cb(null, file.fieldname + '-' + Date.now() + '.' + ext);
-//   }
-// });
-
-
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // Use path.join to create an absolute path
@@ -516,6 +505,7 @@ app.post('/api/verifyEmail', async (req, res) => {
   }
 });
 
+/* API to verify the token for reset pp  */
 app.post('/api/verifyToken', async (req, res) => {
 
   const { token } = req.body;
@@ -543,6 +533,7 @@ app.post('/api/verifyToken', async (req, res) => {
 
 });
 
+/* API to verify the reset code  */
 app.post('/api/verifyResetCode', (req, res) => {
   
   const { resetCode } = req.body;

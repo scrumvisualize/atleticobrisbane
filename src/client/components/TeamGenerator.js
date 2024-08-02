@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import html2canvas from 'html2canvas';
 
+
 const TeamGenerator = () => {
   const [input, setInput] = useState('');
   const [team1, setTeam1] = useState([]);
@@ -12,6 +13,7 @@ const TeamGenerator = () => {
   const [playersPerSide, setPlayersPerSide] = useState(7);
   const [error, setError] = useState(null);
   const captureRef = useRef(null);
+ 
 
   useEffect(() => {
     localStorage.removeItem('savedTeams');

@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import TopBanner from "./TopBanner";
-import MainNavbar from "./MainNavbar";
 import Banner from "./Banner";
 import AtleticoImageSlider from "./AtleticoImageSlider";
 import Training from "./Training";
@@ -13,7 +11,6 @@ import Vision from './Vision';
 import Testimonial from './Testimonial';
 import Courtsey from './Courtsey';
 import Status from './StatusCircle';
-import Para from './Para';
 
 const Home = ({ darkMode }) => {
     

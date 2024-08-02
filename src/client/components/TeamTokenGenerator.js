@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TeamGenerator from './TeamGenerator';
 import { useForm } from 'react-hook-form';
 
@@ -12,6 +13,7 @@ const TeamTokenGenerator = () => {
     const [inputToken, setInputToken] = useState("");
     const [isTokenValidated, setIsTokenValidated] = useState(false);
     const [tokenError, setTokenError] = useState("");
+    const location = useLocation();
 
     const {
         register,
@@ -27,6 +29,20 @@ const TeamTokenGenerator = () => {
             setIsTokenValidated(true);
         }
     }, []);
+
+    useEffect(() => {
+        // Function to clear local storage
+        const clearLocalStorage = () => {
+          console.log('Route change detected or component unmounted');
+          localStorage.removeItem('teamToken');
+          localStorage.removeItem('savedTeams');
+        };
+    
+        // Clear local storage when route changes or component unmounts
+        return () => {
+          clearLocalStorage();
+        };
+      }, [location, isTokenValidated]);
 
 
     const onSubmit = async (data) => {
