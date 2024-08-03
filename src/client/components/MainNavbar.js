@@ -108,7 +108,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 </button>
                                 <div className="flex justify-center items-center w-full h-full">
                                     <img
-                                        src="/images/unitedkerala.jpeg"
+                                        src="/images/united.jpeg"
                                         alt="United Kerala Brisbane 7's Tournament"
                                         className="w-full h-auto max-h-[80vh] object-contain w-3/4 h-auto mx-auto block sm:w-full"
                                     />
