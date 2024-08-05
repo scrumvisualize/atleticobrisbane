@@ -550,13 +550,30 @@ app.post('/service/verifyResetCode', (req, res) => {
   }
 });
 
-/* Saving new password flow - yet to do */
+/* Saving new password via reset password flow */
 app.post('/service/resetPassword', async (req, res) => {
-  const { token, newPassword } = req.body;
-  // Example logic for password reset
-  const hashedPassword = await bcrypt.hash(newPassword, 10);
-  // Save the hashed password in the database
-  res.json({ success: true });
+
+  const { email, newPassword } = req.body;
+  
+  try {
+
+    // Find the user by email
+    const user = await UserModel.findOne({
+      where: { email: email }
+    });
+
+    // Check if the user exists
+    if (user) {
+      // Update the password
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await user.update({ password: hashedPassword });
+      res.json({ success: true });
+    } else {
+      console.log('User not found.');
+    }
+  } catch (error) {
+    console.error('Error updating password:', error);
+  }
 });
 
 /* For team generator generate token and save in database along with mobile number and name */

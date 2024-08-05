@@ -12,6 +12,7 @@ const ResetPassword = () => {
   const [newPassword, setNewPassword] = useState('');
   const [step, setStep] = useState(1); // 1: Enter Email, 2: Enter Token, 3: Enter Reset Code, 4: Enter New Password
   const [apiError, setApiError] = useState('');
+  const [apiSuccess, setApiSuccess] = useState('');
 
 
   const checkUserEmailSubmit = async () => {
@@ -67,9 +68,10 @@ const ResetPassword = () => {
 
     try {
       
-      const response = await axios.post(`${appUrl}/service/resetPassword`, { token, newPassword });
+      const response = await axios.post(`${appUrl}/service/resetPassword`, { email, newPassword });
+
       if (response.data.success) {
-        setApiError('Password reset successfully');
+        setApiSuccess('Password reset successfully');
       } else {
         setApiError('Failed to reset password');
       }
@@ -172,6 +174,7 @@ const ResetPassword = () => {
           </div>
           {errors.newPassword && <p className="text-red-500">{errors.newPassword.message}</p>}
           {apiError && <p className="text-red-500 mb-4">{apiError}</p>}
+          {apiSuccess && <p className="text-green-500 mb-4">{apiSuccess}</p>}
           <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200">
             Reset Password
           </button>

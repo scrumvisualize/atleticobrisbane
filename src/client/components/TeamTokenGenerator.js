@@ -10,6 +10,7 @@ const TeamTokenGenerator = () => {
 
     const [mobileNumber, setMobileNumber] = useState("");
     const [token, setToken] = useState("");
+    const [tokenAvailable, setTokenAvailable] = useState(false);
     const [inputToken, setInputToken] = useState("");
     const [isTokenValidated, setIsTokenValidated] = useState(false);
     const [tokenError, setTokenError] = useState("");
@@ -55,13 +56,14 @@ const TeamTokenGenerator = () => {
             const response = await axios.post(`${appUrl}/service/teamTokenGenerator`, { name, mobile: mobileNumber });
             const generatedToken = response.data.token;
             setToken(generatedToken);
+            setTokenAvailable(true);
         } catch (err) {
             setError("Failed to generate token. Please try again.");
         }
     };
 
     const validateToken = async () => {
-
+        
         if (!inputToken) {
             setError('inputToken', {
                 type: 'manual',
@@ -113,6 +115,7 @@ const TeamTokenGenerator = () => {
                                 })}
                                 placeholder="Enter your name"
                                 className="w-full p-2 border border-gray-300 rounded"
+                                disabled={tokenAvailable} 
                             />
                             {errors.name && <p className="text-red-500 mt-1">{errors.name.message}</p>}
                         </div>
@@ -133,6 +136,7 @@ const TeamTokenGenerator = () => {
                                 })}
                                 placeholder="Enter your mobile number"
                                 className="w-full p-2 border border-gray-300 rounded"
+                                disabled={tokenAvailable}
                             />
                             {errors.mobileNumber && <p className="text-red-500 mt-1">{errors.mobileNumber.message}</p>}
                         </div>
