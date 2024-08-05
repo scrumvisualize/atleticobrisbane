@@ -19,7 +19,7 @@ const ResetPassword = () => {
 
     try {
 
-      const response = await axios.post(`${appUrl}/api/verifyEmail`, { email });
+      const response = await axios.post(`${appUrl}/service/verifyEmail`, { email });
       if (response.data.valid) {
         setStep(2);
       } else {
@@ -35,7 +35,7 @@ const ResetPassword = () => {
 
     try {
 
-      const response = await axios.post(`${appUrl}/api/verifyToken`, { token });
+      const response = await axios.post(`${appUrl}/service/verifyToken`, { token });
       if (response.data.valid) {
         setStep(3);
       } else {
@@ -51,7 +51,7 @@ const ResetPassword = () => {
 
     try {
 
-      const response = await axios.post(`${appUrl}/api/verifyResetCode`, { resetCode });
+      const response = await axios.post(`${appUrl}/service/verifyResetCode`, { resetCode });
       if (response.data.valid) {
         setStep(4);
       } else {
@@ -67,7 +67,7 @@ const ResetPassword = () => {
 
     try {
       
-      const response = await axios.post(`${appUrl}/api/resetPassword`, { token, newPassword });
+      const response = await axios.post(`${appUrl}/service/resetPassword`, { token, newPassword });
       if (response.data.success) {
         setApiError('Password reset successfully');
       } else {
