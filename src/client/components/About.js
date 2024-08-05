@@ -19,7 +19,7 @@ const About = () => {
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">
                         <p className="text-[14px] text-[#3c3e40] leading-relaxed">
-                            Our journey has been supported and driven by key founders including <span className='font-semibold'>Prince Anand, Joji, Jibi, Sibin, Saljo and Jibu.</span> We are also grateful to <span className='font-semibold'>Bhowmic, Ajay, Varghese Vadakkan, Noby, Robin, and Jo Paul,</span>  who have been our proud supporters from the beginning.
+                            Our journey has been supported and driven by key founders including <span className='font-semibold'>Prince Anand, Joji, Jibi, Sibin, Saljo and Jibu.</span> We are also grateful to <span className='font-semibold'>Bhowmic, Ajay, Haju, Noby, Robin, Varghese Vadakkan and Jo Paul,</span>  who have been our proud supporters from the beginning.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-lg shadow-md">

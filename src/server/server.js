@@ -484,7 +484,7 @@ app.get('/service/getLatestToken', async (req, res) => {
 });
 
 
-app.post('/api/verifyEmail', async (req, res) => {
+app.post('/service/verifyEmail', async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -506,7 +506,7 @@ app.post('/api/verifyEmail', async (req, res) => {
 });
 
 /* API to verify the token for reset pp  */
-app.post('/api/verifyToken', async (req, res) => {
+app.post('/service/verifyToken', async (req, res) => {
 
   const { token } = req.body;
   try {
@@ -534,7 +534,7 @@ app.post('/api/verifyToken', async (req, res) => {
 });
 
 /* API to verify the reset code  */
-app.post('/api/verifyResetCode', (req, res) => {
+app.post('/service/verifyResetCode', (req, res) => {
   
   const { resetCode } = req.body;
   if (resetCode === sajuCode ) {
@@ -551,7 +551,7 @@ app.post('/api/verifyResetCode', (req, res) => {
 });
 
 /* Saving new password flow - yet to do */
-app.post('/api/resetPassword', async (req, res) => {
+app.post('/service/resetPassword', async (req, res) => {
   const { token, newPassword } = req.body;
   // Example logic for password reset
   const hashedPassword = await bcrypt.hash(newPassword, 10);
