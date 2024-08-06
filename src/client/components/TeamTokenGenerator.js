@@ -53,16 +53,7 @@ const TeamTokenGenerator = () => {
         setMobileNumber(mobileNumber);
 
         try {
-            //const response = await axios.post(`${appUrl}/service/teamTokenGenerator`, { name, mobile: mobileNumber });
-            const response = await axios.post(`${appUrl}/service/teamTokenGenerator`, 
-                { name, mobile: mobileNumber }, 
-                {
-                  headers: {
-                    'Content-Type': 'application/json',
-                    // Add other headers as necessary
-                  }
-                }
-              );
+            const response = await axios.post(`${appUrl}/service/teamTokenGenerator`, { name, mobile: mobileNumber });
             const generatedToken = response.data.token;
             setToken(generatedToken);
             setTokenAvailable(true);

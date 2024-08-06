@@ -54,7 +54,7 @@ const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 
 // CORS configuration
 app.use(cors({
-  origin: ['https://www.atleticobrisbane.com.au'], // Replace with your actual client domain
+  origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
   methods: 'GET,POST,PUT,DELETE',
   credentials: true
 }));
