@@ -68,10 +68,10 @@ const allowedOrigins = [
 // CORS options
 const corsOptions = {
   origin: function (origin, callback) {
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true); // Allow the origin
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS')); // Reject the origin
     }
   },
   methods: 'GET, POST, PUT, DELETE, OPTIONS',
