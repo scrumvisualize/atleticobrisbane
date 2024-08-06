@@ -53,38 +53,11 @@ const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 //app.use(cors());
 
 // CORS configuration
-// app.use(cors({
-//   origin: ['https://www.atleticobrisbane.com.au', 'https://atleticobrisbane.com.au'], // Replace with your actual client domain
-//   methods: 'GET,POST,PUT,DELETE',
-//   credentials: true
-// }));
-
-// Define allowed origins
-const allowedOrigins = [
-  'https://www.atleticobrisbane.com.au',
-  'https://atleticobrisbane.com.au'
-];
-
-// CORS options
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin) || !origin) {
-      callback(null, true); // Allow the origin
-    } else {
-      callback(new Error('Not allowed by CORS')); // Reject the origin
-    }
-  },
-  methods: 'GET, POST, PUT, DELETE, OPTIONS',
-  allowedHeaders: 'Content-Type, Authorization',
+app.use(cors({
+  origin: ['https://www.atleticobrisbane.com.au'], // Replace with your actual client domain
+  methods: 'GET,POST,PUT,DELETE',
   credentials: true
-};
-
-// Apply CORS middleware
-app.use(cors(corsOptions));
-
-// Handle preflight OPTIONS requests
-app.options('*', cors(corsOptions));
-
+}));
 
 
 app.use(bodyParser.json());
