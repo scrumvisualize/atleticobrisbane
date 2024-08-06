@@ -59,33 +59,31 @@ const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 //   credentials: true
 // }));
 
+// Define allowed origins
 const allowedOrigins = [
   'https://www.atleticobrisbane.com.au',
   'https://atleticobrisbane.com.au'
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
+// CORS options
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET, POST, PUT, DELETE, OPTIONS',
+  allowedHeaders: 'Content-Type, Authorization',
+  credentials: true
+};
 
-  // Set Access-Control-Allow-Origin header only if the origin is in the allowed list
-  // Check if the origin is in the allowed list
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  } else {
-    res.setHeader('Access-Control-Allow-Origin', ''); // or handle cases where origin is not allowed
-  }
-  
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
+// Apply CORS middleware
+app.use(cors(corsOptions));
 
-  // Handle preflight OPTIONS request
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
+// Handle preflight OPTIONS requests
+app.options('*', cors(corsOptions));
 
 
 
