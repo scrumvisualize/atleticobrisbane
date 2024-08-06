@@ -66,9 +66,15 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
+
+  // Set Access-Control-Allow-Origin header only if the origin is in the allowed list
+  // Check if the origin is in the allowed list
   if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', ''); // or handle cases where origin is not allowed
   }
+  
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -80,6 +86,7 @@ app.use((req, res, next) => {
 
   next();
 });
+
 
 
 app.use(bodyParser.json());
