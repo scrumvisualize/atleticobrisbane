@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
-const TopBanner = ({displayName, setDarkMode, isAuthenticated}) => {
+const TopBanner = ({ displayName, setDarkMode, isAuthenticated }) => {
 
     const [topbanner, setTopbanner] = useState([]);
     const [loginName, setLoginName] = useState('');
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isPulsing, setIsPulsing] = useState(false);
     const navigate = useNavigate();
+    const [daysRemaining, setDaysRemaining] = useState(0);
+
+    useEffect(() => {
+        const targetDate = new Date('2024-10-05');
+        const currentDate = new Date();
+        const timeDifference = targetDate - currentDate;
+        const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+        setDaysRemaining(days);
+    }, []);
 
     const data = [
         { src: "images/email-50.png", value: "atleticobne@gmail.com" },
@@ -18,7 +28,7 @@ const TopBanner = ({displayName, setDarkMode, isAuthenticated}) => {
         setTopbanner(data);
     }, []);
 
-    
+
     const toggleDarkMode = () => {
         setIsDarkMode(!isDarkMode);
         setDarkMode(!isDarkMode);  // Update the dark mode state in Index.js
@@ -28,8 +38,12 @@ const TopBanner = ({displayName, setDarkMode, isAuthenticated}) => {
         }, 2000); // Duration of the pulse animation
     };
 
-    return ( 
+    return (
         <div className="flex flex-wrap justify-between items-center bg-gradient-to-r from-blue-600 via-[#cb6ce6] to-[#cb6ce6] text-white p-2">
+            <div className='flex flex-wrap'>
+                <img src="images/clock.png" className="w-6" />
+                <p className='ml-2 text-base'>Only {daysRemaining} days left until the tournament!</p>
+            </div>
             <div className="flex-1 flex flex-wrap justify-center items-center">
                 {topbanner.map((item, index) => (
                     <div key={index} className="p-1 flex items-center">

@@ -218,7 +218,7 @@ const TeamGenerator = () => {
                       key={index}
                       className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
                     >
-                      <span className="text-gray-800 text-base font-medium">{player}</span>
+                      <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
                     </li>
                   ))}
                 </ul>
@@ -233,7 +233,7 @@ const TeamGenerator = () => {
                       key={index}
                       className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
                     >
-                      <span className="text-gray-800 text-base font-medium">{player}</span>
+                      <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
                     </li>
                   ))}
                 </ul>
@@ -249,7 +249,7 @@ const TeamGenerator = () => {
                         key={index}
                         className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
                       >
-                        <span className="text-gray-800 text-base font-medium">{player}</span>
+                        <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
                       </li>
                     ))}
                   </ul>
@@ -261,7 +261,7 @@ const TeamGenerator = () => {
                 <h2 className="text-xl font-bold mb-2">Substitutes</h2>
                 <ul className="list-disc pl-5 space-y-1">
                   {sortPlayers(subs).map((player, index) => (
-                    <li key={index} className="text-gray-800">{player}</li>
+                    <li key={index} className="text-gray-800">{player.replace(/-\w$/, '')}</li>
                   ))}
                 </ul>
               </div>

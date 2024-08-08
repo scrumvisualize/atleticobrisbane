@@ -10,6 +10,16 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const navigate = useNavigate();
     const location = useLocation();
     const [isTournamentOpen, setIsTournamentOpen] = useState(true);
+    const [daysRemaining, setDaysRemaining] = useState(0);
+
+    useEffect(() => {
+        const targetDate = new Date('2024-10-05');
+        const currentDate = new Date();
+        const timeDifference = targetDate - currentDate;
+        const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+        setDaysRemaining(days);
+    }, []);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -66,6 +76,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         <div className="flex-shrink-0 w-[calc(20%-30px)] mt-[-10px] ml-28">
                             <img className="w-full h-auto" src="images/discount.png" alt="Discount" />
                         </div>
+
                     </div>
                     <div>
                         <div className="pt-2">
