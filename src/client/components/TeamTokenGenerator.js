@@ -162,6 +162,7 @@ const TeamTokenGenerator = () => {
                                 />
                                 {errors.inputToken && <p className="text-red-500 mt-1">{errors.inputToken.message}</p>}
                                 <button
+                                    type="button"
                                     onClick={validateToken}
                                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full"
                                 >
