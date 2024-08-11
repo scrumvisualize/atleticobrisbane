@@ -15,6 +15,7 @@ const sponsorsSchema = require('../modals/sponsors');
 const announcementSchema = require('../modals/announcement');
 const resetTokenSchema = require('../modals/resetToken');
 const teamTokenGenSchema = require('../modals/teamTokenGenerator');
+const videoViewsSchema = require('../modals/videoViews');
 
 const cors = require('cors');
 
@@ -48,16 +49,17 @@ const SponsorModel = sponsorsSchema(sequelize, DataTypes);
 const AnnouncementModel = announcementSchema(sequelize, DataTypes);
 const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
 const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
+const VideoViewsModel = videoViewsSchema(sequelize, DataTypes);
 
 
-//app.use(cors());
+app.use(cors());
 
 // CORS configuration
-app.use(cors({
-  origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
-  methods: 'GET,POST,PUT,DELETE',
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
+//   methods: 'GET,POST,PUT,DELETE',
+//   credentials: true
+// }));
 
 
 app.use(bodyParser.json());
@@ -621,6 +623,43 @@ app.get('/service/validate-token', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Failed to get the token details' });
+  }
+});
+
+
+/* Update video views in home page and save to database */
+app.put('/service/saveVideoViews', async (req, res) => {
+  try {
+    const { videoname, views } = req.body;
+
+    const newViews = parseInt(views, 10);
+
+    const video = await VideoViewsModel.findOne({ where: { videoname } });
+
+    if (!video) {
+      var viewsData = { videoname: videoname, views: newViews };
+      await VideoViewsModel.create(viewsData);
+      res.status(200).json({ viewsData });
+    } else {
+      const updatedViews = parseInt(video.views) + newViews;
+      await VideoViewsModel.update({ views: updatedViews }, { where: { videoname } });
+      res.status(200).json({ videoname, views: updatedViews });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to add views ' });
+  }
+});
+
+
+/* Get service method will get the video views from the database */ 
+app.get('/service/allVideoViews', async (req, res) => {
+  try {
+    const videoViews = await VideoViewsModel.findAll({
+      attributes: ['id','videoname', 'views']
+    });
+    res.status(200).json({ videoViews });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
   }
 });
 
