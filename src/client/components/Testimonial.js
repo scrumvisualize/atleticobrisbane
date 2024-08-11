@@ -118,6 +118,7 @@ const Testimonials = () => {
                   className="w-full h-64 rounded-lg"
                   controls
                   src={video.src}
+                  type="video/mp4"
                   onPlay={() => handleVideoClick(index)}
                 >
                   Your browser does not support the video tag.
