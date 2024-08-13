@@ -43,7 +43,7 @@ const Banner = () => {
         {showDialog && <RegisterDialog openDialog={showDialog} onClose={closeDialog} />}
       </div>
 
-      <div id="fordesktop" className="flex h-[500px] mt-0 relative hidden md:flex">
+      <div id="fordesktop" className="flex h-[510px] mt-0 relative hidden md:flex">
         <div className="relative w-1/2" style={{ zIndex: 4 }}>
           <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col justify-center items-center text-center" style={{ clipPath: 'polygon(0 0, 100% 0, 70% 100%, 0% 100%)', background: 'linear-gradient(to right, rgba(40, 5, 97, 1.00), rgba(164, 64, 194, 1.00), rgba(220, 87, 169, 0.82))' }}>
             <div className="flex flex-wrap justify-between items-center">
@@ -54,8 +54,16 @@ const Banner = () => {
                 <img className="w-30 h-auto" src="images/arrow-f.png" alt="Arrow 2"/>
               </div>
             </div>
-            <h1 className="text-5xl font-bold text-white ml-[-30px] px-2 mb-4">Welcome to Atlético Brisbane</h1>
-            <span className="text-3xl font-semibold ml-[-40px] text-[#3cfffc]">a malayali soccer club <span className="text-3xl font-semibold text-[#3cfffc]">in Brisbane </span></span>
+            {/* <h1 className="text-5xl font-bold text-white ml-[-30px] px-2 mb-4">Welcome to Atlético Brisbane</h1>
+            <span className="text-3xl font-semibold ml-[-40px] text-[#3cfffc]">a malayali soccer club <span className="text-3xl font-semibold text-[#3cfffc]">in Brisbane </span></span> */}
+            <div className="max-w-5xl px-2"> 
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 leading-tight">
+                Welcome to Atlético Brisbane
+              </h1>
+              <span className="text-2xl lg:text-3xl font-semibold text-[#3cfffc]">
+                a malayali soccer club <span className="text-2xl lg:text-3xl font-semibold text-[#3cfffc]">in Brisbane </span>
+              </span>
+            </div>
             <ul className="mt-6 ml-[-150px]">
               <li>
                 <div className="flex items-start"><svg className="h-8 w-8 text-[#3cfffc]" width="20" height="20" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><path d="M5 12l5 5l10 -10"></path></svg><span className="ml-2 text-white">Community Engagement</span>
@@ -76,7 +84,7 @@ const Banner = () => {
             </ul>
             <button onClick={registerDialog} className="hidden hover:bg-[#c2192a] md:block ml-[-150px] px-4 py-2 bg-[#fc1930] text-white font-semibold border border-2 border-white rounded-full shadow mt-2">Register</button>
             <p className="text-base font-semibold text-[#3cfffc] ml-[-100px] mt-4 mb-2">Please register and join us for weekly games</p>
-            <p className="text-[12px] font-semibold text-white ml-[-150px] underline mt-0 mb-2">www.atleticobrisbane.com.au</p>
+            <p className="text-[12px] font-semibold text-white ml-[-150px] underline mt-0 mb-4">www.atleticobrisbane.com.au</p>
           </div>
         </div>
         <div className="relative w-1/2 -ml-[194px]" style={{ zIndex: 3 }}>

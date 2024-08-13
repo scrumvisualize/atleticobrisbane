@@ -10,12 +10,14 @@ const AtleticoImageSlider = () => {
     const slides = [
 
         { id: 1, src: 'images/ab-slide-1.JPG', text: 'Masters Squad' },
-        { id: 2, src: 'images/ab-slider-2.JPG', text: 'Curious Crowd' },
-        { id: 3, src: 'images/juniors.JPG', text: 'Our Junior Boys' },
-        { id: 4, src: 'images/ab-slider-3.JPG', text: 'Mens Squad' },
-        { id: 5, src: 'images/Sydney.jpeg', text: 'At Sydney' },
-        { id: 6, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
-        { id: 7, src: 'images/training.jpeg', text: 'Training' },
+        { id: 2, src: 'images/ab-slider-3.JPG', text: 'Mens Squad' },
+        { id: 3, src: 'images/menswinning.png', text: 'Well Done Boys' },
+        { id: 4, src: 'images/mensrand.png', text: 'Third Place' },
+        { id: 5, src: 'images/juniors.JPG', text: 'Our Junior Boys' },
+        { id: 6, src: 'images/Sydney.jpeg', text: 'At Sydney' },
+        { id: 7, src: 'images/runnersup.JPG', text: 'Runners Up 2024' },
+        { id: 8, src: 'images/ab-slider-2.JPG', text: 'Curious Crowd' },
+        { id: 9, src: 'images/training.jpeg', text: 'Training' },
     ];
 
     const [loading, setLoading] = useState(true);
@@ -57,7 +59,7 @@ const AtleticoImageSlider = () => {
     };
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 md:ml-0 gap-2 mt-2">
             <div className="relative w-full h-80">
                 {
                     loading && (

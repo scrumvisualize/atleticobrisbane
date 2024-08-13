@@ -123,3 +123,7 @@ code {
     transform: rotate(360deg);
   }
 }
+
+.greyscale {
+  filter: grayscale(100%);
+}

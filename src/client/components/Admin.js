@@ -205,7 +205,7 @@ const Admin = () => {
                                             {searchResults.map((item) => (
                                                 <div
                                                     key={item.id}
-                                                    className={`flex flex-col md:flex-row items-center border-b border-gray-200 rounded pb-2 ${item.status === 'accepted' ? 'bg-green-100' : item.status === 'declined' ? 'bg-red-100' : ''}`}
+                                                    className={`flex flex-col md:flex-row items-center border-b border-gray-200 rounded pb-2 ${item.status === 'accepted' ? 'bg-green-100' : item.status === 'declined' ? 'bg-gray-200 italic' : ''}`}
                                                 >
                                                     <img src={item.photo.replace(/^\/root\/atleticobrisbane\/public/, '')} alt="Player" className="w-12 h-12 rounded-full ml-2 mr-2" />
                                                     <div className="flex-1">
@@ -276,6 +276,7 @@ const Admin = () => {
                                     </div>
                                 </div>
                                 <div className="md:col-span-1">
+                                <div className="bg-white p-3 rounded-lg shadow-md mb-2">
                                     <div className="text-xl text-[#002d75] text-center font-semibold">
                                         <h1>Manage Sponsors</h1>
                                     </div>
@@ -294,12 +295,12 @@ const Admin = () => {
                                         showSponsorDialog && (
                                             <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
                                         )}
-                                    <div className="space-y-1 px-2 h-[335px] overflow-y-auto">
+                                    <div className="space-y-1 px-2 h-[403px] overflow-y-auto">
                                         {
                                             sponsorsList.map((item, index) => (
                                                 <div key={index} className="border-2 border-gray-300 rounded-lg p-2 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between mt-12">
-                                                    <h1 className="text-xs font-semibold">{item.header}</h1>
-                                                    <a href={item.link} className="text-xs text-[#25afe6] hover:underline mt-2 md:mt-0">{item.link}</a>
+                                                    <h1 className="text-[10px] font-normal">{item.header}</h1>
+                                                    <a href={item.link} className="text-[10px] text-[#25afe6] hover:underline mt-2 md:mt-0">{item.link}</a>
                                                     <div className="flex mt-2 md:mt-0">
                                                         <button
                                                             onClick={() => handleEdit(item)}
@@ -316,6 +317,7 @@ const Admin = () => {
                                                     </div>
                                                 </div>
                                             ))}
+                                    </div>
                                     </div>
                                 </div>
                             </div>

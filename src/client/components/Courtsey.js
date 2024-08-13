@@ -14,7 +14,7 @@ const Courtesy = () => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
@@ -30,23 +30,24 @@ const Courtesy = () => {
     };
 
     return (
-        <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-100 to-pink-100">
-            <h1 className="text-3xl font-semibold mb-4 text-center text-gradient">
-                Sincere Thanks To Our Great Supporters
-            </h1>
-            <div className="w-96 h-48 mb-8">
-                <Slider {...settings}>
-                    {images.map((image, index) => (
-                        <div key={index} className="flex justify-center items-center">
-                            <img
-                                src={image.src}
-                                alt={`Slide ${index}`}
-                                className="w-full h-full object-contain border-4 border-gray-300 rounded-lg"
-                                style={{ height: '186px', width: '400px' }}
-                            />
-                        </div>
-                    ))}
-                </Slider>
+        <div className="bg-gradient-to-r from-blue-100 to-pink-100 py-4 px-2">
+            <div className="max-w-[800px] mx-auto mb-4">
+                <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 text-center text-gradient">
+                    Sincere Thanks To Our Great Supporters
+                </h1>
+                <div className="w-full max-w-[800px] aspect-[2/1] mt-2">
+                    <Slider {...settings}>
+                        {images.map((image, index) => (
+                            <div key={index} className="flex justify-center items-center">
+                                <img
+                                    src={image.src}
+                                    alt={`Slide ${index}`}
+                                    className="w-full h-[400px] object-contain border-4 border-gray-300 rounded-lg"
+                                />
+                            </div>
+                        ))}
+                    </Slider>
+                </div>
             </div>
         </div>
     );

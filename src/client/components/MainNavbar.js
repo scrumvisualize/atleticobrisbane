@@ -64,7 +64,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         <img
                             src="images/ablogo.png"
                             alt="Logo"
-                            className="h-16 mr-2"
+                            className="h-20 mr-2"
                             onClick={() => navigate('/')}
                         />
                         <div className="text-[#6232a8] font-semibold flex flex-col items-center md:flex-col md:items-start">

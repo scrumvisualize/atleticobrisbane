@@ -26,16 +26,19 @@ const initialVideos = [
   {
     title: 'Shyju and Joshua',
     src: 'images/abvideo.mp4',
+    poster: 'images/videop2.PNG',
     views: 0,
   },
   {
     title: 'Prakash and Gautham',
-    src: 'images/abvideomain.mp4',
+    src: 'images/mensthird.mp4',
+    poster: 'images/cover2.PNG',
     views: 0
   },
   {
     title: 'Jipson and Josh',
     url: 'https://www.youtube.com/embed/tgbNymZ7vqY',
+    poster: '',
     views: 0,
   },
 ];
@@ -106,7 +109,7 @@ const Testimonials = () => {
             </div>
           ))}
         </div>
-        <h2 className="text-3xl font-bold text-center my-8 text-gradient">Latest Catch Up With Atlético People</h2>
+        <h2 className="text-3xl font-bold text-center my-8 text-gradient">Catch Up With Atlético People</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {videos.map((video, index) => {
             const fileName = video.src ? video.src.replace(/^images\//, '') : '';
@@ -114,15 +117,18 @@ const Testimonials = () => {
 
             return (
               <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
-                <video
-                  className="w-full h-64 rounded-lg"
-                  controls
-                  src={video.src}
-                  type="video/mp4"
-                  onPlay={() => handleVideoClick(index)}
-                >
-                  Your browser does not support the video tag.
-                </video>
+                <div className="relative w-full" style={{ paddingTop: '56.25%' }}> {/* 16:9 aspect ratio */}
+                  <video
+                    className="absolute top-0 left-0 w-full h-full rounded-lg object-cover object-center"
+                    controls
+                    src={video.src}
+                    type="video/mp4"
+                    poster={video.poster}
+                    onPlay={() => handleVideoClick(index)}
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
                 <h3 className="text-base font-bold text-gray-900 text-center mt-4 text-gradient">Interview with {video.title}</h3>
                 <div className="flex items-center justify-center text-center p-2 mt-2 w-48 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg shadow-lg animate-pulse mx-auto">
                   <h1 className="text-xl font-bold text-white">Coming Soon!</h1>
