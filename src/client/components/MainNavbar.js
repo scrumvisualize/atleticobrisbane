@@ -161,13 +161,13 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                     </div>
                     <div className="hidden lg:flex items-center space-x-4">
                         <a
-                            className="font-semibold linegrow"
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/')}
                         >
                             HOME
                         </a>
                         <a
-                            className="font-semibold linegrow"
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/about')}
                         >
                             ABOUT
@@ -197,19 +197,19 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             )}
                         </div>
                         <a
-                            className="font-semibold linegrow"
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/teamtokengenerator')}
                         >
                             TEAM GENERATOR
                         </a>
                         <a
-                            className="font-semibold linegrow"
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/sponsors')}
                         >
                             SPONSORS
                         </a>
                         <a
-                            className="font-semibold linegrow"
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/contact')}
                         >
                             CONTACT
@@ -217,14 +217,14 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         {isAuthenticated && (
                             <>
                                 <a
-                                    className="font-semibold linegrow"
+                                    className="font-semibold linegrow cursor-pointer"
                                     onClick={() => navigate('/admin')}
                                 >
                                     ADMIN
                                 </a>
 
                                 <a
-                                    className="font-semibold"
+                                    className="font-semibold cursor-pointer"
                                     onClick={handleLogout}
                                 >
                                     <img className="w-6" src="/images/logout.png" alt="Logout" />
@@ -237,13 +237,13 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                     <div className="lg:hidden bg-[#f5f7f7] p-2 mb-2">
                         <div className="flex flex-col space-y-2">
                             <a   
-                                className="font-semibold linegrow"
+                                className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/')}
                             >
                                 HOME
                             </a>
                             <a
-                                className="font-semibold linegrow"
+                                className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/about')}
                             >
                                 ABOUT
@@ -273,19 +273,19 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             )}
                         </div>
                             <a
-                                className="font-semibold linegrow"
+                                className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/teamtokengenerator')}
                             >
                                 TEAM GENERATOR
                             </a>
                             <a                  
-                                className="font-semibold linegrow"
+                                className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/sponsors')}
                             >
                                 SPONSORS
                             </a>
                             <a
-                                className="font-semibold linegrow"
+                                className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/contact')}
                             >
                                 CONTACT
@@ -293,13 +293,13 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             {isAuthenticated && (
                             <>
                                 <a
-                                    className="font-semibold linegrow"
+                                    className="font-semibold linegrow cursor-pointer"
                                     onClick={() => navigate('/admin')}
                                 >
                                     ADMIN
                                 </a>
                                 <a
-                                    className="font-semibold"
+                                    className="font-semibold cursor-pointer"
                                     onClick={handleLogout}
                                 >
                                     <img className="w-6" src="/images/logout.png" alt="Logout" />

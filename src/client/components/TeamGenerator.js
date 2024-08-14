@@ -175,11 +175,14 @@ const TeamGenerator = () => {
       </div>
 
       <div className="w-full max-w-4xl mx-auto p-4">
+        <p className="text-sm text-gray-600 mb-2">
+          <strong>Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
+        </p>
         <textarea
           value={input}
           onChange={handleInputChange}
           className="w-full h-40 p-2 border rounded bg-white shadow-sm"
-          placeholder="Enter player details. Format: Name-Position-Level (e.g., John-GK-A, Mark-D-B). Each player on a new line."
+          placeholder="Enter player details..."
         />
         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1">

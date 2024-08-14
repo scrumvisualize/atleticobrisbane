@@ -276,48 +276,56 @@ const Admin = () => {
                                     </div>
                                 </div>
                                 <div className="md:col-span-1">
-                                <div className="bg-white p-3 rounded-lg shadow-md mb-2">
-                                    <div className="text-xl text-[#002d75] text-center font-semibold">
-                                        <h1>Manage Sponsors</h1>
-                                    </div>
-                                    {showStatus && (
-                                        <div className="bg-[#a7f2d8] text-[#313233] px-4 py-2 rounded-md mt-4 animate-fadeOut">
-                                            Player status updated successfully !
+                                    <div className="bg-white p-3 rounded-lg shadow-md mb-2">
+                                        <div className="text-xl text-[#002d75] text-center font-semibold">
+                                            <h1>Manage Sponsors</h1>
                                         </div>
-                                    )}
-                                    {deleteStatus && (
-                                        <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
-                                            Sponsor deleted successfully !
-                                        </div>
-                                    )}
-                                    <button onClick={sponsorDialog} className="md:block relative top-[3px] md:top-[20px] left-24 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow-lg">Add Sponsor</button>
-                                    {
-                                        showSponsorDialog && (
-                                            <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
+                                        {showStatus && (
+                                            <div className="bg-[#a7f2d8] text-[#313233] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                                                Player status updated successfully !
+                                            </div>
                                         )}
-                                    <div className="space-y-1 px-2 h-[403px] overflow-y-auto">
+                                        {deleteStatus && (
+                                            <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                                                Sponsor deleted successfully !
+                                            </div>
+                                        )}
+                                        {/* <button onClick={sponsorDialog} className="md:block relative top-[5px] md:top-[20px] left-24 md:left-40 md:bottom-12 md:right-12 lg:bottom-16 lg:right-16 px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow-lg">Add Sponsor</button> */}
+                                        <div className="flex justify-center my-2">
+                                            <button
+                                                onClick={sponsorDialog}
+                                                className="px-4 py-2 bg-[#25afe6] text-white font-semibold border border-white rounded-full shadow-lg"
+                                            >
+                                                Add Sponsor
+                                            </button>
+                                        </div>
                                         {
-                                            sponsorsList.map((item, index) => (
-                                                <div key={index} className="border-2 border-gray-300 rounded-lg p-2 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between mt-12">
-                                                    <h1 className="text-[10px] font-normal">{item.header}</h1>
-                                                    <a href={item.link} className="text-[10px] text-[#25afe6] hover:underline mt-2 md:mt-0">{item.link}</a>
-                                                    <div className="flex mt-2 md:mt-0">
-                                                        <button
-                                                            onClick={() => handleEdit(item)}
-                                                            className="px-3 py-2 ml-2 bg-[#25afe6] text-white font-semibold rounded-md shadow mr-2"
-                                                        >
-                                                            Edit
-                                                        </button>
-                                                        <button
-                                                            onClick={() => handleDeleteSponsor(item)}
-                                                            className="px-3 py-2 bg-red-500 text-white font-semibold rounded-md shadow"
-                                                        >
-                                                            Delete
-                                                        </button>
+                                            showSponsorDialog && (
+                                                <SponsorDialog openDialog={showSponsorDialog} onClose={closeDialog} sponsor={currentSponsor} />
+                                            )}
+                                        <div className="space-y-1 px-2 h-[403px] overflow-y-auto">
+                                            {
+                                                sponsorsList.map((item, index) => (
+                                                    <div key={index} className="border-2 border-gray-300 rounded-lg p-2 shadow-xs flex flex-col md:flex-row md:items-center md:justify-between mt-12">
+                                                        <h1 className="text-[10px] font-normal">{item.header}</h1>
+                                                        <a href={item.link} className="text-[10px] text-[#25afe6] hover:underline mt-2 md:mt-0">{item.link}</a>
+                                                        <div className="flex mt-2 md:mt-0">
+                                                            <button
+                                                                onClick={() => handleEdit(item)}
+                                                                className="px-3 py-2 ml-2 bg-[#25afe6] text-white font-semibold rounded-md shadow mr-2"
+                                                            >
+                                                                Edit
+                                                            </button>
+                                                            <button
+                                                                onClick={() => handleDeleteSponsor(item)}
+                                                                className="px-3 py-2 bg-red-500 text-white font-semibold rounded-md shadow"
+                                                            >
+                                                                Delete
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ))}
-                                    </div>
+                                                ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

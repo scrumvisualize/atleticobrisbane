@@ -105,8 +105,8 @@ const TeamTokenGenerator = () => {
                                 {...register('name', {
                                     required: 'Name is required !',
                                     pattern: {
-                                        value: /^[A-Za-z]+$/,
-                                        message: 'Name field supports alphabetic characters only !'
+                                        value: /^[A-Za-z ]+$/,
+                                        message: 'Name field supports alphabetic characters and spaces only !'
                                     },
                                     minLength: {
                                         value: 3,

@@ -29,7 +29,7 @@ const SponsorList = ({darkMode}) => {
                     sponsorsList.map((item, index) => (
                         <div key={index}>
                             <a href={item.link} className="flex flex-col items-center px-2 py-4">
-                                <img src={`${item.logo.replace(/^\/root\/atleticobrisbane\/public/, '')}`} className="w-[150px] h-[140px] rounded-lg" alt="Image 1" />
+                                <img src={`${item.logo.replace(/^(\.\.\\)+public\\/, '')}`} className="w-[210px] h-[190px] rounded-lg" alt="Image 1" />
                             </a>
                             <div className="bottom-0 w-full">
                                 <div className={`text-xs text-[#002d75] text-center font-semibold ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>{item.header}</div>

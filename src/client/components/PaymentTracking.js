@@ -69,7 +69,7 @@ const PaymentTracking = ({}) => {
 
     return (
         <div className="overflow-x-auto rounded-lg">
-            <table className="min-w-full bg-white border border-gray-200">
+            <table className="min-w-full bg-white border border-gray-200 md:mt-6 md:mb-10 rounded-lg">
                 <thead className="bg-blue-800 text-white">
                     <tr>
                         <th className="px-4 py-2 sm:px-6 sm:py-3 border border-gray-200 text-left text-white font-semibold hidden md:table-cell">

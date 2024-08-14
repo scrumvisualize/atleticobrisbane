@@ -70,10 +70,10 @@ const AtleticoImageSlider = () => {
                         </div>
                     )}
                 <div onClick={handleLeftArrowClick} className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10 cursor-pointer mt-2 md:mt-20">
-                    <img src="images/arrow-left.png" className="w-12 h-12 md:w-20 md:h-20"></img>
+                    <img src="images/arrow-left.png" className="w-8 h-8 md:w-20 md:h-20"></img>
                 </div>
-                <div onClick={handleRightArrowClick} className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer mt-2 md:mt-20">
-                    <img src="images/arrow-right.png" className="w-12 h-12 md:w-20 md:h-20"></img>
+                <div onClick={handleRightArrowClick} className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10 cursor-pointer mt-1 md:mt-20">
+                    <img src="images/arrow-right.png" className="w-8 h-8 md:w-20 md:h-20"></img>
                 </div>
                 <Slider ref={sliderRef} {...settings}>
                     {slideImages.map((item, index) => (
@@ -84,10 +84,19 @@ const AtleticoImageSlider = () => {
                                 onLoad={handleImageLoad}
                                 className="w-full h-full object-cover rounded"
                             />
-                            <div className="absolute overlay-text rounded-lg mt-4 md:mt-2 py-[10px]">
+                            {/* <div className="absolute overlay-text rounded-lg mt-4 md:mt-2 py-[10px]">
                                 <div className="w-full h-full flex items-center justify-center">
                                     <div className="absolute inset-x-0 bottom-0 mb-2 md:mb-0 md:relative md:bottom-auto text-base text-center p-2 ml-[-20px]">
                                         {item.text}
+                                    </div>
+                                </div>
+                            </div> */}
+                            <div className="relative h-10 rounded-lg mt-2 md:mt-2">
+                                <div className="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-r from-blue-500 to-purple-500 overlay-text rounded-lg flex items-center justify-center">
+                                    <div className="absolute inset-x-0 bottom-[4px] h-[calc(100%-4px)] flex items-center justify-center">
+                                        <p className="text-center text-sm sm:text-base md:text-lg lg:text-xl px-2 line-clamp-2">
+                                            {item.text}
+                                        </p>
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@ const dataArray = [
     color: "#ff66c4" 
   },
   {
-    range: "50",
+    range: "51",
     text: "Total Games",
     color: "#73d957" 
   },
