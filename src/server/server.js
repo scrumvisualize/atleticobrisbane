@@ -52,14 +52,14 @@ const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 const VideoViewsModel = videoViewsSchema(sequelize, DataTypes);
 
 
-app.use(cors());
+//app.use(cors());
 
 // CORS configuration
-// app.use(cors({
-//   origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
-//   methods: 'GET,POST,PUT,DELETE',
-//   credentials: true
-// }));
+app.use(cors({
+  origin: 'https://www.atleticobrisbane.com.au', // Replace with your actual client domain
+  methods: 'GET,POST,PUT,DELETE',
+  credentials: true
+}));
 
 
 app.use(bodyParser.json());
