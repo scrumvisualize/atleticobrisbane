@@ -122,7 +122,7 @@ const TeamDistribution = () => {
                     {
                         name: "Open",
                         children: [
-                            { name: "Jithu", image: "images/profilePhoto-1720052869162.png" },
+                            { name: "Jithu", image: "images/profilePhoto-jithu.png" },
                             { name: "Remin" },
                             { name: "Joseph" },
                             { name: "Arun", image: "images/profilePhoto-1721355636391.png" },
@@ -137,7 +137,7 @@ const TeamDistribution = () => {
                         name: "Above 40",
                         children: [
 
-                            { name: "Jibi", image: "images/profilePhoto-1719750787979.png" },
+                            { name: "Jibi", image: "images/profilePhoto-jibi.png" },
                             { name: "Joji", image: "images/profilePhoto-1720012131829.png" },
                             { name: "Jinto" },
                             { name: "Aby" },
@@ -176,11 +176,11 @@ const TeamDistribution = () => {
                     {
                         name: "Open",
                         children: [
-                            { name: "Sharan", image: "images/profilePhoto-1719711119811.jpeg" },
+                            { name: "Sharan", image: "images/profilePhoto-sharan.jpeg" },
                             { name: "Abhiram" },
-                            { name: "Rejin", image: "images/profilePhoto-1720673589791.png" },
+                            { name: "Rejin", image: "images/profilePhoto-rejin.png" },
                             { name: "Elon" },
-                            { name: "Makvin", image: "images/profilePhoto-1719796632252.png" },
+                            { name: "Makvin", image: "images/profilePhoto-mak.png" },
                             { name: "Atty" },
                             { name: "Amal Stephen" },
                             { name: "Sayu" }
@@ -223,7 +223,7 @@ const TeamDistribution = () => {
                     {
                         name: "Open",
                         children: [
-                            { name: "Kiran", image: "images/profilePhoto-1719797305891.png" },
+                            { name: "Kiran", image: "images/profilePhoto-kiran.png" },
                             { name: "Elias" },
                             { name: "Dwyane" },
                             { name: "Vineeth" },
