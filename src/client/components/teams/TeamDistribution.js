@@ -18,10 +18,10 @@ const CustomNode = ({ nodeDatum, toggleNode }) => {
             {level === 0 && playerImage && (
                 <image
                     href={playerImage}
-                    x="-25" // Adjust position to center image above the rectangle
-                    y="-67" // Adjust position to place image above the rectangle
-                    width="50" // Image width
-                    height="50" // Image height
+                    x="-20" // Adjust position to center image above the rectangle
+                    y="-55" // Adjust position to place image above the rectangle
+                    width="40" // Image width
+                    height="40" // Image height
                     preserveAspectRatio="xMidYMid slice"
                 />
             )}
@@ -86,9 +86,9 @@ const TeamHierarchy = ({ data }) => {
                 <Tree
                     data={data}
                     orientation="vertical"
-                    translate={isMobile ? { x: window.innerWidth / 2, y: 40 } : { x: 750, y: 60 }}
-                    nodeSize={isMobile ? { x: 100, y: 180 } : { x: 140, y: 140 }}
-                    separation={isMobile ? { siblings: 1.2, nonSiblings: 4 } : { siblings: 1, nonSiblings: 1.5 }} // Increase nonSiblings value for more gap
+                    translate={isMobile ? { x: window.innerWidth / 2, y: 50 } : { x: 750, y: 60 }}
+                    nodeSize={isMobile ? { x: 110, y: 200 } : { x: 140, y: 140 }}
+                    separation={isMobile ? { siblings: 1, nonSiblings: 4 } : { siblings: 1, nonSiblings: 1.5 }} // Increase nonSiblings value for more gap
                     initialDepth={1}
                     svgProps={{ width: '100%', height: '100%', margin: '4px' }}
                     renderCustomNodeElement={({ nodeDatum, toggleNode }) => (

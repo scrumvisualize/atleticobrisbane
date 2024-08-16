@@ -29,7 +29,7 @@ const WeeklyGames = () => {
             </div>
           </div>
         </div>
-        <div className="relative bg-cover bg-no-repeat rounded-lg" style={{ backgroundImage: 'url("images/weekly.PNG")', height: '500px' }}>
+        <div className="relative bg-cover bg-no-repeat rounded-lg" style={{ backgroundImage: 'url("images/weekly1.PNG")', height: '495px' }}>
         </div>
       </div>
     );
