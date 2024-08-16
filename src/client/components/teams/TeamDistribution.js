@@ -86,14 +86,10 @@ const TeamHierarchy = ({ data }) => {
                 <Tree
                     data={data}
                     orientation="vertical"
-                    // translate={{ x: 750, y: 60 }} // Adjust translate as needed
-                    // nodeSize={{ x: 140, y: 140 }} // Adjust node size as needed
-                    // separation={{ siblings: 1, nonSiblings: 1.5 }} // Adjust separation as needed
                     translate={isMobile ? { x: window.innerWidth / 2, y: 40 } : { x: 750, y: 60 }}
-                    nodeSize={isMobile ? { x: 100, y: 100 } : { x: 140, y: 140 }}
-                    separation={isMobile ? { siblings: 1, nonSiblings: 2 } : { siblings: 1, nonSiblings: 1.5 }}
+                    nodeSize={isMobile ? { x: 100, y: 180 } : { x: 140, y: 140 }}
+                    separation={isMobile ? { siblings: 1.2, nonSiblings: 4 } : { siblings: 1, nonSiblings: 1.5 }} // Increase nonSiblings value for more gap
                     initialDepth={1}
-                    //svgProps={{ viewBox: '0 0 1200 800', preserveAspectRatio: 'xMidYMid meet' }}
                     svgProps={{ width: '100%', height: '100%', margin: '4px' }}
                     renderCustomNodeElement={({ nodeDatum, toggleNode }) => (
                         <CustomNode nodeDatum={nodeDatum} toggleNode={toggleNode} />
@@ -265,7 +261,7 @@ const TeamDistribution = () => {
     };
     return (
         <div className='bg-gradient-to-r from-blue-100 to-pink-100 py-2' style={{ width: '100%', height: '100vh', backgroundColor: '#f0f0f0' }}>
-            <h1 className='text-center text-2xl font-bold mb-4 mt-0 text-gradient'>Team Wise Hierarchy</h1>
+            <h1 className='text-center text-2xl font-bold mb-4 mt-0 text-gradient'>Team Distribution Tree</h1>
             <TeamHierarchy data={teamData} />
         </div>
     );

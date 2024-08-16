@@ -98,7 +98,7 @@ const AtleticoUpdates = ({darkMode}) => {
 
     return (
         <div className='bg-gradient-to-r from-blue-100 to-pink-100'>
-            <h1 className={`p-2 text-2xl text-[#002d75] font-bold mt-0 ${darkMode ? 'text-white' : 'text-[#002d75]'}`}>Latest Updates</h1>
+            <h1 className={`p-2 text-2xl text-[#002d75] font-bold mt-0 ${darkMode ? 'text-[#0c183b]' : 'text-[#002d75]'}`}>Latest Updates</h1>
             <div className="p-2 py-8 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2 mb-8">
                 {announcementList.slice(0, visibleItems).map(update => (
                     <GeneralUpdate
