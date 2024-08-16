@@ -23,6 +23,18 @@ const TeamGenerator = () => {
     return input.replace(/[^a-zA-Z0-9-.\n\s]/g, '');
   };
 
+  // const sanitizeInput = (input) => {
+  //   return input.split('\n').map(line => {
+  //     // Regex to validate the format: Name-Position-Tier (e.g., Joji-PP-A)
+  //     if (/^[a-zA-Z0-9]+-(GK|D|M|F)-(A|B|C|D)$/.test(line.trim())) {
+  //       return line.trim(); // Valid player format
+  //     } else if (/^[a-zA-Z0-9.\s-]+$/.test(line.trim())) {
+  //       return line.trim(); // General text (allow alphanumeric, periods, hyphens, spaces)
+  //     }
+  //     return ''; // Invalid input
+  //   }).join('\n');
+  // };
+  
   const handleInputChange = (e) => {
     const sanitizedInput = sanitizeInput(e.target.value);
     setInput(sanitizedInput);

@@ -18,6 +18,9 @@ const TeamsDropdownMenu = ({ toggleDropdown }) => {
                 <li>
                     <a onClick={() => navigate('/u12squad')} className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">U12 Boys</a>
                 </li>
+                <li>
+                    <a onClick={() => navigate('/teamdistribution')} className="block px-2 py-2 text-gray-800 hover:bg-gray-200 hover:text-blue-700">Team Tree</a>
+                </li>
             </ul>
         </div>
     );

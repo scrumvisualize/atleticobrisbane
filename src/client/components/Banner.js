@@ -5,7 +5,7 @@ const Banner = () => {
   const [showDialog, setShowDialog] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
-  const images = ['images/ab-slide-1.JPG', 'images/ab-slider-3.JPG', 'images/juniors.JPG'];
+  const images = ['images/ab-slide-1.JPG', 'images/menswinning.png', 'images/ab-slider-3.JPG', 'images/juniors.JPG'];
 
 
   useEffect(() => {
@@ -90,7 +90,7 @@ const Banner = () => {
         <div className="relative w-1/2 -ml-[194px]" style={{ zIndex: 3 }}>
           <div className="absolute scale-10 top-0 left-0 right-0 bottom-0 bg-cover bg-contain bg-no-repeat animate-slide" 
             style={{ 
-            clipPath: 'polygon(30% 0, 100% 0, 80% 100%, 0 100%)', 
+            clipPath: 'polygon(30% 0, 100% 0, 85% 100%, 0 100%)', 
              backgroundImage: `url(${images[currentImage]})`
             }}
           >

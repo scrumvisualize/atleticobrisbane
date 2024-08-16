@@ -10,6 +10,7 @@ import Contact from "./client/components/Contact";
 import MensSquad from "./client/components/teams/MensSquad";
 import U16Squad from "./client/components/teams/U16Squad";
 import U12Squad from "./client/components/teams/U12Squad";
+import TeamDistribution from "./client/components/teams/TeamDistribution";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
@@ -51,6 +52,7 @@ const App = () => {
         <Route path="/u16squad" element={<U16Squad />} />
         <Route path="/u12squad" element={<U12Squad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
+        <Route path="/teamdistribution" element={<TeamDistribution />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/teamtokengenerator" element={<TeamTokenGenerator />} />
         <Route path="/resetPassword" element={<ResetPassword/>} />
