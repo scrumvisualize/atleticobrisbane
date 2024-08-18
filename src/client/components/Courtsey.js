@@ -32,7 +32,7 @@ const Courtesy = () => {
     return (
         <div className="bg-gradient-to-r from-blue-100 to-pink-100 py-4 px-2">
             <div className="max-w-[800px] mx-auto mb-4">
-                <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 text-center text-gradient">
+                <h1 className="text-xl sm:text-xl md:text-2xl font-semibold mb-4 text-center text-gradient">
                     Sincere Thanks To Our Great Supporters
                 </h1>
                 <div className="w-full max-w-[800px] aspect-[2/1] mt-2">
