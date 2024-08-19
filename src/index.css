@@ -127,3 +127,17 @@ code {
 .greyscale {
   filter: grayscale(100%);
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-fadeOut {
+  animation: fadeOut 3s forwards;
+  transition: opacity 3s ease-in-out;
+}

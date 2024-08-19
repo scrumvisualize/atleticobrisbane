@@ -71,8 +71,8 @@ const RegisterDialog = ({ onClose }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
       <div className="bg-white p-6 rounded-lg shadow-xl">
-        <h2 className="text-lg font-semibold mb-4">Register Player Details</h2>
-        <form onSubmit={handleSubmit(onSubmit)} className="max-w-lg mx-auto" encType="multipart/form-data">
+        <h2 className="text-lg font-semibold mb-4 text-gradient">Register Player Details</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md mx-auto px-4 sm:px-4 lg:px-8 py-4" encType="multipart/form-data">
           <input
             type="text"
             name="name"

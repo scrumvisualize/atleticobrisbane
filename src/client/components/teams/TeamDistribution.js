@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree';
+import PopupOverlay from './PopupOverlay'; 
 
 // Custom Node Component
 const CustomNode = ({ nodeDatum, toggleNode }) => {
-    const level = nodeDatum.__rd3t.depth !== undefined ? nodeDatum.__rd3t.depth : 0; // Default to level 0 if depth is undefined
 
+    const level = nodeDatum.__rd3t.depth !== undefined ? nodeDatum.__rd3t.depth : 0; // Default to level 0 if depth is undefined
     const colors = ['#be6ded', '#91f2b0', '#faf8cd', '#d7f2a7', '#cded95'];
     const color = colors[level % colors.length];
     const rectWidth = 80 + level * 20; // Adjust width based on level or data
@@ -76,12 +77,21 @@ const CustomNode = ({ nodeDatum, toggleNode }) => {
     );
 };
 
+
 const TeamHierarchy = ({ data }) => {
 
+    const [showPopup, setShowPopup] = useState(false); // Manage popup visibility
     const isMobile = window.innerWidth < 768;
 
     return (
-        <div className='flex justify-center items-center w-full h-full bg-gradient-to-r from-blue-100 to-pink-100' >
+        <div className='flex justify-center items-center w-full h-full bg-gradient-to-r from-blue-100 to-pink-100' >    
+            <button
+                className="absolute top-[250px] left-[20px] md:left-[100px] bg-white text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-lg rounded-full w-12 h-12 flex items-center justify-center text-3xl"
+                onClick={() => setShowPopup(true)}
+            >
+            ℹ️
+            </button>
+            <PopupOverlay showPopup={showPopup} setShowPopup={setShowPopup} />
             <div className="w-full h-full mt-2">
                 <Tree
                     data={data}
@@ -101,8 +111,15 @@ const TeamHierarchy = ({ data }) => {
 };
 
 const TeamDistribution = () => {
+
+    useEffect(() => {
+        // Scroll to top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
+      
+   
     const teamData = {
-        name: "Atletico",
+        name: "Atlético",
         image: "images/ablogo.png", // Add image here
         children: [
             {
@@ -261,7 +278,7 @@ const TeamDistribution = () => {
     };
     return (
         <div className='bg-gradient-to-r from-blue-100 to-pink-100 py-2' style={{ width: '100%', height: '100vh', backgroundColor: '#f0f0f0' }}>
-            <h1 className='text-center text-2xl font-bold mb-4 mt-0 text-gradient'>Team Distribution Tree</h1>
+            <h1 className='text-center text-2xl font-bold mb-4 mt-0 text-gradient'>Team Distribution Tree</h1>  
             <TeamHierarchy data={teamData} />
         </div>
     );

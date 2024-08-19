@@ -5,6 +5,11 @@ const pdfUrl = "images/atletico-memership-form.pdf";
 const Contact = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    useEffect(() => {
+        // scroll to top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
+
     const toggleCollapse = () => {
         setIsOpen(!isOpen);
     };

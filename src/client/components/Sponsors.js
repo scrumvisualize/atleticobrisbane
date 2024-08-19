@@ -9,6 +9,11 @@ const Sponsors = () => {
     const [sponsorsList, setSponsorsList] = useState([]);
 
     useEffect(() => {
+        // scroll to top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await axios.get(`${appURL}/service/sponsorsList`);

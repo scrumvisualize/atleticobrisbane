@@ -32,6 +32,7 @@ const TeamTokenGenerator = () => {
     }, []);
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         // Function to clear local storage
         const clearLocalStorage = () => {
           console.log('Route change detected or component unmounted');

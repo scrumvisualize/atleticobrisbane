@@ -9,6 +9,7 @@ const TeamGenerator = () => {
   const [team3, setTeam3] = useState([]);
   const [subs, setSubs] = useState([]);
   const [savedTeams, setSavedTeams] = useState(JSON.parse(localStorage.getItem('savedTeams')) || []);
+  const [deleteStatus, setDeleteStatus] = useState({ status: false, index: null });
   const [numTeams, setNumTeams] = useState(2);
   const [playersPerSide, setPlayersPerSide] = useState(7);
   const [error, setError] = useState(null);
@@ -22,18 +23,6 @@ const TeamGenerator = () => {
   const sanitizeInput = (input) => {
     return input.replace(/[^a-zA-Z0-9-.\n\s]/g, '');
   };
-
-  // const sanitizeInput = (input) => {
-  //   return input.split('\n').map(line => {
-  //     // Regex to validate the format: Name-Position-Tier (e.g., Joji-PP-A)
-  //     if (/^[a-zA-Z0-9]+-(GK|D|M|F)-(A|B|C|D)$/.test(line.trim())) {
-  //       return line.trim(); // Valid player format
-  //     } else if (/^[a-zA-Z0-9.\s-]+$/.test(line.trim())) {
-  //       return line.trim(); // General text (allow alphanumeric, periods, hyphens, spaces)
-  //     }
-  //     return ''; // Invalid input
-  //   }).join('\n');
-  // };
   
   const handleInputChange = (e) => {
     const sanitizedInput = sanitizeInput(e.target.value);
@@ -169,6 +158,12 @@ const TeamGenerator = () => {
     const newSavedTeams = savedTeams.filter((_, i) => i !== index);
     setSavedTeams(newSavedTeams);
     localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
+    setDeleteStatus(true);
+    setDeleteStatus({ status: true, index });
+    // hide the delete message after 3 seconds
+    setTimeout(() => {
+      setDeleteStatus({ status: false, index: null });
+    }, 3000); 
   };
 
   const loadSavedTeam = (index) => {
@@ -295,18 +290,18 @@ const TeamGenerator = () => {
           <div className="mt-6 p-4 bg-white rounded shadow-md">
             <h2 className="text-xl font-bold mb-2">Saved Teams</h2>
             <ul className="list-disc pl-5 space-y-2">
-              {savedTeams.map((team, index) => (
-                <li key={index} className="flex justify-between items-center mb-2">
-                  <span className="text-[13px] font-semibold text-[#4491e3] bg-gray-100 p-1">Option {index + 1}</span>
+              {savedTeams.map((team, idx) => (
+                <li key={idx} className="flex justify-between items-center mb-2">
+                  <span className="text-[13px] font-semibold text-[#4491e3] bg-gray-100 p-1">Option {idx+ 1}</span>
                   <div>
                     <button
-                      onClick={() => loadSavedTeam(index)}
+                      onClick={() => loadSavedTeam(idx)}
                       className="bg-blue-500 text-white py-1 px-2 rounded mr-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       Load
                     </button>
                     <button
-                      onClick={() => deleteSavedTeam(index)}
+                      onClick={() => deleteSavedTeam(idx)}
                       className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
                     >
                       Delete
@@ -315,6 +310,11 @@ const TeamGenerator = () => {
                 </li>
               ))}
             </ul>
+            {deleteStatus.status && deleteStatus.index !== null &&(
+              <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
+                Deleted Option {deleteStatus.index + 1} successfully!
+              </div>
+            )}
           </div>
         )}
       </div>
