@@ -37,7 +37,7 @@ const CustomNode = ({ nodeDatum, toggleNode }) => {
                 rx="10" // Rounded corners for the rectangle
                 ry="10" // Rounded corners for the rectangle
                 style={{
-                    filter: 'drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3))', // Add shadow here
+                    filter: 'drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4))', // Add shadow here
                 }}
             />
             <text
@@ -45,8 +45,17 @@ const CustomNode = ({ nodeDatum, toggleNode }) => {
                 y="0"
                 dy=".35em"
                 textAnchor="middle"
-                letterSpacing="2.5px" // Adjust for better spacing
-                style={{ fontSize: '12px', fontFamily: 'sans-serif', fontWeight: 'lighter', fill: 'white', textRendering: 'optimizeLegibility' }} // Additional styles if needed
+                letterSpacing="2.0px" // Adjust for better spacing
+                style={{ 
+                    fontSize: '13px', 
+                    fontFamily: 'Arial, sans-serif', 
+                    fontWeight: 100,
+                    lineHeight: '1.2', // Adding line height
+                    fill: 'white', 
+                    textRendering: 'optimizeLegibility',
+                    WebkitFontSmoothing: 'antialiased',
+                    MozOsxFontSmoothing: 'grayscale'
+                }} // Additional styles if needed
             >
                 {nodeDatum.name}
             </text>
@@ -86,7 +95,7 @@ const TeamHierarchy = ({ data }) => {
     return (
         <div className='flex justify-center items-center w-full h-full bg-gradient-to-r from-blue-100 to-pink-100' >    
             <button
-                className="absolute top-[250px] left-[20px] md:left-[100px] bg-white text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-lg rounded-full w-12 h-12 flex items-center justify-center text-3xl"
+                className="absolute top-[250px] left-[20px] md:left-[100px] bg-white text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 shadow-lg rounded-full w-12 h-12 flex items-center justify-center text-3xl leading-none p-0"
                 onClick={() => setShowPopup(true)}
             >
             ℹ️

@@ -73,10 +73,9 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 Dare to dream
                             </p>
                         </div>
-                        <div className="flex-shrink-0 w-[calc(20%-30px)] mt-[-10px] ml-28">
-                            <img className="w-full h-auto" src="images/discount.png" alt="Discount" />
+                        <div className="w-full mt-2 md:mt-[-6px] md:w-[60px] md:ml-28">
+                            <img className="mx-auto md:mx-0 w-[50px] md:w-full h-auto" src="images/discount.png" alt="Discount" />
                         </div>
-
                     </div>
                     <div>
                         <div className="pt-2">
