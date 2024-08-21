@@ -197,6 +197,12 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                         </div>
                         <a
                             className="font-semibold linegrow cursor-pointer"
+                            onClick={() => navigate('/schedule')}
+                        >
+                            SCHEDULE
+                        </a>
+                        <a
+                            className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/teamtokengenerator')}
                         >
                             TEAM GENERATOR
@@ -271,6 +277,13 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 <TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
+
+                        <a
+                            className="font-semibold linegrow cursor-pointer"
+                            onClick={() => navigate('/schedule')}
+                        >
+                            SCHEDULE
+                        </a>
                             <a
                                 className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/teamtokengenerator')}

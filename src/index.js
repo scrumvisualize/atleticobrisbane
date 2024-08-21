@@ -11,11 +11,11 @@ import MensSquad from "./client/components/teams/MensSquad";
 import U16Squad from "./client/components/teams/U16Squad";
 import U12Squad from "./client/components/teams/U12Squad";
 import TeamDistribution from "./client/components/teams/TeamDistribution";
+import Schedule from "./client/components/Schedule";
 import MasterSquad from "./client/components/teams/MasterSquad";
 import TopBanner from "./client/components/TopBanner";
 import MainNavbar from "./client/components/MainNavbar";
 import TeamTokenGenerator from './client/components/TeamTokenGenerator';
-import TeamGenerator from './client/components/TeamGenerator';
 import PageNotFound from './client/components/PageNotFound';
 import InactivityLogout from './client/components/InactivityLogout';
 import ResetPassword from './client/components/ResetPassword';
@@ -53,6 +53,7 @@ const App = () => {
         <Route path="/u12squad" element={<U12Squad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/teamdistribution" element={<TeamDistribution />} />
+        <Route path="/schedule" element={<Schedule />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/teamtokengenerator" element={<TeamTokenGenerator />} />
         <Route path="/resetPassword" element={<ResetPassword/>} />
