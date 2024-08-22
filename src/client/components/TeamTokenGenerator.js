@@ -24,6 +24,7 @@ const TeamTokenGenerator = () => {
     } = useForm();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         const storedToken = localStorage.getItem('teamToken');
         if (storedToken) {
             setToken(storedToken);
@@ -31,19 +32,37 @@ const TeamTokenGenerator = () => {
         }
     }, []);
 
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    //     // Function to clear local storage
+    //     const clearLocalStorage = () => {
+    //       console.log('Route change detected or component unmounted');
+    //       localStorage.removeItem('teamToken');
+    //       localStorage.removeItem('savedTeams');
+    //     };
+    
+    //     // Clear local storage when route changes or component unmounts
+    //     return () => {
+    //       clearLocalStorage();
+    //     };
+    //   }, [location, isTokenValidated]);
+    
+
     useEffect(() => {
-        window.scrollTo(0, 0);
-        // Function to clear local storage
-        const clearLocalStorage = () => {
-          console.log('Route change detected or component unmounted');
-          localStorage.removeItem('teamToken');
-          localStorage.removeItem('savedTeams');
+        // Clear the token and other data on navigation
+        const clearDataOnNavigation = () => {
+          sessionStorage.removeItem('teamToken');
+          sessionStorage.removeItem('savedTeams');
         };
     
-        // Clear local storage when route changes or component unmounts
-        return () => {
-          clearLocalStorage();
+        // Listen for location changes and clear data if the path changes
+        const handleNavigation = () => {
+          if (isTokenValidated) {
+            clearDataOnNavigation();
+          }
         };
+    
+        handleNavigation();
       }, [location, isTokenValidated]);
 
 

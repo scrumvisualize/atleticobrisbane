@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import TeamsDropdownMenu from './TeamsDropdownMenu';
 import { useNavigate, useLocation  } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const location = useLocation();
     const [isTournamentOpen, setIsTournamentOpen] = useState(true);
     const [daysRemaining, setDaysRemaining] = useState(0);
+
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const targetDate = new Date('2024-10-05');
@@ -55,6 +57,24 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
         closeDropdown();
     }, [location]);
 
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            closeDropdown();
+        }
+    };
+
+    useEffect(() => {
+        // Add event listener
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('touchstart', handleClickOutside); // Handle touch devices
+
+        // Clean up event listener on component unmount
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('touchstart', handleClickOutside);
+        };
+    }, []);
+
 
     return (
         <nav className="bg-[#fafbfc] text-white shadow-lg p-0 sticky relative top-0 z-50">
@@ -79,7 +99,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                     </div>
                     <div>
                         <div className="pt-2">
-                            <div onClick={handleClick} className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[100px] h-[50px] sm:w-[300px] md:w-[100px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-100px] flex text-base text-white hidden sm:block highlight-text" style={{ backgroundImage: "url('images/united.PNG')" }}>
+                            <div onClick={handleClick} className="bg-cover bg-no-repeat bg-contain bg-custom-center w-[80px] h-[50px] sm:w-[300px] md:w-[80px] lg:w-[350px] h-10 md:h-[40px] mr-2 md:ml-[-20px] flex text-base text-white hidden sm:block highlight-text" style={{ backgroundImage: "url('images/united.PNG')" }}>
                                 <a href="#"></a>
                             </div>
                         </div>
@@ -192,7 +212,10 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 </svg>
                             </button>
                             {isDropdownOpen && (
-                                <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                                <div ref={dropdownRef}>
+                                    <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                                </div>
+                                // <TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
                         <a

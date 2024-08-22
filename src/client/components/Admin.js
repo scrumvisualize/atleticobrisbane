@@ -5,6 +5,7 @@ import axios from 'axios';
 import SponsorDialog from './SponsorDialog';
 import Announcement from './Announcement';
 import PaymentTracking from './PaymentTracking';
+import ManageSchedule from './ManageSchedule';
 import Footer from "./Footer";
 
 const appURL = process.env.REACT_APP_URL;
@@ -161,6 +162,15 @@ const Admin = () => {
                     onClick={() => setSelectedTab('players')}
                 >
                     Manage Players
+                </button>
+                <button
+                    className={`font-semibold bg-[#f2f5f7] hover:bg-[#dee1e3] border border-2 px-2 py-1 rounded ${selectedTab === 'schedule'
+                        ? 'text-blue-500 hover:text-blue-700 hover:bg-[#f2f5f7] border border-2 px-2 py-1 rounded'
+                        : ''
+                        }`}
+                    onClick={() => setSelectedTab('schedule')}
+                >
+                    Manage Schedule
                 </button>
                 <button
                     className={`font-semibold bg-[#f2f5f7] hover:bg-[#dee1e3] h-[60px] md:h-[36px] border border-2 px-2 py-1 rounded ${selectedTab === 'announcement'
@@ -331,6 +341,9 @@ const Admin = () => {
                             </div>
                         </div>
                     </div>
+                )}
+                {selectedTab === 'schedule' && (
+                    <ManageSchedule />
                 )}
                 {selectedTab === 'announcement' && (
                     <Announcement />
