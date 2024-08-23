@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize,  Op, DataTypes } = require("sequelize");
 const multer  = require('multer');
 const path = require('path');
 const dotenv = require('dotenv');
@@ -16,6 +16,7 @@ const announcementSchema = require('../modals/announcement');
 const resetTokenSchema = require('../modals/resetToken');
 const teamTokenGenSchema = require('../modals/teamTokenGenerator');
 const videoViewsSchema = require('../modals/videoViews');
+const manageScheduleSchema = require('../modals/manageSchedule');
 
 const cors = require('cors');
 
@@ -50,6 +51,8 @@ const AnnouncementModel = announcementSchema(sequelize, DataTypes);
 const ResetTokenModel = resetTokenSchema(sequelize, DataTypes);
 const TeamTokenGenModel = teamTokenGenSchema(sequelize, DataTypes);
 const VideoViewsModel = videoViewsSchema(sequelize, DataTypes);
+const ManageScheduleModel = manageScheduleSchema(sequelize, DataTypes);
+
 
 
 //app.use(cors());
@@ -658,6 +661,87 @@ app.get('/service/allVideoViews', async (req, res) => {
       attributes: ['id','videoname', 'views']
     });
     res.status(200).json({ videoViews });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
+
+/* Adding a schedule from the admin page */ 
+app.post('/service/createSchedule', async (req, res, next) => {
+  try {
+
+    const { schedules } = req.body; // Extract the schedules array from req.body
+
+    if (!Array.isArray(schedules)) {
+      return res.status(400).json({ message: 'Invalid data format. Expected an array of schedules.' });
+    }
+
+    // Map through the array and format each schedule object
+    const scheduleDataArray = schedules.map(schedule => {
+      const { name, type, date, time, location, details, recurrencePattern } = schedule;
+      return {
+        schedulename: name,
+        type: type,
+        scheduledate: new Date(date), // Ensure the date format is compatible with your database
+        scheduletime: time,
+        location: location,
+        details: details,
+        recurrencepattern: recurrencePattern
+      };
+    });
+
+    // Log the formatted data for debugging
+    console.log('Formatted Data:', scheduleDataArray);
+
+    // Use bulkCreate to insert multiple records into the database
+    await ManageScheduleModel.bulkCreate(scheduleDataArray);
+    res.status(200).json({ success: true });
+
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: e.message });
+    return next(e);
+  }
+});
+
+/* Getting the list of schedules created for a month and display in schedule tab */
+
+// Function to calculate the start and end dates of a given month and year
+const getStartAndEndOfMonth = (month, year) => {
+  const start = new Date(year, month - 1, 1); // JavaScript months are 0-based (0 = January, 11 = December)
+  const end = new Date(year, month, 0, 23, 59, 59); // End of the month
+  return { start, end };
+};
+
+app.get('/service/allmonthlyschedules', async (req, res) => {
+  try {
+    // Get month and year from query parameters
+    const { month, year } = req.query;
+
+    // Validate month and year
+    if (!month || !year || isNaN(month) || isNaN(year)) {
+      return res.status(400).json({ message: 'Invalid month or year' });
+    }
+
+    // Convert month and year to integers
+    const monthInt = parseInt(month, 10);
+    const yearInt = parseInt(year, 10);
+
+    // Calculate the start and end dates of the specified month
+    const { start, end } = getStartAndEndOfMonth(monthInt, yearInt);
+
+    // Fetch schedules within the specified month
+    const scheduleList = await ManageScheduleModel.findAll({
+      attributes: ['id', 'schedulename', 'type', 'scheduledate', 'scheduletime', 'location', 'details'],
+      where: {
+        scheduledate: {
+          [Op.between]: [start, end]
+        }
+      }
+    });
+
+    res.status(200).json({ scheduleList });
   } catch (e) {
     res.status(500).json({ message: e.message });
   }

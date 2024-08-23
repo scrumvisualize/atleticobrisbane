@@ -4,6 +4,10 @@ import 'react-calendar/dist/Calendar.css';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import dayjs from 'dayjs';
 import 'dayjs/locale/en-gb'; // Import locale if needed for formatting
+import axios from 'axios'; // Import Axios
+
+const appURL = process.env.REACT_APP_URL;
+
 
 const ManageSchedule = () => {
     const [name, setName] = useState('');
@@ -11,6 +15,7 @@ const ManageSchedule = () => {
     const [date, setDate] = useState(null);
     const [formattedDate, setFormattedDate] = useState(''); // State for formatted date
     const [time, setTime] = useState('');
+    const [location, setLocation] = useState('');
     const [details, setDetails] = useState('');
     const [recurring, setRecurring] = useState(false); // State for recurring sessions
     const [recurrencePattern, setRecurrencePattern] = useState(''); // Pattern for recurrence
@@ -26,11 +31,12 @@ const ManageSchedule = () => {
     useEffect(() => {
         if (editingIndex !== null) {
             const schedule = schedules[editingIndex];
-            setName(schedule.name);
+            setName(schedule.schedulename);
             setType(schedule.type);
             setDate(dayjs(schedule.date).toDate());
             setFormattedDate(dayjs(schedule.date).format('dddd, D MMMM YYYY')); // Set formatted date
-            setTime(schedule.time);
+            setTime(schedule.scheduletime);
+            setLocation(schedule.location);
             setDetails(schedule.details);
             setRecurring(schedule.recurring || false);
             setRecurrencePattern(schedule.recurrencePattern || '');
@@ -59,7 +65,7 @@ const ManageSchedule = () => {
         return dates;
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         let newSchedules = [];
         if (recurring) {
             // Generate dates based on the recurrence pattern
@@ -69,6 +75,7 @@ const ManageSchedule = () => {
                 type,
                 date: dayjs(recDate).format('dddd, D MMMM YYYY'),
                 time,
+                location,
                 details,
                 recurring: true,
                 recurrencePattern
@@ -79,10 +86,21 @@ const ManageSchedule = () => {
                 type,
                 date: formattedDate,
                 time,
+                location,
                 details,
                 recurring: false,
                 recurrencePattern: ''
             }];
+        }
+
+        try {
+            // Sending data to the backend
+            const response = await axios.post(`${appURL}service/createSchedule`, {
+                schedules: newSchedules
+            });
+            console.log('Schedule saved successfully:', response.data);
+        } catch (error) {
+            console.error('Error saving schedule:', error);
         }
 
         if (editingIndex !== null) {
@@ -114,15 +132,40 @@ const ManageSchedule = () => {
         setDate(null);
         setFormattedDate(''); // Clear formatted date
         setTime('');
+        setLocation('');
         setDetails('');
         setRecurring(false);
         setRecurrencePattern('');
         setEditingIndex(null);
     };
 
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                
+                const today = new Date();
+                const month = today.getMonth() + 1; // Months are zero-based, so add 1
+                const year = today.getFullYear();
+
+                const res = await axios.get(`${appURL}/service/allmonthlyschedules`, {
+                    params: {
+                        month: month,
+                        year: year
+                    }
+                });
+                setSchedules(res.data.scheduleList);
+                console.log(res.data.scheduleList);
+            } catch (e) {
+                console.log(e);
+            }
+        }
+        fetchData();
+    }, []);
+
     return (
         <div className="container mx-auto p-4 flex flex-col lg:flex-row gap-4">
-            {/* Left Column: Form */}
             <div className="lg:w-1/2 p-4 border border-gray-300 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold mb-4 text-gradient">{editingIndex !== null ? 'Edit Schedule' : 'Add Training Schedule'}</h2>
 
@@ -188,6 +231,18 @@ const ManageSchedule = () => {
                 </div>
 
                 <div className="mb-4">
+                    <label htmlFor="place" className="block text-sm font-medium text-gray-700">Location</label>
+                    <input
+                        type="text"
+                        id="location"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        className="block w-full p-2 border border-gray-300 rounded-md text-gray-700"
+                        placeholder="Location for training"
+                    />
+                </div>
+
+                <div className="mb-4">
                     <label htmlFor="details" className="block text-sm font-medium text-gray-700">Details</label>
                     <textarea
                         id="details"
@@ -249,8 +304,8 @@ const ManageSchedule = () => {
                     {schedules.length > 0 ? (
                         schedules.map((schedule, index) => (
                             <div key={index} className="p-4 border border-gray-300 rounded-lg shadow-md">
-                                <h3 className="text-lg font-semibold">{schedule.name}</h3>
-                                <p className="text-sm text-gray-600">{schedule.date} at {schedule.time}</p>
+                                <h3 className="text-lg font-semibold">{schedule.schedulename}</h3>
+                                <p className="text-sm text-gray-600">{schedule.scheduledate} at {schedule.scheduletime}</p>
                                 <p className="text-sm text-gray-800 mt-2">{schedule.details}</p>
                                 <div className="mt-4 flex gap-2">
                                     <button
