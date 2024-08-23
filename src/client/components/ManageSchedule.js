@@ -95,7 +95,7 @@ const ManageSchedule = () => {
 
         try {
             // Sending data to the backend
-            const response = await axios.post(`${appURL}service/createSchedule`, {
+            const response = await axios.post(`${appURL}/service/createSchedule`, {
                 schedules: newSchedules
             });
             console.log('Schedule saved successfully:', response.data);
@@ -144,19 +144,10 @@ const ManageSchedule = () => {
 
         const fetchData = async () => {
             try {
-                
-                const today = new Date();
-                const month = today.getMonth() + 1; // Months are zero-based, so add 1
-                const year = today.getFullYear();
 
-                const res = await axios.get(`${appURL}/service/allmonthlyschedules`, {
-                    params: {
-                        month: month,
-                        year: year
-                    }
-                });
-                setSchedules(res.data.scheduleList);
-                console.log(res.data.scheduleList);
+                const res = await axios.get(`${appURL}/service/fullschedulelist`);
+                setSchedules(res.data.fullscheduleList);
+
             } catch (e) {
                 console.log(e);
             }

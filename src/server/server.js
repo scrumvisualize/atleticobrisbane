@@ -747,6 +747,21 @@ app.get('/service/allmonthlyschedules', async (req, res) => {
   }
 });
 
+/* Getting the full list schedule in the Manage Schedule to edit/delete*/
+app.get('/service/fullschedulelist', async (req, res) => {
+
+  try {
+    
+    // Fetch schedules within the specified month
+    const fullscheduleList = await ManageScheduleModel.findAll({
+      attributes: ['id', 'schedulename', 'type', 'scheduledate', 'scheduletime', 'location', 'details']
+    });
+    res.status(200).json({ fullscheduleList });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
+  }
+});
+
 
 (async () => {
   try {
