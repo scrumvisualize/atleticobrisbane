@@ -11,7 +11,7 @@ const TitleSponsor = () => {
                     </div>
                 </div>
                 <div className="bg-white border border-gray-300 justify-center items-center shadow-lg rounded-lg">
-                <h1 className="text-center text-[#002d75] text-3xl font-bold mt-[-6px] md:mt-6">Main Sponsor</h1>
+                <h1 className="text-center text-[#002d75] text-3xl font-bold mt-[-6px] md:mt-6 py-4 md:py-0">Main Sponsor</h1>
                 <h4 className="text-center text-[#b778d6] text-sm mt-2">INDUS MORTGAGES</h4>
                 <p className="text-base mt-2 text-[14px] text-[#3c3e40] text-center mb-4 md:mb-2">Indus Mortgages are the only advisors qualified to carry-on financial advise in AU and NZ. Indus Mortgages was the main jersey sponsor for the year 2024</p>
                     <div className="flex flex-col items-center justify-center h-[350px]">

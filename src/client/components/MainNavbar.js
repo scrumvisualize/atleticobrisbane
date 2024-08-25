@@ -44,6 +44,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
         setIsDropdownOpen(false);
     };
 
+
     const handleLogout = () => {
         localStorage.removeItem('loginEmail');
         localStorage.removeItem('displayName');
@@ -75,6 +76,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
         };
     }, []);
 
+   
 
     return (
         <nav className="bg-[#fafbfc] text-white shadow-lg p-0 sticky relative top-0 z-50">
@@ -215,7 +217,7 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 <div ref={dropdownRef}>
                                     <TeamsDropdownMenu closeDropdown={closeDropdown} />
                                 </div>
-                                // <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                                //<TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
                         <a
@@ -297,7 +299,10 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 </svg>
                             </button>
                             {isDropdownOpen && (
-                                <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                               // <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                               <div ref={dropdownRef}>
+                                    <TeamsDropdownMenu closeDropdown={closeDropdown} />
+                                </div>
                             )}
                         </div>
 

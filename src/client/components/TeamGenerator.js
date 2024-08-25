@@ -1,654 +1,363 @@
-import React, { useState, useEffect, useRef } from 'react';
-import html2canvas from 'html2canvas';
+import React, { useState, useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd';
 
-
-const playersList = [
+const playersdef = [
   "1. Joji-D-A",
   "2. Saju-F-A",
   "3. Clitus-D-B",
-  "4. Vinod-M-A", 
+  "4. Vinod-M-A",
   "5. Mak-M-B",
   "6. Sam-D-B",
-  "7. Joseph-D-A",
+  "14. Prakash-GK-A",
   "8. Sanju-D-B",
   "9. Sayu-M-A",
-  "10. Noyal-GK-A",
+  "10. Noyal-M-A",
   "11. AmalP-F-B",
   "12. Kiran-F-A",
   "13. Sharan-M-A",
-  "14. Martin-D-B",
+  "7. Joseph-D-A",
   "15. Rejin-M-A",
   "16. George-GK-A",
   "17. Elon-M-A",
-  "18. Elias-F-A"
+  "18. Elias-F-A",
+  "19. PrinceVaz-M-A",
+  "20. Rajesh-GK-A",
+  "21. Jayadeep-D-B",
+  "22. Jibi-D-A",
+  "23. ArunT-D-B",
 ];
 
 const TeamGenerator = () => {
-  const [input, setInput] = useState(playersList.join('\n'));
-  const [team1, setTeam1] = useState([]);
-  const [team2, setTeam2] = useState([]);
-  const [team3, setTeam3] = useState([]);
-  const [subs, setSubs] = useState([]);
-  const [savedTeams, setSavedTeams] = useState(JSON.parse(localStorage.getItem('savedTeams')) || []);
-  const [deleteStatus, setDeleteStatus] = useState({ status: false, index: null });
+  const [inputPlayers, setInputPlayers] = useState(playersdef.join('\n'));
+  const [playersList, setPlayersList] = useState([]);
   const [numTeams, setNumTeams] = useState(2);
-  const [playersPerSide, setPlayersPerSide] = useState(7);
-  const [error, setError] = useState(null);
-  const captureRef = useRef(null);
- 
+  const [teamSize, setTeamSize] = useState(7);
+  const [teamNames, setTeamNames] = useState({ team1: 'Team 1', team2: 'Team 2', team3: 'Team 3' });
+  const [teams, setTeams] = useState([[], []]);
+  const [subs, setSubs] = useState([]);
 
   useEffect(() => {
-    localStorage.removeItem('savedTeams');
-  }, []);
+    if (playersList.length > 0) {
+      shuffleAndDistributePlayers();
+    }
+  }, [playersList, numTeams, teamSize]);
 
-  const sanitizeInput = (input) => {
-    return input.replace(/[^a-zA-Z0-9-,.\n\s]/g, '');
-  };
-  
   const handleInputChange = (e) => {
-    const sanitizedInput = sanitizeInput(e.target.value);
-    setInput(sanitizedInput);
+    setInputPlayers(e.target.value);
+  };
+
+
+  const handleAddPlayers = () => {
+  
+    const parsedPlayers = inputPlayers
+      .split('\n')
+      .map(player => player.trim())
+      .filter(player => player)
+      .map(player => player.replace(/^\d+\.\s*|\s*(-A|-B|-C)?$/g, ''));
+
+    setPlayersList(parsedPlayers);
+    //setInputPlayers('');
+  };
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+
+  const shuffleAndDistributePlayers = () => {
+    const players = [...playersList];
+    shuffleArray(players);
+
+    const positionGroups = {
+      GK: [],
+      D: [],
+      M: [],
+      F: [],
+    };
+
+    players.forEach(player => {
+      const position = player.split('-')[1];
+      positionGroups[position] = positionGroups[position] || [];
+      positionGroups[position].push(player);
+    });
+
+    const orderedPlayers = [
+      ...positionGroups.GK,
+      ...positionGroups.D,
+      ...positionGroups.M,
+      ...positionGroups.F
+    ];
+
+    const totalPlayers = numTeams * teamSize;
+    const newTeams = Array.from({ length: numTeams }, () => []);
+    const availablePlayers = orderedPlayers.slice(0, totalPlayers);
+
+    availablePlayers.forEach((player, index) => {
+      newTeams[index % numTeams].push(player);
+    });
+
+    const updatedSubs = orderedPlayers.length > totalPlayers
+      ? orderedPlayers.slice(totalPlayers)
+      : [];
+
+    setTeams(newTeams);
+    setSubs(updatedSubs);
+  };
+
+  const handleTeamNameChange = (e) => {
+    const { name, value } = e.target;
+    setTeamNames(prev => ({ ...prev, [name]: value }));
   };
 
   const handleNumTeamsChange = (e) => {
     setNumTeams(Number(e.target.value));
   };
 
-  const handlePlayersPerSideChange = (e) => {
-    setPlayersPerSide(Number(e.target.value));
+  const handleTeamSizeChange = (e) => {
+    setTeamSize(Number(e.target.value));
   };
 
-  const splitTeams = () => {
-    if (!input.trim()) {
-      setError('The input field cannot be empty. Please enter player names!');
-      return;
+  // const onDragEnd = (result) => {
+  //   const { source, destination } = result;
+  //   if (!destination) return;
+
+  //   const { droppableId: sourceTeamId } = source;
+  //   const { droppableId: destTeamId } = destination;
+
+  //   if (sourceTeamId === destTeamId) return;
+
+  //   const player = result.draggableId;
+  //   const sourceTeamIndex = parseInt(sourceTeamId.replace('team', ''), 10) - 1;
+  //   const destTeamIndex = parseInt(destTeamId.replace('team', ''), 10) - 1;
+
+  //   const updatedTeams = [...teams];
+  //   updatedTeams[sourceTeamIndex] = updatedTeams[sourceTeamIndex].filter(p => p !== player);
+  //   updatedTeams[destTeamIndex].splice(destination.index, 0, player);
+
+  //   setTeams(updatedTeams);
+  // };
+
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return;
+
+    const sourceIndex = source.droppableId === "subs" ? "subs" : parseInt(source.droppableId.replace("team", "")) - 1;
+    const destinationIndex = destination.droppableId === "subs" ? "subs" : parseInt(destination.droppableId.replace("team", "")) - 1;
+
+    let sourceList = sourceIndex === "subs" ? [...subs] : [...teams[sourceIndex]];
+    let destinationList = destinationIndex === "subs" ? [...subs] : [...teams[destinationIndex]];
+
+    // Moving within the same list (reordering)
+    if (source.droppableId === destination.droppableId) {
+        const [movedItem] = sourceList.splice(source.index, 1);
+        sourceList.splice(destination.index, 0, movedItem);
+
+        if (sourceIndex === "subs") {
+            setSubs(sourceList);
+        } else {
+            const updatedTeams = [...teams];
+            updatedTeams[sourceIndex] = sourceList;
+            setTeams(updatedTeams);
+        }
+    } else {
+        // Moving to a different list
+        const [movedItem] = sourceList.splice(source.index, 1);
+        destinationList.splice(destination.index, 0, movedItem);
+
+        if (sourceIndex === "subs") {
+            setSubs(sourceList);
+            const updatedTeams = [...teams];
+            updatedTeams[destinationIndex] = destinationList;
+            setTeams(updatedTeams);
+        } else if (destinationIndex === "subs") {
+            setSubs(destinationList);
+            const updatedTeams = [...teams];
+            updatedTeams[sourceIndex] = sourceList;
+            setTeams(updatedTeams);
+        } else {
+            const updatedTeams = [...teams];
+            updatedTeams[sourceIndex] = sourceList;
+            updatedTeams[destinationIndex] = destinationList;
+            setTeams(updatedTeams);
+        }
+    }
+};
+
+  const getColorClass = (teamName) => {
+    if (teamName.toLowerCase().includes('green')) {
+      return 'text-green-400';
+    }
+    if (teamName.toLowerCase().includes('red')) {
+      return 'text-red-500';
     }
 
-    const players = input
-      .split('\n')
-      .map(player => player.trim())
-      .filter(player => player)
-      .map(player => player.replace(/^\d+\.\s*/, ''));
-
-    // Extract goalkeepers and outfield players
-    const goalkeepers = players.filter(player => player.includes('GK'));
-    const outfieldPlayers = players.filter(player => !player.includes('GK'));
-
-    // Identify repeat players (marked with -R)
-    const repeatPlayers = players.filter(player => player.includes('-R')).map(player => player.replace('-R', ''));
-    const uniqueRepeatPlayers = [...new Set(repeatPlayers)];
-
-    // Remove the repeat players from the list if exists
-    const cleanedPlayers = players.filter(player => !player.includes('-R'));
-
-    // Calculate the total number of required players
-    const totalRequiredPlayers = playersPerSide * numTeams;
-    const totalAvailablePlayers = cleanedPlayers.length + uniqueRepeatPlayers.length;
-
-    // Check if we have enough players, including the repeat player
-    
-    // if (totalAvailablePlayers < totalRequiredPlayers) {
-    //   setError(`Insufficient players. You need at least ${totalRequiredPlayers} players for ${numTeams} teams.`);
-    //   return;
-    // }
-
-    // Initialize teams and substitutes
-    const mainTeams = Array.from({ length: numTeams }, () => []);
-    const shuffledOutfieldPlayers = outfieldPlayers.sort(() => Math.random() - 0.5);
-    const availablePlayers = [...cleanedPlayers, ...uniqueRepeatPlayers];
-
-    // Distribute goalkeepers among teams
-    const usedGoalkeepers = new Set();
-    goalkeepers.forEach(gk => {
-      if (usedGoalkeepers.size < numTeams) {
-        for (let i = 0; i < numTeams; i++) {
-          if (mainTeams[i].filter(player => player.includes('GK')).length === 0 && !usedGoalkeepers.has(gk)) {
-            mainTeams[i].push(gk);
-            usedGoalkeepers.add(gk);
-            break;
-          }
-        }
-      }
-    });
-
-    // Distribute outfield players among teams
-    let currentTeamIndex = 0;
-    shuffledOutfieldPlayers.forEach(player => {
-      if (mainTeams[currentTeamIndex].length < playersPerSide) {
-        mainTeams[currentTeamIndex].push(player);
-      }
-      currentTeamIndex = (currentTeamIndex + 1) % numTeams;
-    });
-
-    // Ensure repeat players are placed correctly in the white team
-    const whiteTeamIndex = numTeams === 3 ? 2 : 1; // Assuming white team is the last team if there are 3 teams
-    const whiteTeamPlayers = new Set(mainTeams[whiteTeamIndex]);
-    uniqueRepeatPlayers.forEach(player => {
-      if (!whiteTeamPlayers.has(player)) {
-        if (mainTeams[whiteTeamIndex].length < playersPerSide) {
-          mainTeams[whiteTeamIndex].push(player);
-          whiteTeamPlayers.add(player);
-        }
-      }
-    });
-
-    // Collect all players currently in teams
-    const allPlayersInTeams = mainTeams.flat();
-    // Calculate substitutes
-    const substitutePlayers = availablePlayers.filter(player => !allPlayersInTeams.includes(player));
-
-    setTeam1(mainTeams[0]);
-    setTeam2(mainTeams[1]);
-    if (numTeams === 3) setTeam3(mainTeams[2]);
-    setSubs(substitutePlayers);
-    setError(null);
-
-    const newSavedTeams = [...savedTeams, { team1: mainTeams[0], team2: mainTeams[1], team3: mainTeams[2] || [], subs }];
-    setSavedTeams(newSavedTeams);
-    localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
-  };
-
-  const sortPlayers = (players) => {
-    return players.sort((a, b) => {
-      const [aCategory, aLevel] = a.split('-').slice(1);
-      const [bCategory, bLevel] = b.split('-').slice(1);
-
-      const categoryOrder = ['GK', 'D', 'M', 'F'];
-      const levelOrder = ['A', 'B', 'C', 'D'];
-
-      if (aCategory !== bCategory) {
-        return categoryOrder.indexOf(aCategory) - categoryOrder.indexOf(bCategory);
-      }
-
-      return levelOrder.indexOf(aLevel) - levelOrder.indexOf(bLevel);
-    });
-  };
-
-  const downloadImage = () => {
-    if (captureRef.current) {
-      html2canvas(captureRef.current).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'teams.png';
-        link.click();
-      });
+    if (teamName.toLowerCase().includes('orange')) {
+      return 'text-orange-400';
     }
-  };
-
-  const deleteSavedTeam = (index) => {
-    const newSavedTeams = savedTeams.filter((_, i) => i !== index);
-    setSavedTeams(newSavedTeams);
-    localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
-    setDeleteStatus(true);
-    setDeleteStatus({ status: true, index });
-    // hide the delete message after 3 seconds
-    setTimeout(() => {
-      setDeleteStatus({ status: false, index: null });
-    }, 3000); 
-  };
-
-  const loadSavedTeam = (index) => {
-    const team = savedTeams[index];
-    setTeam1(team.team1);
-    setTeam2(team.team2);
-    setTeam3(team.team3);
-    setSubs(team.subs);
+    if (teamName.toLowerCase().includes('black')) {
+      return 'text-black';
+    }
+    return 'text-blue-400'; // Default color
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-100 to-pink-100 w-full min-h-[600px]">
-      <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px]" style={{ backgroundImage: "url('images/teamgen.png')", backgroundPosition: 'center 80%' }}></div>
-      <div className="text-center font-semibold text-xs">
-        <h3>Home &#8594; Team Generator</h3>
-      </div>
-
-      <div className="w-full max-w-4xl mx-auto p-4">
-        <p className="text-sm text-gray-600 mb-2">
-          <strong>Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
-        </p>
+    <div className="container mx-auto p-6 max-w-6xl">
+      <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">Team Generator</h1>
+      <p className="text-sm text-gray-600 mb-2 italic">
+        <strong >Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
+      </p>
+      <div className="mb-6">
         <textarea
-          value={input}
+          value={inputPlayers}
           onChange={handleInputChange}
-          className="w-full h-40 p-2 border rounded bg-white shadow-sm"
-          placeholder="Enter player details..."
+          placeholder="Enter players (e.g., 1. Joji-D-A)"
+          rows={8}
+          className="w-full border border-gray-300 p-3 rounded-lg shadow-md"
         />
-        <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
-          <div className="flex-1">
-            <label className="block text-sm font-bold mb-2">Number of Teams:</label>
-            <select value={numTeams} onChange={handleNumTeamsChange} className="w-full p-2 border rounded bg-white shadow-sm">
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-            </select>
-          </div>
-          <div className="flex-1">
-            <label className="block text-sm font-bold mb-2">Players per Side:</label>
-            <select value={playersPerSide} onChange={handlePlayersPerSideChange} className="w-full p-2 border rounded bg-white shadow-sm">
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-            </select>
-          </div>
-        </div>
         <button
-          onClick={splitTeams}
-          className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onClick={handleAddPlayers}
+          className="mt-2 bg-blue-600 text-white p-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
         >
           Generate Teams
         </button>
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-        {team1.length > 0 && (
-          <div className="mt-6" ref={captureRef}>
-            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-              <div className="flex-1 p-4 bg-white rounded shadow-md">
-                <div className="text-center bg-[#d18df0]">
-                  <h2 className="text-xl text-[#f00e52] font-bold p-2 mb-4">Team Red</h2>
-                </div>
-                <ul className="list-none p-0 m-0 space-y-2">
-                  {sortPlayers(team1).map((player, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-                    >
-                      <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex-1 p-4 bg-white rounded shadow-md">
-                <div className="text-center bg-[#d18df0]">
-                  <h2 className="text-xl text-[#111112] font-bold p-2 mb-4">Team Black</h2>
-                </div>
-                <ul className="list-none p-0 m-0 space-y-2">
-                  {sortPlayers(team2).map((player, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-                    >
-                      <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              {numTeams === 3 && (
-                <div className="flex-1 p-4 bg-white rounded shadow-md">
-                  <div className="text-center bg-[#d18df0]">
-                    <h2 className="text-xl text-[#ffffff] font-bold p-2 mb-4">Team White</h2>
-                  </div>
-                  <ul className="list-none p-0 m-0 space-y-2">
-                    {sortPlayers(team3).map((player, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-                      >
-                        <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            {subs.length > 0 && (
-              <div className="mt-6 p-4 bg-white rounded shadow-md">
-                <h2 className="text-xl font-bold mb-2">Substitutes</h2>
-                <ul className="list-disc pl-5 space-y-1">
-                  {sortPlayers(subs).map((player, index) => (
-                    <li key={index} className="text-gray-800">{player.replace(/-\w$/, '')}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <div className="mt-6 text-center">
-              <button
-                onClick={downloadImage}
-                className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-              >
-                Download Teams as Image
-              </button>
-            </div>
-          </div>
-        )}
-        {savedTeams.length > 0 && (
-          <div className="mt-6 p-4 bg-white rounded shadow-md">
-            <h2 className="text-xl font-bold mb-2">Saved Teams</h2>
-            <ul className="list-disc pl-5 space-y-2">
-              {savedTeams.map((team, idx) => (
-                <li key={idx} className="flex justify-between items-center mb-2">
-                  <span className="text-[13px] font-semibold text-[#4491e3] bg-gray-100 p-1">Option {idx+ 1}</span>
-                  <div>
-                    <button
-                      onClick={() => loadSavedTeam(idx)}
-                      className="bg-blue-500 text-white py-1 px-2 rounded mr-2 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      Load
-                    </button>
-                    <button
-                      onClick={() => deleteSavedTeam(idx)}
-                      className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {deleteStatus.status && deleteStatus.index !== null &&(
-              <div className="bg-[#f0184e] text-[#ffffff] px-4 py-2 rounded-md mt-4 animate-fadeOut">
-                Deleted Option {deleteStatus.index + 1} successfully!
-              </div>
-            )}
+      </div>
+
+      <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
+        <div className="flex flex-col flex-1">
+          <label htmlFor="numTeams" className="font-semibold text-lg mb-2">Number of Teams:</label>
+          <select
+            id="numTeams"
+            value={numTeams}
+            onChange={handleNumTeamsChange}
+            className="border border-gray-300 p-2 rounded-lg shadow-sm"
+          >
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+          </select>
+        </div>
+        <div className="flex flex-col flex-1">
+          <label htmlFor="teamSize" className="font-semibold text-lg mb-2">Team Size:</label>
+          <select
+            id="teamSize"
+            value={teamSize}
+            onChange={handleTeamSizeChange}
+            className="border border-gray-300 p-2 rounded-lg shadow-sm"
+          >
+            <option value={7}>7-a-side</option>
+            <option value={8}>8-a-side</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
+        <div className="flex flex-col flex-1">
+          <label htmlFor="team1Name" className="text-center font-semibold text-lg mb-2">Team 1</label>
+          <input
+            type="text"
+            id="team1Name"
+            name="team1"
+            value={teamNames.team1}
+            onChange={handleTeamNameChange}
+            className="border border-gray-300 p-2 rounded-lg shadow-sm"
+          />
+        </div>
+        <div className="flex flex-col flex-1">
+          <label htmlFor="team2Name" className="text-center font-semibold text-lg mb-2">Team 2</label>
+          <input
+            type="text"
+            id="team2Name"
+            name="team2"
+            value={teamNames.team2}
+            onChange={handleTeamNameChange}
+            className="border border-gray-300 p-2 rounded-lg shadow-sm"
+          />
+        </div>
+        {numTeams === 3 && (
+          <div className="flex flex-col flex-1">
+            <label htmlFor="team3Name" className="text-center font-semibold text-lg mb-2">Team 3</label>
+            <input
+              type="text"
+              id="team3Name"
+              name="team3"
+              value={teamNames.team3}
+              onChange={handleTeamNameChange}
+              className="border border-gray-300 p-2 rounded-lg shadow-sm"
+            />
           </div>
         )}
       </div>
+
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="flex flex-wrap md:flex-nowrap justify-between gap-6">
+          {teams.map((team, index) => (
+            <Droppable droppableId={`team${index + 1}`} key={index}>
+              {(provided) => (
+                <div
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                  className="bg-gray-50 border border-gray-300 rounded-lg p-4 w-full md:w-1/3"
+                >
+                  <h2 className={`text-center text-2xl font-bold mb-4 ${getColorClass(teamNames[`team${index + 1}`])}`}>{teamNames[`team${index + 1}`]}</h2>
+                  {team.length > 0 ? (
+                    team.map((player, i) => (
+                      <Draggable key={player} draggableId={player} index={i}>
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="p-2 mb-2 bg-white border border-gray-300 rounded-lg shadow-sm"
+                          >
+                            {player}
+                          </div>
+                        )}
+                      </Draggable>
+                    ))
+                  ) : (
+                    <p className="text-gray-500">No players</p>
+                  )}
+                  {provided.placeholder}
+
+                  {index === teams.length - 1 && subs.length > 0 && (
+                    <div className="mt-6">
+                      <Droppable droppableId="subs" key={index}>
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                            className="bg-gray-100 border border-gray-300 rounded-lg p-4"
+                          >
+                            <h3 className="text-xl font-semibold mb-2 text-blue-500">Substitutes</h3>
+                            {subs.map((player, i) => (
+                              <Draggable key={player} draggableId={player} index={i}>
+                                {(provided) => (
+                                  <div
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    className="p-2 mb-2 bg-gray-200 border border-gray-300 rounded-lg shadow-sm"
+                                  >
+                                    {player}
+                                  </div>
+                                )}
+                              </Draggable>
+                            ))}
+                            {provided.placeholder}
+                          </div>
+                        )}
+                      </Droppable>
+                    </div>
+                  )}
+                </div>
+              )}
+            </Droppable>
+          ))}
+        </div>
+      </DragDropContext>
     </div>
   );
 };
 
 export default TeamGenerator;
-
-// import React, { useState, useEffect, useRef } from 'react';
-// import html2canvas from 'html2canvas';
-
-// const playersList = [
-//   "1. Joji-D-A",
-//   "2. Vinod-M-B",
-//   "3. Clitus-D-B",
-//   "4. Saju-F-A",
-//   "5. Mak-M-B",
-//   "6. Sam-D-B",
-//   "7. Joseph-D-A",
-//   "8. Sanju-D-C",
-//   "9. Sayu-M-A",
-//   "10. Noyal-GK-A",
-//   "11. AmalP-F-B",
-//   "12. Kiran-F-A",
-//   "13. Sharan-M-A",
-//   "14. Martin-D-B",
-//   "15. Rejin-M-A",
-//   "16. George-GK-A",
-//   "17. Elon-M-A",
-//   "18. Elias-F-A"
-// ];
-
-// const TeamGenerator = () => {
-//   const [input, setInput] = useState(playersList.join('\n'));
-//   const [team1, setTeam1] = useState([]);
-//   const [team2, setTeam2] = useState([]);
-//   const [team3, setTeam3] = useState([]);
-//   const [subs, setSubs] = useState([]);
-//   const [savedTeams, setSavedTeams] = useState(JSON.parse(localStorage.getItem('savedTeams')) || []);
-//   const [deleteStatus, setDeleteStatus] = useState({ status: false, index: null });
-//   const [numTeams, setNumTeams] = useState(2);
-//   const [playersPerSide, setPlayersPerSide] = useState(7);
-//   const [error, setError] = useState(null);
-//   const captureRef = useRef(null);
-
-//   useEffect(() => {
-//     localStorage.removeItem('savedTeams');
-//   }, []);
-
-//   const sanitizeInput = (input) => {
-//     return input.replace(/[^a-zA-Z0-9-,.\n\s]/g, '');
-//   };
-
-//   const handleInputChange = (e) => {
-//     const sanitizedInput = sanitizeInput(e.target.value);
-//     setInput(sanitizedInput);
-//   };
-
-//   const handleNumTeamsChange = (e) => {
-//     setNumTeams(Number(e.target.value));
-//   };
-
-//   const handlePlayersPerSideChange = (e) => {
-//     setPlayersPerSide(Number(e.target.value));
-//   };
-
-//   const splitTeams = () => {
-//     if (!input.trim()) {
-//       setError('The input field cannot be empty. Please enter player names!');
-//       return;
-//     }
-
-//     const players = input
-//       .split('\n')
-//       .map(player => player.trim())
-//       .filter(player => player)
-//       .map(player => player.replace(/^\d+\.\s*/, ''));
-
-//     const goalkeepers = players.filter(player => player.includes('GK'));
-//     const outfieldPlayers = players.filter(player => !player.includes('GK'));
-
-//     const shuffledOutfieldPlayers = outfieldPlayers.sort(() => Math.random() - 0.5);
-//     const shuffledGoalkeepers = goalkeepers.sort(() => Math.random() - 0.5);
-
-//     const mainTeams = Array.from({ length: numTeams }, () => []);
-
-//     shuffledGoalkeepers.forEach((player, index) => {
-//       mainTeams[index % numTeams].push(player);
-//     });
-
-//     shuffledOutfieldPlayers.forEach((player, index) => {
-//       mainTeams[index % numTeams].push(player);
-//     });
-
-//     setTeam1(mainTeams[0]);
-//     setTeam2(mainTeams[1]);
-//     if (numTeams === 3) {
-//       setTeam3(mainTeams[2]);
-//     } else {
-//       setTeam3([]);
-//     }
-
-//     const allTeamPlayers = mainTeams.flat();
-//     const subsList = players.filter(player => !allTeamPlayers.includes(player));
-//     setSubs(subsList);
-
-//     const newSavedTeams = [...savedTeams, { team1: mainTeams[0], team2: mainTeams[1], team3: mainTeams[2] || [], subs: subsList }];
-//     setSavedTeams(newSavedTeams);
-//     localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
-//   };
-
-//   const sortPlayers = (players) => {
-//     return players.sort((a, b) => {
-//       const [aCategory, aLevel] = a.split('-').slice(1);
-//       const [bCategory, bLevel] = b.split('-').slice(1);
-
-//       const categoryOrder = ['GK', 'D', 'M', 'F'];
-//       const levelOrder = ['A', 'B', 'C', 'D'];
-
-//       if (aCategory !== bCategory) {
-//         return categoryOrder.indexOf(aCategory) - categoryOrder.indexOf(bCategory);
-//       }
-
-//       return levelOrder.indexOf(aLevel) - levelOrder.indexOf(bLevel);
-//     });
-//   };
-
-//   const downloadImage = () => {
-//     if (captureRef.current) {
-//       html2canvas(captureRef.current).then(canvas => {
-//         const link = document.createElement('a');
-//         link.href = canvas.toDataURL('image/png');
-//         link.download = 'teams.png';
-//         link.click();
-//       });
-//     }
-//   };
-
-//   const deleteSavedTeam = (index) => {
-//     const newSavedTeams = savedTeams.filter((_, i) => i !== index);
-//     setSavedTeams(newSavedTeams);
-//     localStorage.setItem('savedTeams', JSON.stringify(newSavedTeams));
-//     setDeleteStatus(true);
-//     setDeleteStatus({ status: true, index });
-//     setTimeout(() => {
-//       setDeleteStatus({ status: false, index: null });
-//     }, 3000);
-//   };
-
-//   const loadSavedTeam = (index) => {
-//     const team = savedTeams[index];
-//     setTeam1(team.team1);
-//     setTeam2(team.team2);
-//     setTeam3(team.team3);
-//     setSubs(team.subs);
-//   };
-
-//   return (
-//     <div className="bg-gradient-to-r from-blue-100 to-pink-100 w-full min-h-[600px]">
-//       <div className="mb-2 bg-cover bg-center bg-no-repeat h-[120px]" style={{ backgroundImage: "url('images/teamgen.png')", backgroundPosition: 'center 80%' }}></div>
-//       <div className="text-center font-semibold text-xs">
-//         <h3>Home &#8594; Team Generator</h3>
-//       </div>
-
-//       <div className="w-full max-w-4xl mx-auto p-4">
-//         <p className="text-sm text-gray-600 mb-2">
-//           <strong>Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
-//         </p>
-//         <textarea
-//           value={input}
-//           onChange={handleInputChange}
-//           className="w-full h-40 p-2 border rounded bg-white shadow-sm"
-//           placeholder="Enter player details..."
-//         />
-//         <div className="flex flex-col md:flex-row mt-4 space-y-4 md:space-y-0 md:space-x-4">
-//           <div className="flex-1">
-//             <label className="block text-sm font-bold mb-2">Number of Teams:</label>
-//             <select value={numTeams} onChange={handleNumTeamsChange} className="w-full p-2 border rounded bg-white shadow-sm">
-//               <option value={2}>2</option>
-//               <option value={3}>3</option>
-//             </select>
-//           </div>
-//           <div className="flex-1">
-//             <label className="block text-sm font-bold mb-2">Players per Side:</label>
-//             <select value={playersPerSide} onChange={handlePlayersPerSideChange} className="w-full p-2 border rounded bg-white shadow-sm">
-//               <option value={6}>6</option>
-//               <option value={7}>7</option>
-//               <option value={8}>8</option>
-//             </select>
-//           </div>
-//         </div>
-//         <button
-//           onClick={splitTeams}
-//           className="bg-blue-500 text-white py-2 px-4 rounded mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//         >
-//           Generate Teams
-//         </button>
-//         {error && <p className="text-red-500 mt-2">{error}</p>}
-//         {team1.length > 0 && (
-//           <div className="mt-6" ref={captureRef}>
-//             <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
-//               <div className="flex-1 p-4 bg-white rounded shadow-md">
-//                 <div className="text-center bg-[#d18df0]">
-//                   <h2 className="text-xl text-[#f00e52] font-bold p-2 mb-4">Team Red</h2>
-//                 </div>
-//                 <ul className="list-none p-0 m-0 space-y-2">
-//                   {sortPlayers(team1).map((player, index) => (
-//                     <li
-//                       key={index}
-//                       className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-//                     >
-//                       <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//               <div className="flex-1 p-4 bg-white rounded shadow-md">
-//                 <div className="text-center bg-[#eae524]">
-//                   <h2 className="text-xl text-[#f00e52] font-bold p-2 mb-4">Team Yellow</h2>
-//                 </div>
-//                 <ul className="list-none p-0 m-0 space-y-2">
-//                   {sortPlayers(team2).map((player, index) => (
-//                     <li
-//                       key={index}
-//                       className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-//                     >
-//                       <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//               {numTeams === 3 && (
-//                 <div className="flex-1 p-4 bg-white rounded shadow-md">
-//                   <div className="text-center bg-[#8adce8]">
-//                     <h2 className="text-xl text-[#f00e52] font-bold p-2 mb-4">Team Blue</h2>
-//                   </div>
-//                   <ul className="list-none p-0 m-0 space-y-2">
-//                     {sortPlayers(team3).map((player, index) => (
-//                       <li
-//                         key={index}
-//                         className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-//                       >
-//                         <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </div>
-//               )}
-//             </div>
-
-//             {subs.length > 0 && (
-//               <div className="mt-4 p-4 bg-white rounded shadow-md">
-//                 <h2 className="text-xl font-bold mb-4">Substitutes</h2>
-//                 <ul className="list-none p-0 m-0 space-y-2">
-//                   {sortPlayers(subs).map((player, index) => (
-//                     <li
-//                       key={index}
-//                       className="flex items-center p-2 bg-gray-100 rounded hover:bg-gray-200 transition duration-300 ease-in-out"
-//                     >
-//                       <span className="text-gray-800 text-base font-medium">{player.replace(/-\w$/, '')}</span>
-//                     </li>
-//                   ))}
-//                 </ul>
-//               </div>
-//             )}
-//             <button
-//               onClick={downloadImage}
-//               className="bg-green-500 text-white py-2 px-4 rounded mt-4 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-//             >
-//               Download Teams as Image
-//             </button>
-//           </div>
-//         )}
-//       </div>
-
-//       <div className="w-full max-w-4xl mx-auto p-4 mt-6">
-//         <h2 className="text-xl font-bold mb-4">Saved Teams</h2>
-//         <div className="space-y-4">
-//           {savedTeams.length > 0 ? (
-//             savedTeams.map((team, index) => (
-//               <div key={index} className="p-4 bg-white rounded shadow-md">
-//                 <div className="flex justify-between">
-//                   <h3 className="text-lg font-semibold">Saved Team {index + 1}</h3>
-//                   <div className="space-x-2">
-//                     <button
-//                       onClick={() => loadSavedTeam(index)}
-//                       className="bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//                     >
-//                       Load
-//                     </button>
-//                     <button
-//                       onClick={() => deleteSavedTeam(index)}
-//                       className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-//                     >
-//                       Delete
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//             ))
-//           ) : (
-//             <p className="text-gray-500">No saved teams found.</p>
-//           )}
-//         </div>
-//         {deleteStatus.status && (
-//           <div className="mt-2 text-green-500">
-//             {`Delete Option ${deleteStatus.index + 1} successfully!`}
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default TeamGenerator;
