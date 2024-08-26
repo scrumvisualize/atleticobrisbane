@@ -8,14 +8,14 @@ const playersdef = [
   "4. Vinod-M-A",
   "5. Mak-M-B",
   "6. Sam-D-B",
-  "14. Prakash-GK-A",
+  "7. Prakash-GK-A",
   "8. Sanju-D-B",
   "9. Sayu-M-A",
   "10. Noyal-M-A",
   "11. AmalP-F-B",
   "12. Kiran-F-A",
   "13. Sharan-M-A",
-  "7. Joseph-D-A",
+  "14. Joseph-D-A",
   "15. Rejin-M-A",
   "16. George-GK-A",
   "17. Elon-M-A",
@@ -37,6 +37,7 @@ const TeamGenerator = () => {
   const [subs, setSubs] = useState([]);
 
   useEffect(() => {
+    console.log('playersList:', playersList); // Add this line to debug
     if (playersList.length > 0) {
       shuffleAndDistributePlayers();
     }
@@ -53,7 +54,8 @@ const TeamGenerator = () => {
       .split('\n')
       .map(player => player.trim())
       .filter(player => player)
-      .map(player => player.replace(/^\d+\.\s*|\s*(-A|-B|-C)?$/g, ''));
+      //.map(player => player.replace(/^\d+\.\s*|\s*(-A|-B|-C)?$/g, ''));
+      .map(player => player.replace(/^\d+\.\s*/g, ''));
 
     setPlayersList(parsedPlayers);
     //setInputPlayers('');
@@ -66,42 +68,58 @@ const TeamGenerator = () => {
     }
   };
 
+  
   const shuffleAndDistributePlayers = () => {
-    const players = [...playersList];
-    shuffleArray(players);
-
-    const positionGroups = {
-      GK: [],
-      D: [],
-      M: [],
-      F: [],
-    };
-
-    players.forEach(player => {
-      const position = player.split('-')[1];
-      positionGroups[position] = positionGroups[position] || [];
-      positionGroups[position].push(player);
+    // Separate players by position and category
+    const positionCategories = { GK: [], D: [], M: [], F: [] };
+    const repeatPlayers = [];
+    const nonRepeatPlayers = [];
+  
+    playersList.forEach(player => {
+      if (player.endsWith('-R')) {
+        repeatPlayers.push(player);
+      } else {
+        const position = player.split('-')[1];
+        if (positionCategories[position]) {
+          positionCategories[position].push(player);
+        }
+      }
     });
-
+  
+    // Flatten the position categories while maintaining the order
     const orderedPlayers = [
-      ...positionGroups.GK,
-      ...positionGroups.D,
-      ...positionGroups.M,
-      ...positionGroups.F
+      ...positionCategories.GK,
+      ...positionCategories.D,
+      ...positionCategories.M,
+      ...positionCategories.F
     ];
-
+  
+    // Ensure we only take as many players as needed for the teams
     const totalPlayers = numTeams * teamSize;
-    const newTeams = Array.from({ length: numTeams }, () => []);
     const availablePlayers = orderedPlayers.slice(0, totalPlayers);
-
+  
+    // Initialize teams
+    const newTeams = Array.from({ length: numTeams }, () => []);
+  
+    // Distribute non-repeat players among teams
     availablePlayers.forEach((player, index) => {
       newTeams[index % numTeams].push(player);
     });
-
+  
+    // Ensure repeat players are added to two different teams
+    const teamIndices = Array.from({ length: numTeams }, (_, i) => i);
+    repeatPlayers.forEach((player, index) => {
+      // Choose two different teams for each repeat player
+      const [team1, team2] = teamIndices.filter(i => i !== index % numTeams);
+      newTeams[team1].push(player);
+      newTeams[team2].push(player);
+    });
+  
+    // Calculate remaining non-repeat players as subs
     const updatedSubs = orderedPlayers.length > totalPlayers
       ? orderedPlayers.slice(totalPlayers)
       : [];
-
+  
     setTeams(newTeams);
     setSubs(updatedSubs);
   };
@@ -119,25 +137,6 @@ const TeamGenerator = () => {
     setTeamSize(Number(e.target.value));
   };
 
-  // const onDragEnd = (result) => {
-  //   const { source, destination } = result;
-  //   if (!destination) return;
-
-  //   const { droppableId: sourceTeamId } = source;
-  //   const { droppableId: destTeamId } = destination;
-
-  //   if (sourceTeamId === destTeamId) return;
-
-  //   const player = result.draggableId;
-  //   const sourceTeamIndex = parseInt(sourceTeamId.replace('team', ''), 10) - 1;
-  //   const destTeamIndex = parseInt(destTeamId.replace('team', ''), 10) - 1;
-
-  //   const updatedTeams = [...teams];
-  //   updatedTeams[sourceTeamIndex] = updatedTeams[sourceTeamIndex].filter(p => p !== player);
-  //   updatedTeams[destTeamIndex].splice(destination.index, 0, player);
-
-  //   setTeams(updatedTeams);
-  // };
 
   const onDragEnd = (result) => {
     const { source, destination } = result;
