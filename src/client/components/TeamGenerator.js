@@ -109,8 +109,15 @@ const TeamGenerator = () => {
     // Ensure repeat players are added to two different teams
     const teamIndices = Array.from({ length: numTeams }, (_, i) => i);
     repeatPlayers.forEach((player, index) => {
+      let availableTeams = teamIndices.filter(i => i !== index % numTeams);
+
+      // For the case where there are only two teams, handle by choosing the current team and the other one
+      if (availableTeams.length === 1) {
+        availableTeams = [index % numTeams, availableTeams[0]];
+      }
+
       // Choose two different teams for each repeat player
-      const [team1, team2] = teamIndices.filter(i => i !== index % numTeams);
+      const [team1, team2] = availableTeams;
       newTeams[team1].push(player);
       newTeams[team2].push(player);
     });
