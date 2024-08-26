@@ -201,6 +201,10 @@ const TeamGenerator = () => {
     return 'text-blue-400'; // Default color
   };
 
+  const getPlayerClass = (player) => {
+    return player.endsWith('-R') ? 'bg-[#f6f7c3]' : 'bg-white'; // Adjust the class for highlighting
+  };
+
   return (
     <div className="container mx-auto p-6 max-w-6xl">
       <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">Team Generator</h1>
@@ -307,7 +311,7 @@ const TeamGenerator = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className="p-2 mb-2 bg-white border border-gray-300 rounded-lg shadow-sm"
+                            className={`p-2 mb-2 bg-white border border-gray-300 rounded-lg shadow-sm ${getPlayerClass(player)}`}
                           >
                             {player}
                           </div>
