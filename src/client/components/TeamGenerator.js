@@ -54,8 +54,8 @@ const TeamGenerator = () => {
       .split('\n')
       .map(player => player.trim())
       .filter(player => player)
-      //.map(player => player.replace(/^\d+\.\s*|\s*(-A|-B|-C)?$/g, ''));
-      .map(player => player.replace(/^\d+\.\s*/g, ''));
+      .map(player => player.replace(/^\d+\.\s*|\s*(-A|-B|-C)?$/g, ''));
+      //.map(player => player.replace(/^\d+\.\s*/g, ''));
 
     setPlayersList(parsedPlayers);
     //setInputPlayers('');
