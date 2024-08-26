@@ -202,7 +202,7 @@ const TeamGenerator = () => {
   };
 
   const getPlayerClass = (player) => {
-    return player.endsWith('-R') ? 'bg-[#f6f7c3]' : 'bg-white'; // Adjust the class for highlighting
+    return player.endsWith('-R') ? 'player-highlight' : 'bg-white'; // Apply custom class
   };
 
   return (

@@ -141,3 +141,15 @@ code {
   animation: fadeOut 3s forwards;
   transition: opacity 3s ease-in-out;
 }
+
+/* styles.css */
+.player-highlight {
+  background-color: #fefcbf; /* Light yellow for better contrast */
+}
+
+/* Mobile-specific styles */
+@media (max-width: 640px) {
+  .player-highlight {
+    background-color: #fefcbf; /* Ensure visibility on mobile */
+  }
+}
