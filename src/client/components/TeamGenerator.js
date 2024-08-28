@@ -213,10 +213,173 @@ const TeamGenerator = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl">
+    // <div className="container mx-auto p-2 max-w-7xl">
+    //   <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">Team Generator</h1>
+    //   <p className="text-sm text-gray-600 mb-2 italic">
+    //     <strong >Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
+    //   </p>
+    //   <div className="mb-6">
+    //     <textarea
+    //       value={inputPlayers}
+    //       onChange={handleInputChange}
+    //       placeholder="Enter players (e.g., 1. Joji-D-A)"
+    //       rows={8}
+    //       className="w-full border border-gray-300 p-3 rounded-lg shadow-md"
+    //     />
+    //     <button
+    //       onClick={handleAddPlayers}
+    //       className="mt-2 bg-blue-600 text-white p-2 rounded-lg shadow-md hover:bg-blue-700 transition duration-300"
+    //     >
+    //       Generate Teams
+    //     </button>
+    //   </div>
+
+    //   <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
+    //     <div className="flex flex-col flex-1">
+    //       <label htmlFor="numTeams" className="font-semibold text-lg mb-2">Number of Teams:</label>
+    //       <select
+    //         id="numTeams"
+    //         value={numTeams}
+    //         onChange={handleNumTeamsChange}
+    //         className="border border-gray-300 p-2 rounded-lg shadow-sm"
+    //       >
+    //         <option value={2}>2</option>
+    //         <option value={3}>3</option>
+    //       </select>
+    //     </div>
+    //     <div className="flex flex-col flex-1">
+    //       <label htmlFor="teamSize" className="font-semibold text-lg mb-2">Team Size:</label>
+    //       <select
+    //         id="teamSize"
+    //         value={teamSize}
+    //         onChange={handleTeamSizeChange}
+    //         className="border border-gray-300 p-2 rounded-lg shadow-sm"
+    //       >
+    //         <option value={7}>7-a-side</option>
+    //         <option value={8}>8-a-side</option>
+    //       </select>
+    //     </div>
+    //   </div>
+
+    //   <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
+    //     <div className="flex flex-col flex-1">
+    //       <label htmlFor="team1Name" className="text-center font-semibold text-lg mb-2">Team 1</label>
+    //       <input
+    //         type="text"
+    //         id="team1Name"
+    //         name="team1"
+    //         value={teamNames.team1}
+    //         onChange={handleTeamNameChange}
+    //         className="border border-gray-300 p-2 rounded-lg shadow-sm"
+    //       />
+    //     </div>
+    //     <div className="flex flex-col flex-1">
+    //       <label htmlFor="team2Name" className="text-center font-semibold text-lg mb-2">Team 2</label>
+    //       <input
+    //         type="text"
+    //         id="team2Name"
+    //         name="team2"
+    //         value={teamNames.team2}
+    //         onChange={handleTeamNameChange}
+    //         className="border border-gray-300 p-2 rounded-lg shadow-sm"
+    //       />
+    //     </div>
+    //     {numTeams === 3 && (
+    //       <div className="flex flex-col flex-1">
+    //         <label htmlFor="team3Name" className="text-center font-semibold text-lg mb-2">Team 3</label>
+    //         <input
+    //           type="text"
+    //           id="team3Name"
+    //           name="team3"
+    //           value={teamNames.team3}
+    //           onChange={handleTeamNameChange}
+    //           className="border border-gray-300 p-2 rounded-lg shadow-sm"
+    //         />
+    //       </div>
+    //     )}
+    //   </div>
+
+    //   <DragDropContext onDragEnd={onDragEnd}>
+    //     <div className="flex flex-wrap justify-between w-full gap-2">
+    //       {teams.map((team, index) => (
+    //         <Droppable droppableId={`team${index + 1}`} key={index}>
+    //           {(provided) => (
+    //             <div
+    //               ref={provided.innerRef}
+    //               {...provided.droppableProps}
+    //               className="bg-gray-50 border border-gray-300 rounded-lg p-2 flex-grow md:w-1/3 sm:w-full flex-shrink-0"
+    //             >
+    //               <h2
+    //                 className={`text-center text-xl font-bold mb-2 ${getColorClass(
+    //                   teamNames[`team${index + 1}`]
+    //                 )}`}
+    //               >
+    //                 {teamNames[`team${index + 1}`]}
+    //               </h2>
+    //               {team.length > 0 ? (
+    //                 team.map((player, i) => (
+    //                   <Draggable key={player} draggableId={player} index={i}>
+    //                     {(provided, snapshot) => (
+    //                       <div
+    //                         ref={provided.innerRef}
+    //                         {...provided.draggableProps}
+    //                         {...provided.dragHandleProps}
+    //                         className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? "bg-[#c3f7e6]" : "bg-white"
+    //                           } ${getPlayerClass(player)}`}
+    //                       >
+    //                         {player}
+    //                       </div>
+    //                     )}
+    //                   </Draggable>
+    //                 ))
+    //               ) : (
+    //                 <p className="text-gray-500 text-sm">No players</p>
+    //               )}
+    //               {provided.placeholder}
+
+    //               {index === teams.length - 1 && subs.length > 0 && (
+    //                 <div className="mt-2">
+    //                   <Droppable droppableId="subs" key={index}>
+    //                     {(provided) => (
+    //                       <div
+    //                         ref={provided.innerRef}
+    //                         {...provided.droppableProps}
+    //                         className="bg-gray-100 border border-gray-300 rounded-lg p-2"
+    //                       >
+    //                         <h3 className="text-lg font-semibold mb-1 text-blue-500">
+    //                           Substitutes
+    //                         </h3>
+    //                         {subs.map((player, i) => (
+    //                           <Draggable key={player} draggableId={player} index={i}>
+    //                             {(provided) => (
+    //                               <div
+    //                                 ref={provided.innerRef}
+    //                                 {...provided.draggableProps}
+    //                                 {...provided.dragHandleProps}
+    //                                 className="p-1 mb-1 bg-gray-200 border border-gray-300 rounded-lg shadow-sm"
+    //                               >
+    //                                 {player}
+    //                               </div>
+    //                             )}
+    //                           </Draggable>
+    //                         ))}
+    //                         {provided.placeholder}
+    //                       </div>
+    //                     )}
+    //                   </Droppable>
+    //                 </div>
+    //               )}
+    //             </div>
+    //           )}
+    //         </Droppable>
+    //       ))}
+    //     </div>
+    //   </DragDropContext>
+    // </div>
+    <div className="container mx-auto p-2 max-w-7xl">
       <h1 className="text-4xl font-bold mb-8 text-center text-blue-700">Team Generator</h1>
       <p className="text-sm text-gray-600 mb-2 italic">
-        <strong >Format:</strong> Name-Position-Level (ex. John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
+        <strong>Format:</strong> Name-Position-Level (e.g., John-GK-A, Mark-D-B, Mat-M-C, Dan-F-B, Ray-F-A-R). Each player on a new line.
       </p>
       <div className="mb-6">
         <textarea
@@ -234,6 +397,7 @@ const TeamGenerator = () => {
         </button>
       </div>
 
+      {/* Team settings section */}
       <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
         <div className="flex flex-col flex-1">
           <label htmlFor="numTeams" className="font-semibold text-lg mb-2">Number of Teams:</label>
@@ -261,6 +425,7 @@ const TeamGenerator = () => {
         </div>
       </div>
 
+      {/* Team Names */}
       <div className="flex flex-col md:flex-row md:justify-between mb-6 gap-4">
         <div className="flex flex-col flex-1">
           <label htmlFor="team1Name" className="text-center font-semibold text-lg mb-2">Team 1</label>
@@ -299,26 +464,37 @@ const TeamGenerator = () => {
         )}
       </div>
 
+      {/* Team Columns */}
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex flex-wrap md:flex-nowrap justify-between gap-6">
+        <div
+          className={`grid ${numTeams === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2 w-full`}
+        >
           {teams.map((team, index) => (
             <Droppable droppableId={`team${index + 1}`} key={index}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="bg-gray-50 border border-gray-300 rounded-lg p-4 w-full md:w-1/3"
+                  className={`bg-gray-50 border border-gray-300 rounded-lg p-2 flex-grow ${numTeams === 2 ? 'w-full' : 'w-full'
+                    }`}
                 >
-                  <h2 className={`text-center text-2xl font-bold mb-4 ${getColorClass(teamNames[`team${index + 1}`])}`}>{teamNames[`team${index + 1}`]}</h2>
+                  <h2
+                    className={`text-center text-xl font-bold mb-2 ${getColorClass(
+                      teamNames[`team${index + 1}`]
+                    )}`}
+                  >
+                    {teamNames[`team${index + 1}`]}
+                  </h2>
                   {team.length > 0 ? (
                     team.map((player, i) => (
                       <Draggable key={player} draggableId={player} index={i}>
-                        {(provided) => (
+                        {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`p-2 mb-2 bg-white border border-gray-300 rounded-lg shadow-sm ${getPlayerClass(player)}`}
+                            className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? 'bg-[#c3f7e6]' : 'bg-white'
+                              } ${getPlayerClass(player)}`}
                           >
                             {player}
                           </div>
@@ -326,40 +502,9 @@ const TeamGenerator = () => {
                       </Draggable>
                     ))
                   ) : (
-                    <p className="text-gray-500">No players</p>
+                    <p className="text-gray-500 text-sm">No players</p>
                   )}
                   {provided.placeholder}
-
-                  {index === teams.length - 1 && subs.length > 0 && (
-                    <div className="mt-6">
-                      <Droppable droppableId="subs" key={index}>
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.droppableProps}
-                            className="bg-gray-100 border border-gray-300 rounded-lg p-4"
-                          >
-                            <h3 className="text-xl font-semibold mb-2 text-blue-500">Substitutes</h3>
-                            {subs.map((player, i) => (
-                              <Draggable key={player} draggableId={player} index={i}>
-                                {(provided) => (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    className="p-2 mb-2 bg-gray-200 border border-gray-300 rounded-lg shadow-sm"
-                                  >
-                                    {player}
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))}
-                            {provided.placeholder}
-                          </div>
-                        )}
-                      </Droppable>
-                    </div>
-                  )}
                 </div>
               )}
             </Droppable>

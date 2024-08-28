@@ -31,6 +31,7 @@ const ManageSchedule = () => {
         { value: 'friendly', label: 'Friendly Match' },
     ];
 
+    
     useEffect(() => {
         if (editingIndex !== null) {
             const schedule = schedules[editingIndex];
@@ -43,8 +44,18 @@ const ManageSchedule = () => {
             setDetails(schedule.details);
             setRecurring(schedule.recurring || false);
             setRecurrencePattern(schedule.recurrencePattern || '');
+
+            // Use setValue to update the form fields
+            setValue('name', schedule.schedulename);
+            setValue('type', schedule.type);
+            setValue('formattedDate', dayjs(schedule.date).format('dddd, D MMMM YYYY'));
+            setValue('time', schedule.scheduletime);
+            setValue('location', schedule.location);
+            setValue('details', schedule.details);
+            setValue('recurring', schedule.recurring || false);
+            setValue('recurrencePattern', schedule.recurrencePattern || '');
         }
-    }, [editingIndex]);
+    }, [editingIndex, schedules, setValue]);
 
     useEffect(() => {
         if (date) {
@@ -108,7 +119,7 @@ const ManageSchedule = () => {
 
         if (editingIndex !== null) {
             const updatedSchedules = schedules.map((sched, index) =>
-                index === editingIndex ? newSchedules[0] : sched
+                index === editingIndex ? { ...sched, ...newSchedules[0] } : sched
             );
             setSchedules(updatedSchedules);
             setEditingIndex(null);
