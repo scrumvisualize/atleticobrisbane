@@ -465,6 +465,9 @@ const TeamGenerator = () => {
       </div>
 
       {/* Team Columns */}
+      <p className="text-sm text-gray-600 mb-2 italic">
+        <strong>Drag & Drop:</strong> Drag and drop players between teams to make competitve teams.
+      </p>
       <DragDropContext onDragEnd={onDragEnd}>
         <div
           className={`grid ${numTeams === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-2 w-full`}
@@ -489,12 +492,14 @@ const TeamGenerator = () => {
                     team.map((player, i) => (
                       <Draggable key={player} draggableId={player} index={i}>
                         {(provided, snapshot) => (
+                           // Add this to check the snapshot state
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'
+                            className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? 'border-2 border-indigo-500/100' : 'bg-white'
                               } ${getPlayerClass(player)}`}
+                           
                           >
                             {player}
                           </div>
