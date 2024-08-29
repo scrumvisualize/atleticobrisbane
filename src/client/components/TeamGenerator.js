@@ -493,7 +493,7 @@ const TeamGenerator = () => {
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
-                            className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? 'bg-[#c3f7e6]' : 'bg-white'
+                            className={`p-1 mb-1 border border-gray-300 rounded-lg shadow-sm ${snapshot.isDragging ? 'bg-green-200' : 'bg-white'
                               } ${getPlayerClass(player)}`}
                           >
                             {player}
