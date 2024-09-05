@@ -700,6 +700,7 @@ app.post('/service/createSchedule', async (req, res, next) => {
 
   } catch (e) {
     console.log(e);
+    console.error("Request Body:", req.body); // Log request body for debugging
     res.status(500).json({ message: e.message });
     return next(e);
   }

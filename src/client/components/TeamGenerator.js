@@ -50,7 +50,7 @@ const TeamGenerator = () => {
   const [playersList, setPlayersList] = useState([]);
   const [numTeams, setNumTeams] = useState(2);
   const [teamSize, setTeamSize] = useState(7);
-  const [teamNames, setTeamNames] = useState({ team1: 'Team 1', team2: 'Team 2', team3: 'Team 3' });
+  const [teamNames, setTeamNames] = useState({ team1: 'Green', team2: 'Orange', team3: 'Red' });
   const [teams, setTeams] = useState([[], []]);
   const [subs, setSubs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
@@ -265,7 +265,7 @@ const TeamGenerator = () => {
           Generate Teams
         </button>
         <button
-          className="bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg"
+          className="bg-gradient-to-r from-blue-500 via-[#cb6ce6] to-[#cb6ce6] text-white py-2 px-4 ml-2 rounded-lg"
           onClick={() => setShowPopup(true)}
         >
           Add more players
@@ -346,7 +346,7 @@ const TeamGenerator = () => {
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
-                          className={`text-center p-2 mb-2 rounded-lg shadow-sm ${getPlayerClass(player)} ${getDragClass(snapshot.isDragging)}`}
+                          className={`text-center p-2 mb-2 rounded-lg shadow-sm ${getPlayerClass(player)} ${getDragClass(snapshot.isDragging)} hover:shadow-sm hover:shadow-green-400`}
                         >
                           {player}
                         </div>
