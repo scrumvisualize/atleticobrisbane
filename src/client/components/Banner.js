@@ -54,8 +54,7 @@ const Banner = () => {
                 <img className="w-30 h-auto" src="images/arrow-f.png" alt="Arrow 2"/>
               </div>
             </div>
-            {/* <h1 className="text-5xl font-bold text-white ml-[-30px] px-2 mb-4">Welcome to Atlético Brisbane</h1>
-            <span className="text-3xl font-semibold ml-[-40px] text-[#3cfffc]">a malayali soccer club <span className="text-3xl font-semibold text-[#3cfffc]">in Brisbane </span></span> */}
+            
             <div className="max-w-5xl px-2"> 
               <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-4 leading-tight">
                 Welcome to Atlético Brisbane

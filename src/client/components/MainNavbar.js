@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import TeamsDropdownMenu from './TeamsDropdownMenu';
+import TeamTools from './TeamTools';
 import { useNavigate, useLocation  } from 'react-router-dom';
 
 const appURL = process.env.REACT_APP_URL;
@@ -7,12 +8,14 @@ const appURL = process.env.REACT_APP_URL;
 const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
     const [isTournamentOpen, setIsTournamentOpen] = useState(true);
     const [daysRemaining, setDaysRemaining] = useState(0);
 
     const dropdownRef = useRef(null);
+    const toolsdropdownRef = useRef(null);
 
     useEffect(() => {
         const targetDate = new Date('2024-10-05');
@@ -40,9 +43,19 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
         setIsDropdownOpen(!isDropdownOpen);
     };
 
+    const toggleTeamToolsDropdown = () => {
+        setToolsDropdownOpen(!toolsDropdownOpen);
+    };
+
+
     const closeDropdown = () => {
         setIsDropdownOpen(false);
     };
+
+    const closeToolsDropdown = () => {
+        setToolsDropdownOpen(false);
+    };
+
 
 
     const handleLogout = () => {
@@ -59,8 +72,9 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
     }, [location]);
 
     const handleClickOutside = (event) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target) || toolsdropdownRef.current && !toolsdropdownRef.current.contains(event.target) ) {
             closeDropdown();
+            closeToolsDropdown();
         }
     };
 
@@ -217,21 +231,47 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                                 <div ref={dropdownRef}>
                                     <TeamsDropdownMenu closeDropdown={closeDropdown} />
                                 </div>
-                                //<TeamsDropdownMenu closeDropdown={closeDropdown} />
                             )}
                         </div>
                         <a
                             className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/schedule')}
                         >
-                            SCHEDULE
+                            SCHEDULES
                         </a>
-                        <a
+                        {/* <a
                             className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/teamtokengenerator')}
                         >
                             TEAM GENERATOR
-                        </a>
+                        </a> */}
+
+                        <div className="relative">
+                            <button
+                                className="font-semibold linegrow"
+                                onClick={toggleTeamToolsDropdown}
+                            >
+                                TEAM TOOLS
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-4 w-4 inline-block ml-1"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M10 12a1 1 0 01-.707-.293l-5-5a1 1 0 111.414-1.414L10 9.586l4.293-4.293a1 1 0 111.414 1.414l-5 5A1 1 0 0110 12z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                            {toolsDropdownOpen && (
+                                <div ref={dropdownRef}>
+                                    <TeamTools closeToolsDropdown={closeToolsDropdown} />
+                                </div>
+                            )}
+                        </div>
                         <a
                             className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/sponsors')}
@@ -310,14 +350,36 @@ const MainNavbar = ({ isAuthenticated, setAuthenticated}) => {
                             className="font-semibold linegrow cursor-pointer"
                             onClick={() => navigate('/schedule')}
                         >
-                            SCHEDULE
+                            SCHEDULES
                         </a>
-                            <a
-                                className="font-semibold linegrow cursor-pointer"
-                                onClick={() => navigate('/teamtokengenerator')}
-                            >
-                                TEAM GENERATOR
-                            </a>
+
+                            <div className="relative">
+                                <button
+                                    className="font-semibold linegrow"
+                                    onClick={toggleTeamToolsDropdown}
+                                >
+                                    TEAM TOOLS
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-4 w-4 inline-block ml-1"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M10 12a1 1 0 01-.707-.293l-5-5a1 1 0 111.414-1.414L10 9.586l4.293-4.293a1 1 0 111.414 1.414l-5 5A1 1 0 0110 12z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </button>
+                                {toolsDropdownOpen && (
+                                    <div ref={dropdownRef}>
+                                        <TeamTools closeToolsDropdown={closeToolsDropdown} />
+                                    </div>
+                                )}
+                            </div>
+
                             <a                  
                                 className="font-semibold linegrow cursor-pointer"
                                 onClick={() => navigate('/sponsors')}

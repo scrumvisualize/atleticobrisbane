@@ -19,6 +19,7 @@ import TeamTokenGenerator from './client/components/TeamTokenGenerator';
 import PageNotFound from './client/components/PageNotFound';
 import InactivityLogout from './client/components/InactivityLogout';
 import ResetPassword from './client/components/ResetPassword';
+import Formation from './client/components/Formation';
 
 import './index.css';
 
@@ -53,6 +54,7 @@ const App = () => {
         <Route path="/u12squad" element={<U12Squad />} />
         <Route path="/mastersquad" element={<MasterSquad />} />
         <Route path="/teamdistribution" element={<TeamDistribution />} />
+        <Route path="/formation" element={<Formation />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/teamtokengenerator" element={<TeamTokenGenerator />} />

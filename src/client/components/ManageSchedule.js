@@ -392,17 +392,20 @@ const ManageSchedule = () => {
         }
     }, [watch('date')]);
 
+
     const generateRecurringDates = (startDate, pattern) => {
         let dates = [];
         let currentDate = dayjs(startDate);
-
+        const targetDays = pattern.split(',').map(day => day.trim());
+    
         while (currentDate.month() === dayjs(startDate).month()) {
-            if (pattern.includes(currentDate.format('dddd'))) {
+            // Compare the formatted current day with target days in pattern
+            if (targetDays.includes(currentDate.format('dddd'))) {
                 dates.push(currentDate.toDate());
             }
-            currentDate = currentDate.add(1, 'day');
+            currentDate = currentDate.add(1, 'day'); // Increment day correctly
         }
-
+    
         return dates;
     };
 

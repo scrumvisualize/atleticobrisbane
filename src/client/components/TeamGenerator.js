@@ -55,6 +55,7 @@ const TeamGenerator = () => {
   const [subs, setSubs] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
   const [activeTab, setActiveTab] = useState("suggested"); // State for active tab
+  const [selectedPlayers, setSelectedPlayers] = useState([]);
 
   const { handleSubmit, register, getValues} = useForm();
 
@@ -244,6 +245,7 @@ const TeamGenerator = () => {
     return isDragging ? 'border-2 border-purple-500' : ''; // Apply purple border on dragging
   };
 
+
   return (
     <div className="container mx-auto p-4 max-w-7xl">
       <h1 className="text-4xl font-bold mb-8 text-center text-blue-700 text-gradient">Team Generator</h1>
@@ -391,7 +393,6 @@ const TeamGenerator = () => {
           </Droppable>
         </div>
       </DragDropContext>
-      {/* Player Suggestion Popup */}
       {showPopup && (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded shadow-lg w-96 max-h-96 overflow-y-auto">
@@ -429,4 +430,3 @@ const TeamGenerator = () => {
 };
 
 export default TeamGenerator;
-
